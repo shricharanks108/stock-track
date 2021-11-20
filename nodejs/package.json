@@ -1,0 +1,22 @@
+{
+  "name": "stock-track",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shricharanks108/stock-track.git"
+  },
+  "author": "Team 3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shricharanks108/stock-track/issues"
+  },
+  "homepage": "https://github.com/shricharanks108/stock-track#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
