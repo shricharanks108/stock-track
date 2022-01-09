@@ -1,4 +1,6 @@
-// basic express server setup   //  
+require("dotenv").config();
+
+// basic express server setup   //
 const express = require('express');
 var app = express();
 var port = process.env.PORT || 80;
