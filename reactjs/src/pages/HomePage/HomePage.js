@@ -1,11 +1,11 @@
 import './HomePage.css';
-import { Header } from '../../components/Header';
+import { Header } from '../../components/Header/Header';
 
 
 function HomePage() {
   return (
     <div className="background">
-      <Header />
+      <h1>This is Stock Track!</h1>
     </div>
   );
 }
