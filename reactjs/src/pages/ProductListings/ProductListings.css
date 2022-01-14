@@ -1,0 +1,25 @@
+.background {
+    background-color: #a4c9ff;
+    min-height: fit-content;
+}
+
+.products-row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+
+.product-listings-title {
+    padding: 50px;
+    text-align: center;
+}
+
+.filter-categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category-dropdown {
+    margin: 10px;
+}
