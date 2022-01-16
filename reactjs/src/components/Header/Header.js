@@ -24,7 +24,7 @@ export const Header = (props) => {
                 </Nav>
                 </Navbar.Collapse>
             </Container>
-            <Button className='login-button'>Sign In</Button>
+            <Button className='login-button' href='/login'>Sign In</Button>
             <Button className='login-button'>Sign Up</Button>
         </Navbar>
     );
