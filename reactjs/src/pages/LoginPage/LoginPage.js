@@ -32,16 +32,25 @@ function LoginPage() {
       password: password,
     }).then((res) => {
       console.log(res);
+      if (res.data !== "Incorrect Password" || res.data !== "User Not Found") {
+        localStorage.setItem('loginStatus', true);
+        localStorage.setItem('userEmail', res.data.EmailAddress);
+        localStorage.setItem('userFirstName', res.data.FirstName);
+        localStorage.setItem('userLastName', res.data.LastName);
+        setLoginStatus(localStorage.getItem('loginStatus'));
+      }
     });
   };
 
+  const logout = () => {
+    localStorage.clear();
+  }
+
   useEffect(() => {
-    Axios.get('http://localhost:8080/login').then((res) => {
-      console.log(res);
-      if (res.data.loggedIn === true) {
-        setLoginStatus(res.data.loggedIn);
-      }
-    });
+    const loggedInUser = localStorage.getItem("userEmail");
+    if (loggedInUser) {
+      setLoginStatus(true);
+    }
   }, []);
 
   return (
@@ -71,6 +80,5 @@ function LoginPage() {
     </div>
   );
 }
-
  
 export default LoginPage;

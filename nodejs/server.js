@@ -31,7 +31,7 @@ var connection = mysql.createConnection({
 
 app.use(
   session({
-    key: 'userId',
+    key: 'signed_session_key',
     secret: "secretcode",
     resave: false,
     saveUninitialized: false,
@@ -120,7 +120,7 @@ app.post('/register',checkIfUserExists,(req,res,next)=>{
   const saltHash=generateHash(req.body.password);
   const salt=saltHash.salt;
   const hash=saltHash.hash;
-
+ 
   connection.query('INSERT INTO AuthTest VALUES (?,?,?,?,?) ', [req.body.email,hash,req.body.firstName,req.body.lastName,salt], function(error, results, fields) {
     if (error)
       res.send({registered: false});
