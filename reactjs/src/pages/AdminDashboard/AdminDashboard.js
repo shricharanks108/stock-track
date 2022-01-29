@@ -5,7 +5,6 @@ import { Header } from '../../components/Header/Header';
 function AdminDashboard() {
   return (
     <div className="background">
-      <Header />
     </div>
   );
 }

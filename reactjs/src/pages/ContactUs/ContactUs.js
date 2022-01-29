@@ -5,7 +5,6 @@ import { Header } from '../../components/Header';
 function ContactUs() {
   return (
     <div className="background">
-      <Header />
     </div>
   );
 }

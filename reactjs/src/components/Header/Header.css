@@ -2,3 +2,16 @@
     margin-right: 10px;
     min-width: fit-content;
 }
+
+#shoppingCartDiv{
+    height: 100%;
+    margin-right: 3%;
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+}
+
+#shoppingCartDiv p{
+    align-self: center;
+    margin: 0;
+}
