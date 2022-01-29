@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-.background {
-    background-color: #a4c9ff;
-    min-height: fit-content;
-}
-=======
 .main {
     text-align: center;
     justify-content: center;
@@ -87,4 +81,3 @@
    a{
        color: blue;
    }
->>>>>>> Stashed changes

@@ -1,12 +1,4 @@
 import './LoginPage.css';
-<<<<<<< Updated upstream
-import { Header } from '../../components/Header/Header';
-
-
-function LoginPage() {
-  return (
-    <div className="background">
-=======
 import profile from "./Images/LoginIcon.png";
 import email from "./Images/EmailIcon.png";
 import pass from "./Images/LockIcon.png";
@@ -28,11 +20,11 @@ function LoginPage() {
            <h1>Login Page</h1>
            <div>
              <img src={email} alt="email" className="email"/>
-             <input type="text" placeholder="user name" className="name"/>
+             <input type="text" placeholder="username" className="name"/>
            </div>
            <div className="second-input">
              <img src={pass} alt="pass" className="email"/>
-             <input type="password" placeholder="user name" className="name"/>
+             <input type="password" placeholder="password" className="name"/>
            </div>
           <div className="login-button">
           <button>Login</button>
@@ -48,10 +40,9 @@ function LoginPage() {
        
 
      </div>
->>>>>>> Stashed changes
     </div>
   );
 }
 
- 
+
 export default LoginPage;
