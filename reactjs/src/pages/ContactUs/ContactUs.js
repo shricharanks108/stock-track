@@ -1,13 +1,14 @@
 import './ContactUs.css';
-import { Header } from '../../components/Header';
+import React, { useRef} from 'react'
 
+import ContactUsForm from '../../components/ContactUsForm/ContactUsForm'
 
 function ContactUs() {
   return (
-    <div className="background">
-    </div>
+      <div>
+        <ContactUsForm />
+      </div>
   );
 }
-
 
 export default ContactUs;

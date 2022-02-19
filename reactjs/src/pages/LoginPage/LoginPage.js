@@ -1,7 +1,9 @@
 import './LoginPage.css';
-import profile from "./Images/LoginIcon.png";
-import email from "./Images/EmailIcon.png";
-import pass from "./Images/LockIcon.png";
+
+//Need to add icons:
+//import { IoPersonCircle } from "react-icons/io";
+//import email from "./Images/EmailIcon.png";
+//import pass from "./Images/LockIcon.png";
 
 function LoginPage() {
   return (
@@ -10,8 +12,7 @@ function LoginPage() {
        <div>
          <div className="imgs">
            <div className="container-image">
-             <img src={profile} alt="profile" className="profile"/>
-
+            {/*add icon here*/}
            </div>
 
 
@@ -19,11 +20,11 @@ function LoginPage() {
          <div>
            <h1>Login Page</h1>
            <div>
-             <img src={email} alt="email" className="email"/>
+             {/*<img src={email} alt="email" className="email"/>*/}
              <input type="text" placeholder="username" className="name"/>
            </div>
            <div className="second-input">
-             <img src={pass} alt="pass" className="email"/>
+             {/*<img src={pass} alt="pass" className="email"/>*/}
              <input type="password" placeholder="password" className="name"/>
            </div>
           <div className="login-button">

@@ -13,6 +13,7 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import ProductListings from './pages/ProductListings/ProductListings';
 import { useState } from 'react';
 import OrderCart from './pages/OrderCart/OrderCart';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 function App() {
   // Stored in format {ID: qty}
@@ -34,6 +35,7 @@ function App() {
         <Route path='/product-search' element={ <SearchPage/> } />
         <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
         <Route path='/*' element={ <NotFound/> } />
+        <Route path='/contact-us' element={ <ContactUs/> } />
       </Routes>
       <div>
         <Footer />
