@@ -2,8 +2,22 @@ import React from "react";
 import './Header.css';
 // import {Link} from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
+import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, NavLink } from "react-router-dom";
+
+const [loginStatus, setLoginStatus] = useState('');
+
+const logout = () => {
+    localStorage.clear();
+}
+
+useEffect(() => {
+    const loggedInUser = localStorage.getItem("userEmail");
+    if (loggedInUser) {
+        setLoginStatus(true);
+    }
+}, []);
 
 export const Header = (props) => {
     console.log(props.cartItems)
