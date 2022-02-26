@@ -79,10 +79,11 @@ function LoginPage() {
              <input type="password" className="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
            </div>
           <div className="login-button">
-          <Button type="submit" className="btn btn-primary" onClick={login}>Login</Button>
+          <Button type="submit" className="btn btn-primary" onClick={login} href='/home'>Login</Button>
           </div>
             <p className="link">
-              <a href="#">Forgot password ?</a> Or<a href="#">Sign Up</a>
+              <a href="#">Forgot password?</a>
+              <a href="#">Sign Up</a>
             </p>
          </div>
        </div>

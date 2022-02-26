@@ -1,6 +1,4 @@
 import './AdminDashboard.css';
-import { Header } from '../../components/Header/Header';
-
 
 function AdminDashboard() {
   return (
