@@ -14,7 +14,7 @@ import ProductListings from './pages/ProductListings/ProductListings';
 import { useState } from 'react';
 import OrderCart from './pages/OrderCart/OrderCart';
 import ContactUs from './pages/ContactUs/ContactUs';
-import TeamManagement from './pages/TeamManagement/TeamManagement';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 function App() {
   // Stored in format {ID: qty}
@@ -31,14 +31,13 @@ function App() {
         <Route path='/login' element={ <LoginPage/> } />
         <Route path='/dashboard' element={ <UserDashboard/> } />
         <Route path='/admin-dashboard' element={ <AdminDashboard/> } />
-        <Route path='/admin-dashboard/team-management' element={ <TeamManagement/> } />
-        <Route path='/admin-dashboard/inventory-management' element={ <AdminDashboard/> } />
         <Route path='/product-listings' element={ <ProductListings cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-page' element={ <ProductPage cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-search' element={ <SearchPage/> } />
         <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
         <Route path='/*' element={ <NotFound/> } />
         <Route path='/contact-us' element={ <ContactUs/> } />
+        <Route path='/about-us' element={ <AboutUs/> } />
       </Routes>
       <div>
         <Footer />
