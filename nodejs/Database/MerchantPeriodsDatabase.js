@@ -1,30 +1,30 @@
 class MerchantPeriodsDatabase{
-    id;
 
-    getMerchantId(){
+    static getMerchantId(){
+
     }
-    setMerchantId(id){
+    static setMerchantId(id){
         if(typeof id !== "number") return;
     }
 
-    getCountryCode(){
+    static getCountryCode(){
 
     }
-    setCountryCode(code){
+    static setCountryCode(code){
         if(typeof code !== "number") return;
     }
 
-    getStartDate(){
+    static getStartDate(){
 
     }
-    setStartDate(time){
+    static setStartDate(time){
 
     }
 
-    getEndDate(){
+    static getEndDate(){
 
     }
-    setEndDate(time){
+    static setEndDate(time){
 
     }
 }
