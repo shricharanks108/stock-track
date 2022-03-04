@@ -1,0 +1,21 @@
+.productCartCard {
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+}
+
+.productCartCard img {
+  height: 100%;
+}
+
+.productCartQty p {
+  display: inline;
+}
+
+.productCartCard input{
+    background-color: transparent;
+    border: 0;
+    width: 3em;
+}

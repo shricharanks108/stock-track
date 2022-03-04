@@ -7,11 +7,14 @@ const mysql = require('mysql2');
 const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
+var Test = require('./Database/TestClass');
 
 var connection = require("./Database/Database").connection;
 var Authentication = require("./Authentication");
 
 const app = express();
+
+// console.log(Test.returnTest());
 
 app.use(
   cors({
@@ -20,6 +23,8 @@ app.use(
     credentials: true,
   })
 );
+
+console.log(Test.returnTest("test"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

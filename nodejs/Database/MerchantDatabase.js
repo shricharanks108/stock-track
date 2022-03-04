@@ -1,32 +1,32 @@
 class MerchantDatabase{
-    id;
+    static id;
 
-    getCountryCode(){
+    static getCountryCode(){
 
     }
-    setCountryCode(code){
+    static setCountryCode(code){
         if(typeof code !== "number") return;
     }
 
-    getName(){
+    static getName(){
 
     }
-    setName(name){
+    static setName(name){
         if(typeof name !== "string") return;
     }
 
-    getCreationDate(){
+    static getCreationDate(){
         return null;
     }
-    setCreationDate(time){
+    static setCreationDate(time){
         if(typeof this.getCreationDate() !== "undefined" || this.getCreationDate() !== null) return; //different types of null. it's weird.
         if(typeof time !== "number") return; //Date.now() is a number
     }
 
-    getAdminId(){
+    static getAdminId(){
 
     }
-    setAdminId(id){
+    static setAdminId(id){
         if(typeof code !== "number") return;
 
     }

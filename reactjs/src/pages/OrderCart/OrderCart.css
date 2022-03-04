@@ -1,4 +1,12 @@
-.background {
-    background-color: #a4c9ff;
-    min-height: fit-content;
+#orderCartPage {
+  margin-bottom: 50px;
+}
+#orderCartPage hr {
+  width: 80%;
+  margin-left: 10%;
+}
+
+#orderCartPage button {
+  width: 80%;
+  margin-left: 10%;
 }

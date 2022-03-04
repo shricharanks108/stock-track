@@ -1,9 +1,10 @@
 import './ProductPage.css';
 import { NutritionLabel } from 'react-fda-nutrition-facts';
 import { Breadcrumb, Button } from 'react-bootstrap';
+import AddToOrderButton from '../../components/AddToOrderButton/AddToOrderButton';
 
 
-function ProductPage() {
+function ProductPage(props) {
   return (
     <div className='background'>
       <Breadcrumb>
@@ -14,7 +15,7 @@ function ProductPage() {
         <Breadcrumb.Item active>Milk, lowfat</Breadcrumb.Item>
         <Breadcrumb.Item active>[Product Name]</Breadcrumb.Item>
       </Breadcrumb>
-      <Button>Add to Order</Button> 
+      <AddToOrderButton cartItems={props.cartItems} setCartItems={props.setCartItems} productID={props.productID}/>
       <h1>Nutritional Information</h1>
       <div className='nutritional-facts'>
           <NutritionLabel

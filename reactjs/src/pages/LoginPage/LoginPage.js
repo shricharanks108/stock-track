@@ -1,4 +1,10 @@
 import './LoginPage.css';
+
+//Need to add icons:
+//import { IoPersonCircle } from "react-icons/io";
+//import email from "./Images/EmailIcon.png";
+//import pass from "./Images/LockIcon.png";
+
 import Axios from 'axios';
 import { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
@@ -54,31 +60,50 @@ function LoginPage() {
   }, []);
 
   return (
-    <div>
-      <div className="login-background">
-        <form className="form-inline">
-          <input type="text" className="form-control" placeholder="Email Address" 
-          onChange={(e) => setEmail(e.target.value)}/>
-          <input type="password" className="form-control" placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)} />
-        </form>
-        <Button type="submit" className="btn btn-primary" onClick={login}>Login</Button>
-      </div>
-      <div className="register-background">
-        <form className="form-inline">
-          <input type="text" className="form-control" placeholder="First Name" 
-          onChange={(e) => setFirstName(e.target.value)}/>
-          <input type="text" className="form-control" placeholder="Last Name" 
-          onChange={(e) => setLastName(e.target.value)}/>
-          <input type="text" className="form-control" placeholder="Email Address" 
-          onChange={(e) => setEmail(e.target.value)}/>
-          <input type="text" className="form-control" placeholder="Password" 
-          onChange={(e) => setPassword(e.target.value)}/>
-        </form>
-        <Button type="submit" className="btn btn-primary" onClick={register}>Register</Button>
-      </div>
+    <div className="main">
+     <div className="sub-main">
+       <div>
+         <div className="imgs">
+           <div className="container-image">
+            {/*add icon here*/}
+           </div>
+         </div>
+         <div>
+           <h1>Login Page</h1>
+           <div>
+             {/*<img src={email} alt="email" className="email"/>*/}
+             <input type="text" className="form-control" placeholder="Email Address" onChange={(e) => setEmail(e.target.value)}/>
+           </div>
+           <div className="second-input">
+             {/*<img src={pass} alt="pass" className="email"/>*/}
+             <input type="password" className="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+           </div>
+          <div className="login-button">
+          <Button type="submit" className="btn btn-primary" onClick={login}>Login</Button>
+          </div>
+            <p className="link">
+              <a href="#">Forgot password ?</a> Or<a href="#">Sign Up</a>
+            </p>
+         </div>
+       </div>
+     </div>
     </div>
   );
 }
- 
+
+
+{/* <div className="register-background">
+  <form className="form-inline">
+    <input type="text" className="form-control" placeholder="First Name" 
+    onChange={(e) => setFirstName(e.target.value)}/>
+    <input type="text" className="form-control" placeholder="Last Name" 
+    onChange={(e) => setLastName(e.target.value)}/>
+    <input type="text" className="form-control" placeholder="Email Address" 
+    onChange={(e) => setEmail(e.target.value)}/>
+    <input type="text" className="form-control" placeholder="Password" 
+    onChange={(e) => setPassword(e.target.value)}/>
+  </form>
+  <Button type="submit" className="btn btn-primary" onClick={register}>Register</Button>
+</div> */}
+
 export default LoginPage;

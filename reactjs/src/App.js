@@ -11,22 +11,31 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ProductListings from './pages/ProductListings/ProductListings';
+import { useState } from 'react';
+import OrderCart from './pages/OrderCart/OrderCart';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 function App() {
+  // Stored in format {ID: qty}
+  const [cartItems, setCartItems] = useState({});
+
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <Header cartItems={cartItems}/>
       </div>
       <Routes>
         <Route path='/home' element={ <HomePage/> } />
+        <Route path='/' element={ <HomePage/> } /> {/* Default Page with No Path provided should be home */}
         <Route path='/login' element={ <LoginPage/> } />
         <Route path='/dashboard' element={ <UserDashboard/> } />
         <Route path='/admin-dashboard' element={ <AdminDashboard/> } />
-        <Route path='/product-listings' element={ <ProductListings/> } />
-        <Route path='/product-page' element={ <ProductPage/> } />
+        <Route path='/product-listings' element={ <ProductListings cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
+        <Route path='/product-page' element={ <ProductPage cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-search' element={ <SearchPage/> } />
+        <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
         <Route path='/*' element={ <NotFound/> } />
+        <Route path='/contact-us' element={ <ContactUs/> } />
       </Routes>
       <div>
         <Footer />
