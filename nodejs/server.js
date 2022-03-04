@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const cookieParser = require("cookie-parser");
 const express = require('express');
 const bodyParser = require("body-parser");
@@ -6,6 +7,9 @@ const mysql = require('mysql2');
 const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
+
+var connection = require("./Database/Database").connection;
+var Authentication = require("./Authentication");
 
 const app = express();
 
@@ -20,14 +24,6 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 8080);
-
-var connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database : process.env.DB_NAME,
-  multipleStatements: true
-});
 
 app.use(
   session({
@@ -50,31 +46,6 @@ connection.connect((err) => {
     console.log("Conection to MySQL Database Failed :(");
 });
 
-function checkIfUserExists(req,res,next) {
-  connection.query('Select * from AuthTest where EmailAddress=? ', [req.body.email], function(error, results, fields) {
-    if (error) {
-      console.log("Error");
-    }
-    else if(results.length>0) {
-      console.log("big L ur email been used my dude");
-    }
-    else {
-      next();
-    }
-  });
-}
-
-function generateHash(password){
-  var salt=crypto.randomBytes(32).toString('hex');
-  var genhash=crypto.pbkdf2Sync(password,salt,10000,60,'sha512').toString('hex');
-  return {salt:salt,hash:genhash};
-}
-
-function validPassword(password,hash,salt) {
-  var hashVerify=crypto.pbkdf2Sync(password,salt,10000,60,'sha512').toString('hex');
-  return hash === hashVerify;
-}
-
 function isAdmin(req,res,next){
   if(req.isAuthenticated() && req.user.isAdmin==1) {
     next();
@@ -94,7 +65,7 @@ app.post("/login", (req, res, next) => {
   connection.query('SELECT * FROM AuthTest WHERE EmailAddress = ?;',[req.body.email], function(error, results) {
 
       if (results.length > 0) {
-          if (validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
+          if (Authentication.validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
               req.session.user = results[0];
               res.send(results[0]);
           }
@@ -116,8 +87,8 @@ app.get('/login', (req, res, next) => {
   }
 });
 
-app.post('/register',checkIfUserExists,(req,res,next)=>{
-  const saltHash=generateHash(req.body.password);
+app.post('/register', Authentication.checkIfUserExists,(req,res,next)=>{
+  const saltHash=Authentication.generateHash(req.body.password);
   const salt=saltHash.salt;
   const hash=saltHash.hash;
  

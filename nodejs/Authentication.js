@@ -1,16 +1,7 @@
+var connection = require("./Database/Database").connection;
 const crypto = require('crypto');
-const mysql = require('mysql2');
-
-var connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database : process.env.DB_NAME,
-    multipleStatements: true
-});
 
 function userExists(req,res,next) {
-    
     connection.query('Select * from AuthTest where EmailAddress=? ', [req.body.email], function(error, results, fields) {
       if (error) {
         console.log("Error");
