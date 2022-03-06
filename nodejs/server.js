@@ -6,6 +6,7 @@ const mysql = require('mysql2');
 const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
+const User = require("./User");
 
 const app = express();
 
@@ -92,7 +93,6 @@ app.use((req,res,next)=> {
 
 app.post("/login", (req, res, next) => {
   connection.query('SELECT * FROM AuthTest WHERE EmailAddress = ?;',[req.body.email], function(error, results) {
-
       if (results.length > 0) {
           if (validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
               req.session.user = results[0];
@@ -114,6 +114,26 @@ app.get('/login', (req, res, next) => {
   } else {
     res.send({loggedIn: false});
   }
+});
+
+app.post("/cartItmes", (req, res, next) => {
+  var id = req.body.id;
+  if(!User.doesIdExist(id)) return res.sendStatus(400); // bad request
+
+  var user = new User(id);
+  res.send({savedOrder: user.getOrderHistory()});
+});
+
+app.post("/addCartItem", (req, res, next) => {
+  var orderId = req.body.orderId;
+  var productId = req.body.productId;
+  var qty = req.body.qty;
+
+  // TODO: null is because I don't understand the right fields
+  connection.query("INSERT INTO order_items VALUES (?,?,?,?,?,?,?)", [orderId, productId, null, null, qty, null, null], (error, results, fields) => {
+    if(error) res.sendStatus(500);
+    else res.send(results);
+  });
 });
 
 app.post('/register',checkIfUserExists,(req,res,next)=>{

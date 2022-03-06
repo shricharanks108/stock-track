@@ -6,6 +6,11 @@ class User{
     constructor(){
         
     }
+    
+    // TODO: fill this with actual code
+    static doesIdExist(id) {
+        return true;
+    }
 
     getRole(){}
     getName(){}
