@@ -32,6 +32,7 @@ function LoginPage() {
     });
   };
 
+  // TODO: just doesn't work.
   const login = () => {
     Axios.post('http://localhost:8080/login', {
       email: email,
@@ -79,7 +80,7 @@ function LoginPage() {
              <input type="password" className="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
            </div>
           <div className="login-button">
-          <Button type="submit" className="btn btn-primary" onClick={login} href='/home'>Login</Button>
+          <Button type="submit" className="btn btn-primary" onClick={login} >Login</Button>
           </div>
             <p className="link">
               <a href="#">Forgot password?</a>
