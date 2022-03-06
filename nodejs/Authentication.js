@@ -1,4 +1,4 @@
-var connection = require("./Database/Database").connection;
+var connection = require("./DatabaseFunctions/Database").connection;
 const crypto = require('crypto');
 
 function userExists(req,res,next) {

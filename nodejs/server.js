@@ -9,7 +9,7 @@ const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
 
-var connection = require("./Database/Database").connection;
+var connection = require("./DatabaseFunctions/Database").connection;
 var Authentication = require("./Authentication");
 
 var User = require('./DatabaseFunctions/User');
@@ -32,20 +32,6 @@ app.use("/user", UserRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 8080);
-
-let connection;
-
-setup();
-
-async function setup() {
-  connection = await mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    multipleStatements: true
-  });
-}
 
 app.use(
   session({
