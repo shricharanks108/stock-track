@@ -10,9 +10,12 @@ const cors = require('cors');
 var session = require('express-session');
 var Authentication = require("./Authentication");
 
+// let connection = require('./DatabaseFunctions/Database').connection;
 var User = require('./DatabaseFunctions/User');
 var Inventory = require('./DatabaseFunctions/Inventory');
+
 var UserRoutes = require('./Routes/UserRoutes');
+var AuthRoutes = require('./Routes/AuthenticationRoutes');
 var InventoryRoutes = require('./Routes/InventoryRoutes');
 
 const { getMaxListeners } = require("process");
@@ -28,6 +31,7 @@ app.use(
 );
 
 app.use("/user", UserRoutes);
+app.use("/auth", AuthRoutes);
 app.use("/inventory", InventoryRoutes);
 
 app.use(bodyParser.json());
@@ -61,80 +65,10 @@ async function setup() {
   });
 }
 
-async function checkIfUserExists(req, res, next) {
-  const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email=? ', [req.body.email]);
-  if (results.length > 0) {
-    console.log("big L ur email been used my dude");
-  }
-  else {
-    next();
-  }
-}
-
-function generateHash(password) {
-  var salt = crypto.randomBytes(32).toString('hex');
-  var genhash = crypto.pbkdf2Sync(password, salt, 10000, 60, 'sha512').toString('hex');
-  return { salt: salt, hash: genhash };
-}
-
-function validPassword(password, hash, salt) {
-  var hashVerify = crypto.pbkdf2Sync(password, salt, 10000, 60, 'sha512').toString('hex');
-  return hash === hashVerify;
-}
-
-function isAdmin(req, res, next) {
-  if (req.isAuthenticated() && req.user.isAdmin == 1) {
-    next();
-  }
-  else {
-    res.redirect('/notAuthorizedAdmin');
-  }
-}
-
 app.use((req, res, next) => {
   // console.log(req.session);
   // console.log(req.user);
   next();
-});
-
-app.post("/login", async (req, res, next) => {
-  const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [req.body.email]);
-  if (results.length > 0) {
-    if (validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
-      req.session.user = results[0];
-      res.send(results[0]);
-    }
-    else {
-      res.send("Incorrect Password");
-    }
-  }
-  else {
-    res.send("User Not Found");
-  }
-});
-
-app.get('/login', (req, res, next) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
-});
-
-app.post('/register', checkIfUserExists, async (req, res, next) => {
-  const saltHash = generateHash(req.body.password);
-  const salt = saltHash.salt;
-  const hash = saltHash.hash;
-  const date_ob = new Date();
-  const date = date_ob.getFullYear() + "-" + ("0" + (date_ob.getMonth() + 1)).slice(-2) + "-" + ("0" + date_ob.getDate()).slice(-2);
-
-  try {
-    const [results, fields] = await connection.execute('INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ', [null, req.body.email, hash, req.body.firstName, req.body.age, date, req.body.birthday, req.body.countrycode, req.body.zipcode, req.body.foodpantryid, req.body.phonenumber, "Active", req.body.role, req.body.lastName, salt]);
-    res.send({ registered: true });
-  } catch (error) {
-    res.send({ registered: false });
-    console.log(error);
-  }
 });
 
 app.post("/cartItmes", (req, res, next) => {

@@ -1,18 +1,27 @@
-var connection = require("./DatabaseFunctions/Database").connection;
+// var connection = require("./DatabaseFunctions/Database").connection;
 const crypto = require('crypto');
 
-function userExists(req,res,next) {
-    connection.query('Select * from users where Email=? ', [req.body.email], function(error, results, fields) {
-      if (error) {
-        console.log("Error");
-      }
-      else if(results.length>0) {
-        console.log("big L ur email been used my dude");
-      }
-      else {
-        next();
-      }
-    });
+let connection;
+setup();
+
+async function setup() {
+  connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    multipleStatements: true
+  });
+}
+
+async function checkIfUserExists(req, res, next) {
+  const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email=? ', [req.body.email]);
+  if (results.length > 0) {
+    console.log("big L ur email been used my dude");
+  }
+  else {
+    next();
+  }
 }
 
 function generateHash(password){

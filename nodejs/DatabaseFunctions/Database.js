@@ -3,8 +3,6 @@ const mysql = require('mysql2/promise');
 
 let connection;
 
-setup();
-
 async function setup() {
   connection = await mysql.createConnection({
     host: process.env.DB_HOST,
@@ -14,5 +12,7 @@ async function setup() {
     multipleStatements: true
   });
 }
+
+setup();
 
 module.exports.connection = connection;
