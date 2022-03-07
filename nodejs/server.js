@@ -8,6 +8,7 @@ const mysql = require('mysql2/promise');
 const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
+const User = require("./User");
 
 var connection = require("./DatabaseFunctions/Database").connection;
 var Authentication = require("./Authentication");
@@ -124,7 +125,26 @@ app.post('/register', checkIfUserExists, async (req, res, next) => {
     res.send({ registered: false });
     console.log(error);
   }
+app.post("/cartItmes", (req, res, next) => {
+  var id = req.body.id;
+  if(!User.doesIdExist(id)) return res.sendStatus(400); // bad request
+
+  var user = new User(id);
+  res.send({savedOrder: user.getOrderHistory()});
 });
+
+app.post("/addCartItem", (req, res, next) => {
+  var orderId = req.body.orderId;
+  var productId = req.body.productId;
+  var qty = req.body.qty;
+
+  // TODO: null is because I don't understand the right fields
+  connection.query("INSERT INTO order_items VALUES (?,?,?,?,?,?,?)", [orderId, productId, null, null, qty, null, null], (error, results, fields) => {
+    if(error) res.sendStatus(500);
+    else res.send(results);
+  });
+});
+
 
 // USER RELATED ENDPOINTS
 

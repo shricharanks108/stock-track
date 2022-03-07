@@ -6,24 +6,26 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, NavLink } from "react-router-dom";
 
-const [loginStatus, setLoginStatus] = useState('');
 
-const logout = () => {
-    localStorage.clear();
-}
-
-useEffect(() => {
-    const loggedInUser = localStorage.getItem("userEmail");
-    if (loggedInUser) {
-        setLoginStatus(true);
-    }
-}, []);
 
 export const Header = (props) => {
+
+    const [loginStatus, setLoginStatus] = useState('');
+
+    const logout = () => {
+        localStorage.clear();
+    }
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("userEmail");
+        if (loggedInUser) {
+            setLoginStatus(true);
+        }
+    }, []);
+
     console.log(props.cartItems)
     return (
-
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg">  
             <Container>
                 <Navbar.Brand href="">Stock Track</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -32,12 +34,12 @@ export const Header = (props) => {
                         <Nav.Link as={NavLink} to="/home">Home</Nav.Link>
                         <Nav.Link as={NavLink} to="#link">Link</Nav.Link>
                         <Nav.Link as={NavLink} to="/product-listings">Listings </Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item as={NavLink} to="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item as={NavLink} to="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown title="Dropdown">
+                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.2">Another action</NavDropdown.Item>
+                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.3">Something</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item as={NavLink} to="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -52,9 +54,19 @@ export const Header = (props) => {
                     </div>
                 </Nav.Link>
             </Nav>
-
-            <Button className='login-button'>Sign In</Button>
-            <Button className='login-button'>Sign Up</Button>
-        </Navbar>
+            { 
+                loginStatus ? 
+                    <div style = {{display: "contents"}}>
+                        <Button className='login-button' href='/admin-dashboard' >Dashboard</Button>
+                        <Button className='login-button' href='/logout' >Logout</Button>
+                    </div>
+                : 
+                    <div style = {{display: "contents"}}>
+                        <Button className='login-button' href='/login' >Sign In</Button>
+                        <Button className='login-button' href='/sign-up' >Sign Up</Button>
+                    </div>
+            }
+            
+        </Navbar >
     );
 };
