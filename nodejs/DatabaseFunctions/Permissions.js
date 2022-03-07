@@ -1,34 +1,42 @@
 class Permissions {
 
-    static canAddStaff(user) {
+    static getAccessLevel(email) {
 
     }
 
-    static canPlaceOrders(user) {
+    static canAddStaff(accessLevel) {
 
     }
 
-    static canFulfillOrders(user) {
+    static canPlaceOrders(accessLevel) {
 
     }
 
-    static canAddMerchants(user) {
+    static canFulfillOrders(accessLevel) {
 
     }
 
-    static canViewAdminDashboard(user) {
+    static canAddMerchants(accessLevel) {
 
     }
 
-    static canViewAllOrders(user) {
+    static canViewAdminDashboard(accessLevel) {
 
     }
 
-    static canRestockInventory(user) {
+    static canViewAllOrders(accessLevel) {
 
     }
 
-    static canMakeAnnouncements(user) {
+    static canRestockInventory(accessLevel) {
+
+    }
+
+    static canMakeAnnouncements(accessLevel) {
+
+    }
+
+    static canViewAllUsers(accessLevel) {
 
     }
 
