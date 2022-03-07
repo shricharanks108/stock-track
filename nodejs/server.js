@@ -8,9 +8,9 @@ const mysql = require('mysql2/promise');
 const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
-const User = require("./User");
+// const User = require("./User");
 
-var connection = require("./DatabaseFunctions/Database").connection;
+// const connection = require("./DatabaseFunctions/Database").connection;
 var Authentication = require("./Authentication");
 
 var User = require('./DatabaseFunctions/User');
@@ -48,12 +48,22 @@ app.use(
 
 app.use(cookieParser("secretcode"));
 
+let connection;
+setup();
+
+async function setup() {
+  connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    multipleStatements: true
+  });
+}
+
 async function checkIfUserExists(req, res, next) {
   const [results, fields] = await connection.execute('Select * from users where Email=? ', [req.body.email]);
-  if (error) {
-    console.log(error);
-  }
-  else if (results.length > 0) {
+  if (results.length > 0) {
     console.log("big L ur email been used my dude");
   }
   else {
@@ -125,6 +135,8 @@ app.post('/register', checkIfUserExists, async (req, res, next) => {
     res.send({ registered: false });
     console.log(error);
   }
+});
+
 app.post("/cartItmes", (req, res, next) => {
   var id = req.body.id;
   if(!User.doesIdExist(id)) return res.sendStatus(400); // bad request
@@ -143,81 +155,6 @@ app.post("/addCartItem", (req, res, next) => {
     if(error) res.sendStatus(500);
     else res.send(results);
   });
-});
-
-
-// USER RELATED ENDPOINTS
-
-// app.get('/user/firstName', async (req, res) => {
-//   if (req.session.user) {
-//     let result = await User.getFirstName(connection, req.body.email);
-//     res.send({ "firstName": result });
-//   }
-//   else {
-//     res.send("Not Logged In!");
-//   }
-// });
-
-// app.post('/user/firstName', async (req, res) => {
-//   if (req.session.user) {
-//     try{
-//       await User.setFirstName(connection, req.body.email, req.body.firstName);
-//       res.sendStatus(200);
-//     } catch(error){
-//       res.sendStatus(500);
-//     }
-//   }
-//   else {
-//     res.send("Not Logged In!");
-//   }
-// });
-
-app.get('/user/lastName', async (req, res) => {
-  if (req.session.user) {
-    let result = await User.getLastName(connection, req.body.email);
-    res.send(result);
-  }
-  else {
-    res.send("Not Logged In!");
-  }
-});
-
-app.post('/user/lastName', async (req, res) => {
-  if (req.session.user) {
-    try{
-      await User.setLastName(connection, req.body.email, req.body.lastName);
-      res.sendStatus(200);
-    } catch(error){
-      res.sendStatus(500);
-    }
-  }
-  else {
-    res.send("Not Logged In!");
-  }
-});
-
-app.get('/user/age', async (req, res) => {
-  if (req.session.user) {
-    let result = await User.getAge(connection, req.body.email);
-    res.send(result);
-  }
-  else {
-    res.send("Not Logged In!");
-  }
-});
-
-app.post('/user/age', async (req, res) => {
-  if (req.session.user) {
-    try{
-      await User.setAge(connection, req.body.email, req.body.age);
-      res.sendStatus(200);
-    } catch(error){
-      res.sendStatus(500);
-    }
-  }
-  else {
-    res.send("Not Logged In!");
-  }
 });
 
 app.listen(8080, function () {
