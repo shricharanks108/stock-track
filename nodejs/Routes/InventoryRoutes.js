@@ -20,11 +20,11 @@ router.use((req, res, next) => {
     next()
 });
 
-router.get('/firstName', async (req, res) => {
+router.get('/products', async (req, res) => {
 
 });
   
-router.post('/firstName', async (req, res) => {
+router.post('/products', async (req, res) => {
 
 });
 

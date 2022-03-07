@@ -92,6 +92,6 @@ router.post('/user/age', async (req, res) => {
     }
 });
   
-
+// add rest of the routes here (one for each user related function)
 
 module.exports = router;

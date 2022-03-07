@@ -8,14 +8,13 @@ const mysql = require('mysql2/promise');
 const crypto = require('crypto');
 const cors = require('cors');
 var session = require('express-session');
-// const User = require("./User");
-
-// const connection = require("./DatabaseFunctions/Database").connection;
 var Authentication = require("./Authentication");
 
 var User = require('./DatabaseFunctions/User');
-var UserRoutes = require('./Routes/UserRoutes');
 var Inventory = require('./DatabaseFunctions/Inventory');
+var UserRoutes = require('./Routes/UserRoutes');
+var InventoryRoutes = require('./Routes/InventoryRoutes');
+
 const { getMaxListeners } = require("process");
 
 const app = express();
@@ -29,6 +28,7 @@ app.use(
 );
 
 app.use("/user", UserRoutes);
+app.use("/inventory", InventoryRoutes);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -62,7 +62,7 @@ async function setup() {
 }
 
 async function checkIfUserExists(req, res, next) {
-  const [results, fields] = await connection.execute('Select * from users where Email=? ', [req.body.email]);
+  const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email=? ', [req.body.email]);
   if (results.length > 0) {
     console.log("big L ur email been used my dude");
   }
