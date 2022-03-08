@@ -1,4 +1,5 @@
 // var connection = require("./DatabaseFunctions/Database").connection;
+const mysql = require('mysql2/promise');
 const crypto = require('crypto');
 
 let connection;
@@ -36,7 +37,7 @@ function validPassword(password,hash,salt) {
 }
 
 module.exports = {
-    checkIfUserExists: userExists,
+    checkIfUserExists: checkIfUserExists,
     generateHash: generateHash,
     validPassword: validPassword,
 };

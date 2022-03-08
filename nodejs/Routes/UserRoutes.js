@@ -3,6 +3,8 @@ const router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+const User = require('./DatabaseFunctions/User');
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(
@@ -23,7 +25,7 @@ router.use((req, res, next) => {
 router.get('/firstName', async (req, res) => {
     if (req.session.user) {
         let result = await User.getFirstName(connection, req.body.email);
-        res.send({ "firstName": result });
+        res.status(200).send({ "firstName": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -33,7 +35,7 @@ router.get('/firstName', async (req, res) => {
 router.post('/firstName', async (req, res) => {
     if (req.session.user) {
         try{
-            await User.setFirstName(connection, req.body.email, req.body.firstName);
+            await User.setFirstName(connection, req.body.email, req.body.newFirstName);
             res.sendStatus(200);
         } catch(error){
             res.sendStatus(500);
@@ -44,54 +46,278 @@ router.post('/firstName', async (req, res) => {
     }
 });
 
-router.get('/user/lastName', async (req, res) => {
+router.get('/lastName', async (req, res) => {
     if (req.session.user) {
         let result = await User.getLastName(connection, req.body.email);
-        res.send(result);
+        res.status(200).send({ "lastName": result });
     }
     else {
-        res.send("Not Logged In!");
+        res.status(401).send("Not Logged In!");
     }
 });
 
-router.post('/user/lastName', async (req, res) => {
+router.post('/lastName', async (req, res) => {
     if (req.session.user) {
         try {
-            await User.setLastName(connection, req.body.email, req.body.lastName);
+            await User.setLastName(connection, req.body.email, req.body.newLastName);
             res.sendStatus(200);
         } catch(error){
             res.sendStatus(500);
         }
     }
     else {
-        res.send("Not Logged In!");
+        res.status(401).send("Not Logged In!");
     }
 });
 
-router.get('/user/age', async (req, res) => {
+router.get('/age', async (req, res) => {
     if (req.session.user) {
         let result = await User.getAge(connection, req.body.email);
-        res.send(result);
+        res.status(200).send({ "age": result });
     }
     else {
-        res.send("Not Logged In!");
+        res.status(401).send("Not Logged In!");
     }
 });
 
-router.post('/user/age', async (req, res) => {
+router.post('/age', async (req, res) => {
     if (req.session.user) {
         try{
-            await User.setAge(connection, req.body.email, req.body.age);
+            await User.setAge(connection, req.body.email, req.body.newAge);
             res.sendStatus(200);
         } catch(error){
             res.sendStatus(500);
         }
     }
     else {
-        res.send("Not Logged In!");
+        res.status(401).send("Not Logged In!");
     }
 });
   
-// add rest of the routes here (one for each user related function)
+router.get('/email', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getEmail(connection, req.body.email);
+        res.status(200).send({ "email": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/email', async (req, res) => {
+    if (req.session.user) {
+        try{
+            await User.setEmail(connection, req.body.email, req.body.newEmail);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/creationDate', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getCreationDate(connection, req.body.email);
+        res.status(200).send({ "creationDate": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/countryCode', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getCountryCode(connection, req.body.email);
+        res.status(200).send({ "countryCode": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/countryCode', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setCountryCode(connection, req.body.email, req.body.newCountryCode);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/phoneNumber', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getPhoneNumber(connection, req.body.email);
+        res.status(200).send({ "phoneNumber": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/phoneNumber', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setPhoneNumber(connection, req.body.email, req.body.newPhoneNumber);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/accountStatus', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getAccountStatus(connection, req.body.email);
+        res.status(200).send({ "accountStatus": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/accountStatus', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setAccountStatus(connection, req.body.email, req.body.newAccountStatus);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/userRole', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getUserRole(connection, req.body.email);
+        res.status(200).send({ "userRole": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/userRole', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setUserRole(connection, req.body.email, req.body.newAccountStatus);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/street', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getStreet(connection, req.body.email);
+        res.status(200).send({ "userRole": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/street', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setStreet(connection, req.body.email, req.body.newStreet);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/city', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getCity(connection, req.body.email);
+        res.status(200).send({ "userRole": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/city', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setCity(connection, req.body.email, req.body.newCity);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/state', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getState(connection, req.body.email);
+        res.status(200).send({ "userRole": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/state', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setState(connection, req.body.email, req.body.newState);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.get('/accessLevel', async (req, res) => {
+    if (req.session.user) {
+        let result = await User.getAccessLevel(connection, req.body.email);
+        res.status(200).send({ "userRole": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
+
+router.post('/accessLevel', async (req, res) => {
+    if (req.session.user) {
+        try {
+            await User.setAccessLevel(connection, req.body.email, req.body.newAccessLevel);
+            res.sendStatus(200);
+        } catch(error){
+            res.sendStatus(500);
+        }
+    }
+    else {
+        res.status(401).send("Not Logged In!");
+    }
+});
 
 module.exports = router;

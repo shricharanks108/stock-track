@@ -5,8 +5,8 @@ class WWEIAFoodCategories{
     // WWEIA Food Category Number --> Example: 1006
     // WWEIA Food Category Description --> Example: 'Milk, lowfat'
 
-    static getFoodCategoryNumber() {
-
+    static getFoodSubcategoryNumber() {
+        
     }
 
     static getFoodMajorCategoryFromSubcategory() {
@@ -21,7 +21,9 @@ class WWEIAFoodCategories{
 
     }
 
-    
+    static getFoodCategoryNumbersfromMajorCategory() {
+        
+    }
 }
 
 module.exports = WWEIAFoodCategories

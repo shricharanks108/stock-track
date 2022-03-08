@@ -152,7 +152,75 @@ class User {
         await connection.execute('UPDATE users SET UserRole = ? WHERE Email = ?;', [role, email]);
     }
 
+    // add Street, City, State to the database
 
+    static async getStreet(connection, email) {
+        if (typeof email !== "string") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE Street = ?;', [email]);
+
+        if (results.length > 0) {
+            return results[0].Street;
+        }
+        return null;
+    }
+
+    static async setStreet(connection, email, status) {
+        if (typeof status !== "string") return;
+
+        await connection.execute('UPDATE users SET Street = ? WHERE Email = ?;', [street, email]);
+    }
+
+    static async getCity(connection, email) {
+        if (typeof email !== "string") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE City = ?;', [email]);
+
+        if (results.length > 0) {
+            return results[0].Street;
+        }
+        return null;
+    }
+
+    static async setCity(connection, email, status) {
+        if (typeof status !== "string") return;
+
+        await connection.execute('UPDATE users SET City = ? WHERE Email = ?;', [street, email]);
+    }
+
+    static async getState(connection, email) {
+        if (typeof email !== "string") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE State = ?;', [email]);
+
+        if (results.length > 0) {
+            return results[0].Street;
+        }
+        return null;
+    }
+
+    static async setState(connection, email, status) {
+        if (typeof status !== "string") return;
+
+        await connection.execute('UPDATE users SET State = ? WHERE Email = ?;', [street, email]);
+    }
+
+    static getAccessLevel(connection, email) {
+        if (typeof email !== "string") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [email]);
+
+        if (results.length > 0) {
+            return results[0].AccessLevel;
+        }
+        return null;
+    }
+
+    static setAccessLevel(connection, email, accessLevel) {
+        if (typeof email !== "string") return;
+
+        await connection.execute('UPDATE users SET AccessLevel = ? WHERE Email = ?;', [accessLevel, email]);
+    }
 }
 
 module.exports = User;

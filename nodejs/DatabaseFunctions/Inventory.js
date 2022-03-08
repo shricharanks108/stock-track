@@ -12,6 +12,10 @@ class Inventory {
 
     }
 
+    static getItemsBySubcategory(category) {
+
+    }
+
     static addItem(item) {
 
     }

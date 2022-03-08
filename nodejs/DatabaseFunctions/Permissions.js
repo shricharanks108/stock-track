@@ -1,42 +1,66 @@
 class Permissions {
 
-    static getAccessLevel(email) {
+    static getCreateStaffPermission(accessLevel) {
 
     }
 
-    static canAddStaff(accessLevel) {
+    static setCreateStaffPermission(accessLevel) {
 
     }
 
-    static canPlaceOrders(accessLevel) {
+    static getPlaceOrdersPermission(accessLevel) {
 
     }
 
-    static canFulfillOrders(accessLevel) {
+    static setPlaceOrdersPermission(accessLevel) {
 
     }
 
-    static canAddMerchants(accessLevel) {
+    static getFulfillOrdersPermission(accessLevel) {
 
     }
 
-    static canViewAdminDashboard(accessLevel) {
+    static setFulfillOrdersPermission(accessLevel) {
 
     }
 
-    static canViewAllOrders(accessLevel) {
+    static getAddMerchantsPermission(accessLevel) {
 
     }
 
-    static canRestockInventory(accessLevel) {
+    static setAddMerchantsPermission(accessLevel) {
 
     }
 
-    static canMakeAnnouncements(accessLevel) {
+    static getViewAdminDashboardPermission(accessLevel) {
 
     }
 
-    static canViewAllUsers(accessLevel) {
+    static setViewAdminDashboardPermission(accessLevel) {
+
+    }
+
+    static getViewAllOrdersPermission(accessLevel) {
+
+    }
+
+    static setViewAllOrdersPermission(accessLevel) {
+
+    }
+
+    static getRestockInventoryPermission(accessLevel) {
+
+    }
+
+    static setRestockInventoryPermission(accessLevel) {
+
+    }
+
+    static getMakeAnnouncementsPermission(accessLevel) {
+
+    }
+
+    static setMakeAnnouncementsPermission(accessLevel) {
 
     }
 
