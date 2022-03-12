@@ -17,6 +17,7 @@ var Inventory = require('./DatabaseFunctions/Inventory');
 var UserRoutes = require('./Routes/UserRoutes');
 var AuthRoutes = require('./Routes/AuthenticationRoutes');
 var InventoryRoutes = require('./Routes/InventoryRoutes');
+var PermissionRoutes = require('./Routes/PermissionRoutes');
 
 const { getMaxListeners } = require("process");
 
@@ -64,12 +65,13 @@ async function setup() {
 app.use("/user", UserRoutes);
 app.use("/auth", AuthRoutes);
 app.use("/inventory", InventoryRoutes);
+app.use("/permissions", PermissionRoutes);
 
 app.use((req, res, next) => {
   next();
 });
 
-app.post("/cartItmes", (req, res, next) => {
+app.post("/cartItems", (req, res, next) => {
   var id = req.body.id;
   if(!User.doesIdExist(id)) return res.sendStatus(400); // bad request
 

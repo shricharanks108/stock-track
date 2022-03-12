@@ -73,7 +73,7 @@ router.post('/lastName', async (req, res) => {
 router.get('/age', async (req, res) => {
     if (req.session.user) {
         let result = await User.getAge(connection, req.body.email);
-        res.status(200).send({ "age": result });
+        res.status(200).send({ "Age": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -97,7 +97,7 @@ router.post('/age', async (req, res) => {
 router.get('/email', async (req, res) => {
     if (req.session.user) {
         let result = await User.getEmail(connection, req.body.email);
-        res.status(200).send({ "email": result });
+        res.status(200).send({ "Email": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -121,7 +121,7 @@ router.post('/email', async (req, res) => {
 router.get('/creationDate', async (req, res) => {
     if (req.session.user) {
         let result = await User.getCreationDate(connection, req.body.email);
-        res.status(200).send({ "creationDate": result });
+        res.status(200).send({ "CreationDate": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -131,7 +131,7 @@ router.get('/creationDate', async (req, res) => {
 router.get('/countryCode', async (req, res) => {
     if (req.session.user) {
         let result = await User.getCountryCode(connection, req.body.email);
-        res.status(200).send({ "countryCode": result });
+        res.status(200).send({ "CountryCode": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -155,7 +155,7 @@ router.post('/countryCode', async (req, res) => {
 router.get('/phoneNumber', async (req, res) => {
     if (req.session.user) {
         let result = await User.getPhoneNumber(connection, req.body.email);
-        res.status(200).send({ "phoneNumber": result });
+        res.status(200).send({ "PhoneNumber": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -179,7 +179,7 @@ router.post('/phoneNumber', async (req, res) => {
 router.get('/accountStatus', async (req, res) => {
     if (req.session.user) {
         let result = await User.getAccountStatus(connection, req.body.email);
-        res.status(200).send({ "accountStatus": result });
+        res.status(200).send({ "AccountStatus": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -203,7 +203,7 @@ router.post('/accountStatus', async (req, res) => {
 router.get('/userRole', async (req, res) => {
     if (req.session.user) {
         let result = await User.getUserRole(connection, req.body.email);
-        res.status(200).send({ "userRole": result });
+        res.status(200).send({ "UserRole": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -227,7 +227,7 @@ router.post('/userRole', async (req, res) => {
 router.get('/street', async (req, res) => {
     if (req.session.user) {
         let result = await User.getStreet(connection, req.body.email);
-        res.status(200).send({ "userRole": result });
+        res.status(200).send({ "Street": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -251,7 +251,7 @@ router.post('/street', async (req, res) => {
 router.get('/city', async (req, res) => {
     if (req.session.user) {
         let result = await User.getCity(connection, req.body.email);
-        res.status(200).send({ "userRole": result });
+        res.status(200).send({ "City": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -275,7 +275,7 @@ router.post('/city', async (req, res) => {
 router.get('/state', async (req, res) => {
     if (req.session.user) {
         let result = await User.getState(connection, req.body.email);
-        res.status(200).send({ "userRole": result });
+        res.status(200).send({ "State": result });
     }
     else {
         res.status(401).send("Not Logged In!");
@@ -299,7 +299,7 @@ router.post('/state', async (req, res) => {
 router.get('/accessLevel', async (req, res) => {
     if (req.session.user) {
         let result = await User.getAccessLevel(connection, req.body.email);
-        res.status(200).send({ "userRole": result });
+        res.status(200).send({ "AccessLevel": result });
     }
     else {
         res.status(401).send("Not Logged In!");

@@ -1,67 +1,147 @@
 class Permissions {
 
-    static getCreateStaffPermission(accessLevel) {
+    static async getCreateStaffPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].CreateStaffPermission;
+        }
+        
+        return null; 
     }
 
-    static setCreateStaffPermission(accessLevel) {
+    static async setCreateStaffPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET CreateStaffPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getPlaceOrdersPermission(accessLevel) {
+    static async getPlaceOrdersPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].PlaceOrdersPermission;
+        }
+        
+        return null; 
     }
 
-    static setPlaceOrdersPermission(accessLevel) {
+    static async setPlaceOrdersPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET PlaceOrdersPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getFulfillOrdersPermission(accessLevel) {
+    static async getFulfillOrdersPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].FulfillOrdersPermission;
+        }
+        
+        return null;
     }
 
-    static setFulfillOrdersPermission(accessLevel) {
+    static async setFulfillOrdersPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET FulfillOrdersPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getAddMerchantsPermission(accessLevel) {
+    static async getAddMerchantsPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].AddMerchantsPermission;
+        }
+        
+        return null;
     }
 
-    static setAddMerchantsPermission(accessLevel) {
+    static async setAddMerchantsPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET AddMerchantsPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getViewAdminDashboardPermission(accessLevel) {
+    static async getViewAdminDashboardPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].ViewAdminDashboardPermission;
+        }
+        
+        return null;
     }
 
-    static setViewAdminDashboardPermission(accessLevel) {
+    static async setViewAdminDashboardPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET ViewAdminDashboardPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getViewAllOrdersPermission(accessLevel) {
+    static async getViewAllOrdersPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].ViewAllOrdersPermission;
+        }
+        
+        return null;
     }
 
-    static setViewAllOrdersPermission(accessLevel) {
+    static async setViewAllOrdersPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET ViewAllOrdersPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getRestockInventoryPermission(accessLevel) {
+    static async getRestockInventoryPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].RestockInventoryPermission;
+        }
+        
+        return null;
     }
 
-    static setRestockInventoryPermission(accessLevel) {
+    static async setRestockInventoryPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET RestockInventoryPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
-    static getMakeAnnouncementsPermission(accessLevel) {
+    static async getMakeAnnouncementsPermission(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
 
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0].MakeAnnouncementsPermission;
+        }
+        
+        return null;
     }
 
-    static setMakeAnnouncementsPermission(accessLevel) {
+    static async setMakeAnnouncementsPermission(connection, accessLevel, newPermissionStatus) {
+        if (typeof accessLevel !== "number") return;
 
+        await connection.execute('UPDATE user_permissions SET MakeAnnouncementsPermission = ? WHERE AccessLevel = ?;', [newPermissionStatus, accessLevel]);
     }
 
 }

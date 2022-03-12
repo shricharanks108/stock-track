@@ -1,5 +1,9 @@
 class User {
 
+    static async createNewUser() {
+        
+    }
+
     static async getFirstName(connection, email) {
         if (typeof email !== "string") return;
 
