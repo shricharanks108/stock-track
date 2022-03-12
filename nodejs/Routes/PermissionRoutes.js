@@ -33,7 +33,7 @@ router.get('/createNewAccessLevel', async (req, res) => {
         console.log(error);
     }
 
-    
+
 });
 
 router.get('/createStaffPermission', async (req, res) => {
@@ -203,3 +203,5 @@ router.post('/makeAnnouncementsPermission', async (req, res) => {
         res.status(401).send("Not Logged In!");
     }
 });
+
+module.exports = router;
