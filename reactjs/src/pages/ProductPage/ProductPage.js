@@ -2,7 +2,18 @@ import './ProductPage.css';
 import { NutritionLabel } from 'react-fda-nutrition-facts';
 import { Breadcrumb, Button } from 'react-bootstrap';
 import AddToOrderButton from '../../components/AddToOrderButton/AddToOrderButton';
+import Axios from 'axios';
 
+const register = () => {
+  console.log('retreiving nutritional data');
+  // fix backend endpoint name
+  Axios.get('http://localhost:8080/nutrition/query?', {
+    productName: name, 
+  }).then((res) => {
+    console.log(res);
+    props = res;
+  });
+};
 
 function ProductPage(props) {
   return (

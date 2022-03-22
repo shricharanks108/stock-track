@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductCard.css';
-import { Breadcrumb, Button, Card } from 'react-bootstrap';
+import { Breadcrumb, Card } from 'react-bootstrap';
 import img from '../../logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddToOrderButton from '../AddToOrderButton/AddToOrderButton';
@@ -22,9 +22,8 @@ function ProductCard(props) {
                 <Breadcrumb.Item href="#results-by-category">{product.category_2}</Breadcrumb.Item> 
             </Breadcrumb>
             </Card.Body>
-            
         </Card>
-  );
+    );
 }
 
 export default ProductCard;
