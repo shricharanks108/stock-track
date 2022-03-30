@@ -12,11 +12,10 @@ function UserDashboard() {
             </a>
             <hr className="sidebar-divider my-0" />
             <ul className="navbar-nav text-light" id="accordionSidebar">
-              <li className="nav-item"><a className="nav-link active" href="index.html"><i className="fas fa-tachometer-alt" /><span>Dashboard</span></a></li>
-              <li className="nav-item"><a className="nav-link" href="profile.html"><i className="fas fa-user" /><span>Profile</span></a></li>
-              <li className="nav-item"><a className="nav-link" href="table.html"><i className="fas fa-table" /><span>Table</span></a></li>
-              <li className="nav-item"><a className="nav-link" href="login.html"><i className="far fa-user-circle" /><span>Login</span></a></li>
-              <li className="nav-item"><a className="nav-link" href="register.html"><i className="fas fa-user-circle" /><span>Register</span></a></li>
+              <li className="nav-item"><a className="nav-link active" href="/dashboard"><i className="fas fa-tachometer-alt" /><span>Dashboard</span></a></li>
+              <li className="nav-item"><a className="nav-link" href="/user-profile"><i className="fas fa-us er" /><span>Profile</span></a></li>
+              <li className="nav-item"><a className="nav-link" href="/team-management"><i className="fas fa-table" /><span>Table</span></a></li>
+              <li className="nav-item"><a className="nav-link" href="/logout"><i className="far fa-user-circle" /><span>Logout</span></a></li>
             </ul>
             <div className="text-center d-none d-md-inline"><button className="btn rounded-circle border-0" id="sidebarToggle" type="button" /></div>
           </div>
@@ -41,67 +40,14 @@ function UserDashboard() {
                   <li className="nav-item dropdown no-arrow mx-1">
                     <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="badge bg-danger badge-counter">3+</span><i className="fas fa-bell fa-fw" /></a>
                       <div className="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                        <h6 className="dropdown-header">alerts center</h6><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="me-3">
-                            <div className="bg-primary icon-circle"><i className="fas fa-file-alt text-white" /></div>
-                          </div>
-                          <div><span className="small text-gray-500">December 12, 2019</span>
-                            <p>A new monthly report is ready to download!</p>
-                          </div>
-                        </a><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="me-3">
-                            <div className="bg-success icon-circle"><i className="fas fa-donate text-white" /></div>
-                          </div>
-                          <div><span className="small text-gray-500">December 7, 2019</span>
-                            <p>$290.29 has been deposited into your account!</p>
-                          </div>
-                        </a><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="me-3">
-                            <div className="bg-warning icon-circle"><i className="fas fa-exclamation-triangle text-white" /></div>
-                          </div>
-                          <div><span className="small text-gray-500">December 2, 2019</span>
-                            <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                          </div>
-                        </a><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        {/* add notification menu here */}
                       </div>
                     </div>
                   </li>
                   <li className="nav-item dropdown no-arrow mx-1">
                     <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="badge bg-danger badge-counter">7</span><i className="fas fa-envelope fa-fw" /></a>
                       <div className="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                        <h6 className="dropdown-header">alerts center</h6><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar4.jpeg" />
-                            <div className="bg-success status-indicator" />
-                          </div>
-                          <div className="fw-bold">
-                            <div className="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
-                            <p className="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                          </div>
-                        </a><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar2.jpeg" />
-                            <div className="status-indicator" />
-                          </div>
-                          <div className="fw-bold">
-                            <div className="text-truncate"><span>I have the photos that you ordered last month!</span></div>
-                            <p className="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                          </div>
-                        </a><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar3.jpeg" />
-                            <div className="bg-warning status-indicator" />
-                          </div>
-                          <div className="fw-bold">
-                            <div className="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
-                            <p className="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                          </div>
-                        </a><a className="dropdown-item d-flex align-items-center" href="#">
-                          <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar5.jpeg" />
-                            <div className="bg-success status-indicator" />
-                          </div>
-                          <div className="fw-bold">
-                            <div className="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                            <p className="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                          </div>
-                        </a><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        {/* add messages notifications here */}
                       </div>
                     </div>
                     <div className="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown" />

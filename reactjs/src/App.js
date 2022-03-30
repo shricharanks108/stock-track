@@ -19,6 +19,8 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import AboutUs from './pages/AboutUs/AboutUs';
 import OrderPlacement from './pages/OrderPlacement/OrderPlacement';
 import UserProfile from './pages/UserProfile/UserProfile';
+import TeamManagement from './pages/TeamManagement/TeamManagement';
+import LogoutPage from './pages/LogoutPage/LogoutPage';
 import { Axios } from 'axios';
 
 // import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
@@ -74,8 +76,10 @@ function App() {
         <Route path='/product-listings' element={ <ProductListings cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-page' element={ <ProductPage cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-search' element={ <SearchPage/> } />
+        <Route path='/team-management' element={ <TeamManagement/> } />
         <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
         <Route path='/order-placement' element={ <OrderPlacement/> } />
+        <Route path='/logout' element={ <LogoutPage/> } />
         <Route path='/*' element={ <NotFound/> } />
       </Routes>
       <div>

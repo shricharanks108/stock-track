@@ -63,7 +63,6 @@ function RegisterPage() {
               <input type="text" className="register-form-control" placeholder="Street" onChange={(e) => setStreet(e.target.value)}/>
               <input type="text" className="register-form-control" placeholder="City" onChange={(e) => setCity(e.target.value)}/>
               <input type="text" className="register-form-control" placeholder="State" onChange={(e) => setState(e.target.value)} />
-              
             <Button type="submit" className="register-button" onClick={register()}>Register</Button>
             <Button className="register-button" href="/sign-in">Switch to Sign In</Button>
         </div>

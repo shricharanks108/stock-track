@@ -1,0 +1,19 @@
+.logout-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 380px;
+    height: 50px;
+    border-radius: 60px !important;
+    background-color: #b103fc;
+    color: white;
+    font-size: 25px;
+    margin: 10px;
+}

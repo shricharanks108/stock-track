@@ -4,10 +4,10 @@ import { Button } from 'react-bootstrap';
 
 function LogoutPage() {
   return (
-      <div>
+      <div className='logout-page'>
         <h1>Succesfully Logged Out!</h1>
-        <Button>Login!</Button>
-        <Button>Return to Home</Button>
+        <Button className='login-button'>Login!</Button>
+        <Button className='login-button'>Return to Home</Button>
       </div>
   );
 }
