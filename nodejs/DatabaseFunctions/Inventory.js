@@ -1,41 +1,80 @@
 class Inventory {
 
-    static getItem(id) {
-        
-    }
-
-    static getItemByName(name) {
+    static addItem(connection, item, pantryId,) {
 
     }
 
-    static getItemsByCategory(category) {
+    static deleteItem(connection, id, pantryId,) {
 
     }
 
-    static getItemsBySubcategory(category) {
+    static getFoodPantryInventory(connection, id, pantryId) {
+        if (typeof pantryId !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ?;', [pantryId]);
+
+        if (results.length > 0) {
+            return results;
+        }
+        return null;
+    }
+
+    static getItemByID(connection, itemID, pantryId) {
+        if (typeof pantryId !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND id = ?;', [pantryId, itemID]);
+
+        if (results.length > 0) {
+            return results[0];
+        }
+        return null;
+    }
+
+    static getItemByName(connection, name, pantryId,) {
+        if (typeof pantryId !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND name = ?;', [pantryId, name]);
+
+        if (results.length > 0) {
+            return results[0];
+        }
+        return null;
+    }
+
+    static getItemsByCategory(connection, category, pantryId,) {
 
     }
 
-    static addItem(item) {
+    static getItemsBySubcategory(connection, category, pantryId,) {
 
     }
 
-    static updateItem(item) {
+    static getItemName(connection, id, pantryId,) {
 
     }
 
-    static deleteItem(id) {
+    static setItemName(connection, id, pantryId,) {
 
     }
 
-    static getItemCount(id) {
+    static getItemQuantity(connection, item, pantryId,) {
+        if (typeof pantryId !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ?;', [pantryId]);
+
+        if (results.length > 0) {
+            return results.quantity;
+        }
+        return null;
+    }
+
+    static setItemQuantity(connection, item, pantryId,) {
 
     }
 
-    static getItemCountByName(name) {
+    static getItemCountByName(connection, name, pantryId,) {
 
     } 
-
 }
 
 module.exports = Inventory;

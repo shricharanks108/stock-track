@@ -2,16 +2,38 @@ class FoodPantryInfo{
 
     // add Lat + Long to Database
     // delete name from Database
-
-    static async getFoodPantryAddress(connection, pantryId) {
+    
+    static async addFoodPantry(connection, pantryId) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_oantry_ID = ?;', [pantryId]);
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
 
         if (results.length > 0) {
             return results[0].address;
         }
-        return null;  
+        return null;
+    }
+
+    static async deleteFoodPantry(connection, pantryId) {
+        if (typeof pantryId !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
+
+        if (results.length > 0) {
+            return results[0].address;
+        }
+        return null;
+    }
+
+    static async getFoodPantryAddress(connection, pantryId) {
+        if (typeof pantryId !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
+
+        if (results.length > 0) {
+            return results[0].address;
+        }
+        return null;
     }
 
     static async setFoodPantryAddress(connection, pantryId, address) {
@@ -23,7 +45,7 @@ class FoodPantryInfo{
     static async getFoodPantryZipCode(connection, pantryId) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_oantry_ID = ?;', [pantryId]);
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
 
         if (results.length > 0) {
             return results[0].ZIP_code;
@@ -40,7 +62,7 @@ class FoodPantryInfo{
     static async getFoodPantryName(connection, pantryId) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_oantry_ID = ?;', [pantryId]);
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
 
         if (results.length > 0) {
             return results[0].site_name;
@@ -57,7 +79,7 @@ class FoodPantryInfo{
     static async getFoodPantryLatitude(connection, pantryId) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_oantry_ID = ?;', [pantryId]);
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
 
         if (results.length > 0) {
             return results[0].Latitude;
@@ -74,7 +96,7 @@ class FoodPantryInfo{
     static async getFoodPantryLongitude(connection, pantryId) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_oantry_ID = ?;', [pantryId]);
+        const [results, fields] = await connection.execute('SELECT * FROM food_pantry WHERE food_pantry_ID = ?;', [pantryId]);
 
         if (results.length > 0) {
             return results[0].Longitude;

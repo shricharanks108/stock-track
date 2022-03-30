@@ -11,7 +11,6 @@ class UserDatabase{
         if(typeof id === "number" && data%1===0) this.id = id;
     }
 
-
     getName(){}
     setName(name){
         if(typeof name !== "string") return;
