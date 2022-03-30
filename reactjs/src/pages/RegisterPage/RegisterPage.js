@@ -3,6 +3,7 @@ import './RegisterPage.css';
 import Axios from 'axios';
 import { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   
@@ -14,8 +15,13 @@ function RegisterPage() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [phonenumber, setPhonenumber] = useState('');
+  const [foodpantryid, setFoodpantryid] = useState('');
+
+  const [loginStatus, setLoginStatus] = useState('');
 
   Axios.defaults.withCredentials = true;
+  const navigate = useNavigate();
 
   const register = () => {
     console.log('registering');
@@ -27,15 +33,13 @@ function RegisterPage() {
       street: street,
       city: city,
       state: state,
-      birthday: birthday
+      birthday: birthday,
+      phonenumber: phonenumber,
+      foodpantryid: foodpantryid,
     }).then((res) => {
-      console.log(res);
+      navigate("/login");
     });
   };
-
-  const logout = () => {
-    localStorage.clear();
-  }
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("userEmail");
@@ -49,18 +53,19 @@ function RegisterPage() {
         <div className="sub-main">
             <h1>Register Page</h1>
             <h2>Personal Information</h2>
-              <input type="text" className="form-control" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}/>
-              <input type="text" className="form-control" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}/>
-              <input type="text" className="form-control" placeholder="Email Address" onChange={(e) => setEmail(e.target.value)}/>
-              <input type="text" className="form-control" placeholder="Street" onChange={(e) => setStreet(e.target.value)}/>
-              <input type="text" className="form-control" placeholder="City" onChange={(e) => setCity(e.target.value)}/>
-              <input type="text" className="form-control" placeholder="State" onChange={(e) => setState(e.target.value)} />
-              <input type="text" className="form-control" placeholder="Date of Birth (mm/dd/yyyy)" onChange={(e) => setBirthday(e.target.value)} />
-            <Button type="submit" className="btn btn-primary" onClick={register} href='/home'>Register</Button>
-            <p className="links">
-                <Button href="#forgot-password">Forgot password?</Button>
-                <Button href="/sign-in">Sign In</Button>
-            </p>
+              <input type="text" className="register-form-control" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}/>
+              <input type="text" className="register-form-control" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)}/>
+              <input type="text" className="register-form-control" placeholder="Date of Birth (mm/dd/yyyy)" onChange={(e) => setBirthday(e.target.value)} />
+              <input type="text" className="register-form-control" placeholder="Email Address" onChange={(e) => setEmail(e.target.value)}/>
+              <input type="text" className="register-form-control" placeholder="Phone Number" onChange={(e) => setPhonenumber(e.target.value)} />
+              <input type="text" className="register-form-control" placeholder="Food Pantry ID" onChange={(e) => setFoodpantryid(e.target.value)} />
+              <h2>Home Address</h2>
+              <input type="text" className="register-form-control" placeholder="Street" onChange={(e) => setStreet(e.target.value)}/>
+              <input type="text" className="register-form-control" placeholder="City" onChange={(e) => setCity(e.target.value)}/>
+              <input type="text" className="register-form-control" placeholder="State" onChange={(e) => setState(e.target.value)} />
+              
+            <Button type="submit" className="register-button" onClick={register()}>Register</Button>
+            <Button className="register-button" href="/sign-in">Switch to Sign In</Button>
         </div>
     </div>
   );

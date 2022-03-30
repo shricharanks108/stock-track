@@ -4,27 +4,48 @@ import { Breadcrumb, Button } from 'react-bootstrap';
 import AddToOrderButton from '../../components/AddToOrderButton/AddToOrderButton';
 import Axios from 'axios';
 
-const register = () => {
-  console.log('retreiving nutritional data');
-  // fix backend endpoint name
-  Axios.get('http://localhost:8080/nutrition/query?', {
-    productName: name, 
-  }).then((res) => {
-    console.log(res);
-    props = res;
-  });
+// const register = () => {
+//   console.log('retreiving nutritional data');
+//   // fix backend endpoint name
+//   Axios.get('http://localhost:8080/nutrition/query?', {
+//     productName: name, 
+//   }).then((res) => {
+//     console.log(res);
+//     props = res;
+//   });
+// };
+
+let props = {
+  "breadcrumbs": ["DAIRY", "LOWFAT MILK/YOGURT", "Milk, lowfat"],
+  "productName": "1% Milk",
+  "nutritionalInfo": {
+    "calories": "0",
+    "totalFat": "0",
+    "saturatedFat": "0",
+    "transFat": "0",
+    "cholesterol": "0",
+    "sodium": "0",
+    "totalCarbs": "0",
+    "dietaryFiber": "0",
+    "sugars": "0",
+    "protein": "0",
+    "vitaminA": "0",
+    "vitaminC": "0",
+    "calcium": "0",
+    "iron": "0"
+  },
 };
 
 function ProductPage(props) {
   return (
     <div className='background'>
       <Breadcrumb>
-        <Breadcrumb.Item href="#">DAIRY</Breadcrumb.Item>
+        <Breadcrumb.Item href="#">{props.breadcrumbs[0]}</Breadcrumb.Item>
         <Breadcrumb.Item href="#results-by-category ">
-          LOWFAT MILK/YOGURT
+          {props.breadcrumbs[1]}
         </Breadcrumb.Item> 
-        <Breadcrumb.Item active>Milk, lowfat</Breadcrumb.Item>
-        <Breadcrumb.Item active>[Product Name]</Breadcrumb.Item>
+        <Breadcrumb.Item active>{props.breadcrumbs[2]}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{props.productName}</Breadcrumb.Item>
       </Breadcrumb>
       <AddToOrderButton cartItems={props.cartItems} setCartItems={props.setCartItems} productID={props.productID}/>
       <h1>Nutritional Information</h1>

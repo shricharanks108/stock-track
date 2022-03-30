@@ -25,7 +25,7 @@ export const Header = (props) => {
 
     console.log(props.cartItems)
     return (
-        <Navbar bg="light" expand="lg">  
+        <Navbar bg="light" expand="lg">
             <Container>
                 <Navbar.Brand href="">Stock Track</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -54,19 +54,19 @@ export const Header = (props) => {
                     </div>
                 </Nav.Link>
             </Nav>
-            { 
-                loginStatus ? 
-                    <div style = {{display: "contents"}}>
-                        <Button className='login-button' href='/admin-dashboard' >Dashboard</Button>
-                        <Button className='login-button' href='/logout' >Logout</Button>
+            {
+                loginStatus ?
+                    <div style={{ display: "contents" }}>
+                        <Button className='header-login-button' href='/admin-dashboard' >Dashboard</Button>
+                        <Button className='header-login-button' href='/logout' onClick={logout()}>Logout</Button>
                     </div>
-                : 
-                    <div style = {{display: "contents"}}>
-                        <Button className='login-button' href='/login' >Sign In</Button>
-                        <Button className='login-button' href='/sign-up' >Sign Up</Button>
+                    :
+                    <div style={{ display: "contents" }}>
+                        <Button className='header-login-button' href='/login' >Sign In</Button>
+                        <Button className='header-login-button' href='/register' >Sign Up</Button>
                     </div>
             }
-            
+
         </Navbar >
     );
 };

@@ -5,10 +5,23 @@
     margin-top: 20px;
     margin-bottom: 20px;
     align-self: start;
+    border-radius: 20px !important;
 }
 
 .add-to-cart-from-card {
     margin-bottom: 10px;
     margin-left: 0px;
     width: 100%;
+}
+
+.product-card-title-text {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: black;
+    text-decoration: none !important;
+}
+
+.product-card-desc-text {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: black;
+    text-decoration: none !important;
 }

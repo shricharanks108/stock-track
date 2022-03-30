@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
-import { useState } from 'react';
 
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -19,8 +18,10 @@ import OrderCart from './pages/OrderCart/OrderCart';
 import ContactUs from './pages/ContactUs/ContactUs';
 import AboutUs from './pages/AboutUs/AboutUs';
 import OrderPlacement from './pages/OrderPlacement/OrderPlacement';
+import UserProfile from './pages/UserProfile/UserProfile';
 import { Axios } from 'axios';
 
+// import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 async function getSavedOrder(id){
   var cartItems = await Axios.post("http://localhost:8080/cartItmes", {
@@ -62,16 +63,18 @@ function App() {
       <Routes>
         <Route path='/home' element={ <HomePage/> } />
         <Route path='/' element={ <HomePage/> } /> {/* Default Page with No Path provided should be home */}
+        <Route path='/contact-us' element={ <ContactUs/> } />
+        <Route path='/about-us' element={ <AboutUs/> } />
         <Route path='/login' element={ <LoginPage/> } />
         <Route path='/register' element={ <RegisterPage/> } />
         <Route path='/dashboard' element={ <UserDashboard/> } />
         <Route path='/admin-dashboard' element={ <AdminDashboard/> } />
+        <Route path='/user-profile' element={ <UserProfile/> } />
+        {/* <Route path='/product/:id' element={ <ProductPage/> } /> */}
         <Route path='/product-listings' element={ <ProductListings cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-page' element={ <ProductPage cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-search' element={ <SearchPage/> } />
         <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
-        <Route path='/contact-us' element={ <ContactUs/> } />
-        <Route path='/about-us' element={ <AboutUs/> } />
         <Route path='/order-placement' element={ <OrderPlacement/> } />
         <Route path='/*' element={ <NotFound/> } />
       </Routes>
