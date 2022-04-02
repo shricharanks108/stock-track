@@ -20,7 +20,7 @@
  
 .headerContainer h1 {
   font-family: 'Josefin Sans', cursive;
-  padding: 10;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   font-size: 90px;
@@ -31,7 +31,7 @@
  
 .headerContainer h2 {
   font-family: 'Josefin Sans', cursive;
-  padding: 10;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   font-size: 90px;
