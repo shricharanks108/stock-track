@@ -32,15 +32,9 @@ export const Header = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link as={NavLink} to="/home">Home</Nav.Link>
-                        <Nav.Link as={NavLink} to="#link">Link</Nav.Link>
                         <Nav.Link as={NavLink} to="/product-listings">Listings </Nav.Link>
-                        <NavDropdown title="Dropdown">
-                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item className="navDropdown" as={NavLink} to="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link as={NavLink} to="/about-us">About Us</Nav.Link>
+                        <Nav.Link as={NavLink} to="/contact-us">Contact Us</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
@@ -57,7 +51,7 @@ export const Header = (props) => {
             {
                 loginStatus ?
                     <div style={{ display: "contents" }}>
-                        <Button className='header-login-button' href='/admin-dashboard' >Dashboard</Button>
+                        <Button className='header-login-button' href='/dashboard' >Dashboard</Button>
                         <Button className='header-login-button' href='/logout' onClick={logout()}>Logout</Button>
                     </div>
                     :
@@ -66,7 +60,6 @@ export const Header = (props) => {
                         <Button className='header-login-button' href='/register' >Sign Up</Button>
                     </div>
             }
-
         </Navbar >
     );
 };

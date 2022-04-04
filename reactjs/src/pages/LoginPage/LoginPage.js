@@ -83,7 +83,7 @@ function LoginPage() {
         <input type="password" className="login-form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
         <Button type="submit" className="login-button" onClick={login} >Login</Button>
         <Button type="submit" className="login-button">Forgot password?</Button>
-        <Button type="submit" className="login-button">Sign Up</Button>
+        <Button type="submit" className="login-button" href='/register'>Sign Up</Button>
       </div>
     </div>
   );

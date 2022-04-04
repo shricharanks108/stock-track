@@ -6,6 +6,7 @@
     margin-bottom: 20px;
     align-self: start;
     border-radius: 20px !important;
+    border: 1px solid black !important;
 }
 
 .add-to-cart-from-card {

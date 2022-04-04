@@ -10,7 +10,7 @@
 }
 
 .product-listings-title {
-    padding: 50px;
+    padding-top: 50px;
     text-align: center;
 }
 
@@ -22,4 +22,22 @@
 
 .category-dropdown {
     margin: 10px;
+}
+
+.major-category-filter {
+    margin: 10px;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 25px;
+    width: fit-content;
+}
+
+.minor-category-filter {
+    margin: 10px;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 25px;
+    width: fit-content;
 }
