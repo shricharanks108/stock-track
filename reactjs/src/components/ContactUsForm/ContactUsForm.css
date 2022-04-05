@@ -15,7 +15,7 @@
     width: 100%;
     min-height: 100vh;
     padding: 2rem;
-    background-color: #2b2d42;
+    background-color: #ffffff;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -213,13 +213,13 @@
   }
   
   .text {
-    color: #333;
+    color: #fafafa;
     margin: 1.5rem 0 2rem 0;
   }
   
   .information {
     display: flex;
-    color: #555;
+    color: #fafafa;
     margin: 0.7rem 0;
     align-items: center;
     font-size: 0.95rem;
@@ -235,7 +235,7 @@
   }
   
   .social-media p {
-    color: #333;
+    color: #fafafa;
   }
   
   .social-icons {

@@ -21,8 +21,8 @@ function TeamManagement() {
                 <hr className="sidebar-divider my-0" />
                 <ul className="navbar-nav text-light" id="accordionSidebar">
                   <li className="nav-item"><a className="nav-link active" href="/dashboard"><i className="fas fa-tachometer-alt" /><span>Dashboard</span></a></li>
-                  <li className="nav-item"><a className="nav-link" href="/user-profile"><i className="fas fa-us er" /><span>Profile</span></a></li>
-                  <li className="nav-item"><a className="nav-link" href="/team-management"><i className="fas fa-table" /><span>Table</span></a></li>
+                  <li className="nav-item"><a className="nav-link" href="/user-profile"><i className="fas fa-us er" /><span>Admin Profile</span></a></li>
+                  <li className="nav-item"><a className="nav-link" href="/team-management"><i className="fas fa-table" /><span>Team Management</span></a></li>
                   <li className="nav-item"><a className="nav-link" href="/logout"><i className="far fa-user-circle" /><span>Logout</span></a></li>
                 </ul>
                 <div className="text-center d-none d-md-inline"><button className="btn rounded-circle border-0" id="sidebarToggle" type="button" /></div>

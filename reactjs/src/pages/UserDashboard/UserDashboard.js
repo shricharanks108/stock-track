@@ -14,7 +14,6 @@ function UserDashboard() {
             <ul className="navbar-nav text-light" id="accordionSidebar">
               <li className="nav-item"><a className="nav-link active" href="/dashboard"><i className="fas fa-tachometer-alt" /><span>Dashboard</span></a></li>
               <li className="nav-item"><a className="nav-link" href="/user-profile"><i className="fas fa-us er" /><span>Profile</span></a></li>
-              <li className="nav-item"><a className="nav-link" href="/team-management"><i className="fas fa-table" /><span>Table</span></a></li>
               <li className="nav-item"><a className="nav-link" href="/logout"><i className="far fa-user-circle" /><span>Logout</span></a></li>
             </ul>
             <div className="text-center d-none d-md-inline"><button className="btn rounded-circle border-0" id="sidebarToggle" type="button" /></div>
@@ -65,7 +64,7 @@ function UserDashboard() {
             </nav>
             <div className="container-fluid">
               <div className="d-sm-flex justify-content-between align-items-center mb-4">
-                <h3 className="text-dark mb-0">Dashboard</h3><a className="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i className="fas fa-download fa-sm text-white-50" />&nbsp;Generate Report</a>
+                <h3 className="text-dark mb-0">Dashboard</h3><a className="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="/product-listings"><i className="fas fa-download fa-sm text-white-50" />&nbsp;Place New Order</a>
               </div>
               <div className="row">
                 <div className="col-md-6 col-xl-3 mb-4">
@@ -169,26 +168,26 @@ function UserDashboard() {
                 <div className="col-lg-6 mb-4">
                   <div className="card shadow mb-4">
                     <div className="card-header py-3">
-                      <h6 className="text-primary fw-bold m-0">Projects</h6>
+                      <h6 className="text-primary fw-bold m-0">Pending Orders Status</h6>
                     </div>
                     <div className="card-body">
-                      <h4 className="small fw-bold">Server migration<span className="float-end">20%</span></h4>
+                      <h4 className="small fw-bold">Order #<span className="float-end">20%</span></h4>
                       <div className="progress mb-4">
                         <div className="progress-bar bg-danger" aria-valuenow={20} aria-valuemin={0} aria-valuemax={100} style={{width: '20%'}}><span className="visually-hidden">20%</span></div>
                       </div>
-                      <h4 className="small fw-bold">Sales tracking<span className="float-end">40%</span></h4>
+                      <h4 className="small fw-bold">Order #<span className="float-end">40%</span></h4>
                       <div className="progress mb-4">
                         <div className="progress-bar bg-warning" aria-valuenow={40} aria-valuemin={0} aria-valuemax={100} style={{width: '40%'}}><span className="visually-hidden">40%</span></div>
                       </div>
-                      <h4 className="small fw-bold">Customer Database<span className="float-end">60%</span></h4>
+                      <h4 className="small fw-bold">Order #<span className="float-end">60%</span></h4>
                       <div className="progress mb-4">
                         <div className="progress-bar bg-primary" aria-valuenow={60} aria-valuemin={0} aria-valuemax={100} style={{width: '60%'}}><span className="visually-hidden">60%</span></div>
                       </div>
-                      <h4 className="small fw-bold">Payout Details<span className="float-end">80%</span></h4>
+                      <h4 className="small fw-bold">Order #<span className="float-end">80%</span></h4>
                       <div className="progress mb-4">
                         <div className="progress-bar bg-info" aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} style={{width: '80%'}}><span className="visually-hidden">80%</span></div>
                       </div>
-                      <h4 className="small fw-bold">Account setup<span className="float-end">Complete!</span></h4>
+                      <h4 className="small fw-bold">Order #<span className="float-end">Complete!</span></h4>
                       <div className="progress mb-4">
                         <div className="progress-bar bg-success" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} style={{width: '100%'}}><span className="visually-hidden">100%</span></div>
                       </div>
@@ -196,13 +195,13 @@ function UserDashboard() {
                   </div>
                   <div className="card shadow mb-4">
                     <div className="card-header py-3">
-                      <h6 className="text-primary fw-bold m-0">Todo List</h6>
+                      <h6 className="text-primary fw-bold m-0">Shopping List</h6>
                     </div>
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">10:30 AM</span>
+                            <h6 className="mb-0"><strong>Bread</strong></h6>
                           </div>
                           <div className="col-auto">
                             <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-1" /><label className="form-check-label" htmlFor="formCheck-1" /></div>
@@ -212,7 +211,7 @@ function UserDashboard() {
                       <li className="list-group-item">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">11:30 AM</span>
+                            <h6 className="mb-0"><strong>Milk</strong></h6>
                           </div>
                           <div className="col-auto">
                             <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-2" /><label className="form-check-label" htmlFor="formCheck-2" /></div>
@@ -222,7 +221,7 @@ function UserDashboard() {
                       <li className="list-group-item">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">12:30 AM</span>
+                            <h6 className="mb-0"><strong>Eggs</strong></h6>
                           </div>
                           <div className="col-auto">
                             <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-3" /><label className="form-check-label" htmlFor="formCheck-3" /></div>
@@ -232,7 +231,7 @@ function UserDashboard() {
                     </ul>
                   </div>
                 </div>
-                <div className="col">
+                {/* <div className="col">
                   <div className="row">
                     <div className="col-lg-6 mb-4">
                       <div className="card textwhite bg-primary text-white shadow">
@@ -283,7 +282,7 @@ function UserDashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

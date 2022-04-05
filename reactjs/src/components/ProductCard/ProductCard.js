@@ -10,8 +10,8 @@ function ProductCard(props) {
     console.log(id);
     return (
         <Card className="card-style">
-            <Card.Link href={`/product/${id}`}>
-                <Card.Img variant="top" src= {img}/>
+            <Card.Link>
+                <Card.Img variant="top" href={`/product/${id}`} src= {img}/>
                 <Card.Body>
                 <Card.Title style={{ textDecoration: 'none' }}className='product-card-title-text'>{product.name}</Card.Title>
                 <Card.Text style={{ textDecoration: 'none' }} className='product-card-desc-text'>
