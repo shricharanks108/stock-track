@@ -6,7 +6,7 @@ function LogoutPage() {
   return (
       <div className='logout-page'>
         <h1>Succesfully Logged Out!</h1>
-        <Button className='login-button'>Login!</Button>
+        <Button className='login-button'>Sign in!</Button>
         <Button className='login-button'>Return to Home</Button>
       </div>
   );

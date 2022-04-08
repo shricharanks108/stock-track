@@ -1,5 +1,7 @@
 import './App.css';
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Axios } from 'axios';
 
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -13,7 +15,6 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ProductListings from './pages/ProductListings/ProductListings';
-import { useEffect, useState } from 'react';
 import OrderCart from './pages/OrderCart/OrderCart';
 import ContactUs from './pages/ContactUs/ContactUs';
 import AboutUs from './pages/AboutUs/AboutUs';
@@ -21,7 +22,7 @@ import OrderPlacement from './pages/OrderPlacement/OrderPlacement';
 import UserProfile from './pages/UserProfile/UserProfile';
 import TeamManagement from './pages/TeamManagement/TeamManagement';
 import LogoutPage from './pages/LogoutPage/LogoutPage';
-import { Axios } from 'axios';
+import OrderFulfillment from './pages/OrderFulfillment/OrderFulfillment';
 
 // import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -79,6 +80,7 @@ function App() {
         <Route path='/team-management' element={ <TeamManagement/> } />
         <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
         <Route path='/order-placement' element={ <OrderPlacement/> } />
+        <Route path='/order-fulfillment' element={ <OrderFulfillment/> } />
         <Route path='/logout' element={ <LogoutPage/> } />
         <Route path='/*' element={ <NotFound/> } />
       </Routes>

@@ -81,7 +81,7 @@ function ProductListings(props) {
           <ProductCard className="" key={product.id} id={product.id} product={product} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard>
         ))}
       </div>
-      <small>Product Results: {products.length}</small>
+      <small>Showing all of {products.length} Product Results!</small>
     </div>
   );
 }
