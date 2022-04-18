@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from "react";
 import { Button, Form } from 'react-bootstrap';
 import './OrderFulfillment.css';
 
@@ -22,6 +23,12 @@ function OrderFulfillment() {
           product_name: "Test Product 2",
           product_quantity: 2,
           product_price: "20.00",
+        },
+        {
+          product_id: 3,
+          product_name: "Test Product 2",
+          product_quantity: 2,
+          product_price: "20.00",
         }
       ]
     },
@@ -41,28 +48,52 @@ function OrderFulfillment() {
     },
   ];
 
-  let order_ids = [1, 2];
+  var orderItems = [];
+  const [orderChoice, setOrderChoice] = useState('');
 
+  const pullOrder = () => {
+    for (let i = 0; i < orders_to_fulfill.length; i++) {
+      if (orders_to_fulfill[i]["order_id"] == orderChoice) {
+        orderItems = orders_to_fulfill[i]["order_items"];
+      }
+    }
+  }
+  
+  let order_ids = ["Pick an order to fulfill..."];
+  
   for (let i = 0; i < orders_to_fulfill.length; i++) {
     order_ids.push(orders_to_fulfill[i]["order_id"]);
+  }
+
+  const updateOrderProgress = () => {
+    console.log("progress made nice nice");
+  }
+
+  const completeOrder = () => {
+    console.log("completed order wooooo");
   }
 
   return (
     <div>
       <h1>Order Fulfillment</h1>
-        <Form.Select>
+        <Form.Select onChange={(e) => setOrderChoice(e.target.value)}>
           {order_ids.map((orderID) => (
             <option>{orderID}</option>
           ))}
         </Form.Select>
-        <Button>Pull Order for Fulfillment</Button>
+        <Button onClick={pullOrder(orderChoice)}>Pull Order for Fulfillment</Button>
         <div className="order-fulfillment-list-container">
           <div className="order-fulfillment-list-header">
-            <small>{order_ids.length}</small>
+            <small>{orderItems.length}</small>
+          </div>
+          <div>
+            {orderItems.map((item) => (
+              <Form.Check type="checkbox" label={item["product_name"]} />
+            ))}
           </div>
         </div>
-        <Button>Completed Order</Button>
-        <Button>Still In-Progress</Button>
+        <Button onClick={completeOrder}>Completed Order</Button>
+        <Button onClick={updateOrderProgress}>Still In-Progress</Button>
     </div>
   );
 }
