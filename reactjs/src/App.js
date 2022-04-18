@@ -23,6 +23,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import TeamManagement from './pages/TeamManagement/TeamManagement';
 import LogoutPage from './pages/LogoutPage/LogoutPage';
 import OrderFulfillment from './pages/OrderFulfillment/OrderFulfillment';
+import OrderHistory from './pages/OrderHistory/OrderHistory';
 
 // import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -81,6 +82,7 @@ function App() {
         <Route path="/cart" element={ <OrderCart cartItems={cartItems} setCartItems={setCartItems} /> } />
         <Route path='/order-placement' element={ <OrderPlacement/> } />
         <Route path='/order-fulfillment' element={ <OrderFulfillment/> } />
+        <Route path='/order-history' element={ <OrderHistory/> } />
         <Route path='/logout' element={ <LogoutPage/> } />
         <Route path='/*' element={ <NotFound/> } />
       </Routes>
