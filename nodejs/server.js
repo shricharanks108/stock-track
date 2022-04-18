@@ -23,14 +23,14 @@ var PermissionRoutes = require('./Routes/PermissionRoutes');
 const { getMaxListeners } = require("process");
 
 const app = express();
-setTimeout(function () {connection = connection.connection }, 100);
+setTimeout(function () { connection = connection.connection;}, 100);
 
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
+    cors({
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+        credentials: true,
+    })
 );
 
 app.use(bodyParser.json());
@@ -38,15 +38,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 8080);
 
 app.use(
-  session({
-    key: 'signed_session_key',
-    secret: "secretcode",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 60 * 60 * 24,
-    },
-  })
+    session({
+        key: 'signed_session_key',
+        secret: "secretcode",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60 * 60 * 24,
+        },
+    })
 );
 
 app.use(cookieParser("secretcode"));
@@ -76,12 +76,36 @@ app.post("/login", async (req, res, next) => {
     }
 });
 
-app.post("/cartItems", (req, res, next) => {
-  var id = req.body.id;
-  if(!User.doesIdExist(id)) return res.sendStatus(400); // bad request
+app.get('/login', (req, res, next) => {
+    if (req.session.user) {
+        res.send({ loggedIn: true, user: req.session.user });
+    } else {
+        res.send({ loggedIn: false });
+    }
+});
 
-  var user = new User(id);
-  res.send({savedOrder: user.getOrderHistory()});
+app.post('/register', Authentication.checkIfUserExists, async (req, res, next) => {
+    const saltHash = generateHash(req.body.password);
+    const salt = saltHash.salt;
+    const hash = saltHash.hash;
+    const date_ob = new Date();
+    const date = date_ob.getFullYear() + "-" + ("0" + (date_ob.getMonth() + 1)).slice(-2) + "-" + ("0" + date_ob.getDate()).slice(-2);
+
+    try {
+        const [results, fields] = await connection.execute('INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ', [null, req.body.email, hash, req.body.firstName, req.body.age, date, req.body.birthday, req.body.countrycode, req.body.zipcode, req.body.foodpantryid, req.body.phonenumber, "Active", req.body.role, req.body.lastName, salt]);
+        res.send({ registered: true });
+    } catch (error) {
+        res.send({ registered: false });
+        console.log(error);
+    }
+});
+
+app.post("/cartItmes", (req, res, next) => {
+    var id = req.body.id;
+    if (!User.doesIdExist(id)) return res.sendStatus(400); // bad request
+
+    var user = new User(id);
+    res.send({ savedOrder: user.getOrderHistory() });
 });
 app.post('/register', Authentication.checkIfUserExists, async (req, res, next) => {
     const saltHash = generateHash(req.body.password);
@@ -108,15 +132,15 @@ app.post("/cartItmes", (req, res, next) => {
 });
 
 app.post("/addCartItem", (req, res, next) => {
-  var orderId = req.body.orderId;
-  var productId = req.body.productId;
-  var qty = req.body.qty;
+    var orderId = req.body.orderId;
+    var productId = req.body.productId;
+    var qty = req.body.qty;
 
-  // TODO: null is because I don't understand the right fields
-  connection.query("INSERT INTO order_items VALUES (?,?,?,?,?,?,?)", [orderId, productId, null, null, qty, null, null], (error, results, fields) => {
-    if(error) res.sendStatus(500);
-    else res.send(results);
-  });
+    // TODO: null is because I don't understand the right fields
+    connection.query("INSERT INTO order_items VALUES (?,?,?,?,?,?,?)", [orderId, productId, null, null, qty, null, null], (error, results, fields) => {
+        if (error) res.sendStatus(500);
+        else res.send(results);
+    });
 });
 
 

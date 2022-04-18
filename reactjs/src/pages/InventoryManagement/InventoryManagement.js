@@ -2,7 +2,8 @@ import './InventoryManagement.css';
 
 function InventoryManagement() {
   return (
-    <div className="background">
+    <div>
+      
     </div>
   );
 }

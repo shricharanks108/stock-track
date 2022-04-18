@@ -15,19 +15,18 @@ export default class ContactUsForm extends Component {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Contact Form</title>
                 <div className="contact-us-container">
-                <span className="big-circle" />
+                {/* <span className="big-circle" /> */}
                 <img src="img/shape.png" className="square" alt="" />
                 <div className="contact-us-form">
                     <div className="contact-info">
                     <h3 className="title">Let's get in touch</h3>
                     <p className="text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-                        dolorum adipisci recusandae praesentium dicta!
+                        Fill out this Contact Form with any Questions and Comments you may have about implementing this for your own reas
                     </p>
                     <div className="info">
                         <div className="information">
                         <img src={GoLocation} className="icon" alt="" />
-                        <p>92 Cherry Drive Uniondale, NY 11553</p>
+                        <p>92 Cherry Drive Uniondale, NY 11553</p>                                                                                                                                                                                                                                                                                        
                         </div>
                         <div className="information">
                         <img src={HiOutlineMail} className="icon" alt="" />
@@ -84,7 +83,6 @@ export default class ContactUsForm extends Component {
                             </Form.Group>
                             <Button className="contact-submit-btn">Submit</Button>
                         </Form>
-                        
                     </div>
                 </div>
                 </div>

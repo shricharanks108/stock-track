@@ -7,7 +7,9 @@ function Home() {
   return (
     <div className="home" style={{ backgroundImage: `url(${Logo})` }}>
       <div className="headerContainer">
-        <h1> GOVStem Scholars </h1>
+        <h1> GOVStem </h1>
+        <br />
+        <h1> Scholars </h1>
         <h3>       </h3>
         <p> Welcome to Stock Track</p>
         <Link to="/login">

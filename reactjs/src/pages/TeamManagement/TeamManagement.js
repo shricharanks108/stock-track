@@ -2,6 +2,34 @@ import './TeamManagement.css';
 import { Button } from 'react-bootstrap';
 
 function TeamManagement() {
+
+  const teamMembers = [
+      {
+        memberID: 1,
+        name: 'Shri',
+        role: 'Volunteer',
+        location: 'Newark',
+        age: 18,
+        accessLevel: '001',
+      },
+      {
+        memberID: 2,
+        name: 'Anna',
+        role: 'Engineer',
+        location: 'Newark',
+        age: 19,
+        accessLevel: '002',
+      },
+      {
+        memberID: 3,
+        name: 'Sai',
+        role: 'Developer',
+        location: 'Aberdeen',
+        age: 18,
+        accessLevel: '003',
+      },
+    ];
+
   return (
     <div>
           <meta charSet="utf-8" />
@@ -20,11 +48,10 @@ function TeamManagement() {
                 </a>
                 <hr className="sidebar-divider my-0" />
                 <ul className="navbar-nav text-light" id="accordionSidebar">
-                  <li className="nav-item"><a className="nav-link" href="index.html"><i className="fas fa-tachometer-alt" /><span>Dashboard</span></a></li>
-                  <li className="nav-item"><a className="nav-link" href="profile.html"><i className="fas fa-user" /><span>Profile</span></a></li>
-                  <li className="nav-item"><a className="nav-link active" href="table.html"><i className="fas fa-table" /><span>Table</span></a></li>
-                  <li className="nav-item"><a className="nav-link" href="login.html"><i className="far fa-user-circle" /><span>Login</span></a></li>
-                  <li className="nav-item"><a className="nav-link" href="register.html"><i className="fas fa-user-circle" /><span>Register</span></a></li>
+                  <li className="nav-item"><a className="nav-link active" href="/dashboard"><i className="fas fa-tachometer-alt" /><span>Dashboard</span></a></li>
+                  <li className="nav-item"><a className="nav-link" href="/user-profile"><i className="fas fa-us er" /><span>Admin Profile</span></a></li>
+                  <li className="nav-item"><a className="nav-link" href="/team-management"><i className="fas fa-table" /><span>Team Management</span></a></li>
+                  <li className="nav-item"><a className="nav-link" href="/logout"><i className="far fa-user-circle" /><span>Logout</span></a></li>
                 </ul>
                 <div className="text-center d-none d-md-inline"><button className="btn rounded-circle border-0" id="sidebarToggle" type="button" /></div>
               </div>
@@ -49,67 +76,14 @@ function TeamManagement() {
                       <li className="nav-item dropdown no-arrow mx-1">
                         <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="badge bg-danger badge-counter">3+</span><i className="fas fa-bell fa-fw" /></a>
                           <div className="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                            <h6 className="dropdown-header">alerts center</h6><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="me-3">
-                                <div className="bg-primary icon-circle"><i className="fas fa-file-alt text-white" /></div>
-                              </div>
-                              <div><span className="small text-gray-500">December 12, 2019</span>
-                                <p>A new monthly report is ready to download!</p>
-                              </div>
-                            </a><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="me-3">
-                                <div className="bg-success icon-circle"><i className="fas fa-donate text-white" /></div>
-                              </div>
-                              <div><span className="small text-gray-500">December 7, 2019</span>
-                                <p>$290.29 has been deposited into your account!</p>
-                              </div>
-                            </a><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="me-3">
-                                <div className="bg-warning icon-circle"><i className="fas fa-exclamation-triangle text-white" /></div>
-                              </div>
-                              <div><span className="small text-gray-500">December 2, 2019</span>
-                                <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                              </div>
-                            </a><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            <h6 className="dropdown-header">alerts center</h6>
                           </div>
                         </div>
                       </li>
                       <li className="nav-item dropdown no-arrow mx-1">
                         <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="badge bg-danger badge-counter">7</span><i className="fas fa-envelope fa-fw" /></a>
                           <div className="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                            <h6 className="dropdown-header">alerts center</h6><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar4.jpeg" />
-                                <div className="bg-success status-indicator" />
-                              </div>
-                              <div className="fw-bold">
-                                <div className="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
-                                <p className="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                              </div>
-                            </a><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar2.jpeg" />
-                                <div className="status-indicator" />
-                              </div>
-                              <div className="fw-bold">
-                                <div className="text-truncate"><span>I have the photos that you ordered last month!</span></div>
-                                <p className="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                              </div>
-                            </a><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar3.jpeg" />
-                                <div className="bg-warning status-indicator" />
-                              </div>
-                              <div className="fw-bold">
-                                <div className="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
-                                <p className="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                              </div>
-                            </a><a className="dropdown-item d-flex align-items-center" href="#">
-                              <div className="dropdown-list-image me-3"><img className="rounded-circle" src="assets/img/avatars/avatar5.jpeg" />
-                                <div className="bg-success status-indicator" />
-                              </div>
-                              <div className="fw-bold">
-                                <div className="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                                <p className="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                              </div>
-                            </a><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            <h6 className="dropdown-header">alerts center</h6><a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                           </div>
                         </div>
                         <div className="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown" />
@@ -134,12 +108,7 @@ function TeamManagement() {
                     <div className="card-body">
                       <div className="row">
                         <div className="col-md-6 text-nowrap">
-                          <div id="dataTable_length" className="dataTables_length" aria-controls="dataTable"><label className="form-label">Show&nbsp;<select className="d-inline-block form-select form-select-sm">
-                                <option value={10} selected>10</option>
-                                <option value={25}>25</option>
-                                <option value={50}>50</option>
-                                <option value={100}>100</option>
-                              </select>&nbsp;</label></div>
+                          {/*   */}
                         </div>
                         <div className="col-md-6">
                           <div className="text-md-end dataTables_filter" id="dataTable_filter"><label className="form-label"><input type="search" className="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" /></label></div>
@@ -149,114 +118,44 @@ function TeamManagement() {
                         <table className="table my-0" id="dataTable">
                           <thead>
                             <tr>
+                              <th>Team Member ID</th>
                               <th>Name</th>
                               <th>Position</th>
-                              <th>Office</th>
+                              <th>Location</th>
                               <th>Age</th>
-                              <th>Start date</th>
-                              <th>Salary</th>
+                              <th>Access Level</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar1.jpeg" />Airi Satou</td>
-                              <td>Accountant</td>
-                              <td>Tokyo</td>
-                              <td>33</td>
-                              <td>2008/11/28</td>
-                              <td>$162,700</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar2.jpeg" />Angelica Ramos</td>
-                              <td>Chief Executive Officer(CEO)</td>
-                              <td>London</td>
-                              <td>47</td>
-                              <td>2009/10/09<br /></td>
-                              <td>$1,200,000</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar3.jpeg" />Ashton Cox</td>
-                              <td>Junior Technical Author</td>
-                              <td>San Francisco</td>
-                              <td>66</td>
-                              <td>2009/01/12<br /></td>
-                              <td>$86,000</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar4.jpeg" />Bradley Greer</td>
-                              <td>Software Engineer</td>
-                              <td>London</td>
-                              <td>41</td>
-                              <td>2012/10/13<br /></td>
-                              <td>$132,000</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar5.jpeg" />Brenden Wagner</td>
-                              <td>Software Engineer</td>
-                              <td>San Francisco</td>
-                              <td>28</td>
-                              <td>2011/06/07<br /></td>
-                              <td>$206,850</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar1.jpeg" />Brielle Williamson</td>
-                              <td>Integration Specialist</td>
-                              <td>New York</td>
-                              <td>61</td>
-                              <td>2012/12/02<br /></td>
-                              <td>$372,000</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar2.jpeg" />Bruno Nash<br /></td>
-                              <td>Software Engineer</td>
-                              <td>London</td>
-                              <td>38</td>
-                              <td>2011/05/03<br /></td>
-                              <td>$163,500</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar3.jpeg" />Caesar Vance</td>
-                              <td>Pre-Sales Support</td>
-                              <td>New York</td>
-                              <td>21</td>
-                              <td>2011/12/12<br /></td>
-                              <td>$106,450</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar4.jpeg" />Cara Stevens</td>
-                              <td>Sales Assistant</td>
-                              <td>New York</td>
-                              <td>46</td>
-                              <td>2011/12/06<br /></td>
-                              <td>$145,600</td>
-                            </tr>
-                            <tr>
-                              <td><img className="rounded-circle me-2" width={30} height={30} src="assets/img/avatars/avatar5.jpeg" />Cedric Kelly</td>
-                              <td>Senior JavaScript Developer</td>
-                              <td>Edinburgh</td>
-                              <td>22</td>
-                              <td>2012/03/29<br /></td>
-                              <td>$433,060</td>
-                            </tr>
+                              {teamMembers.map((member) => (
+                                <tr>
+                                  <td>{member.memberID}</td>
+                                  <td>{member.name}</td>
+                                  <td>{member.role}</td>
+                                  <td>{member.location}</td>
+                                  <td>{member.age}</td>
+                                  <td>{member.accessLevel}</td>
+                                </tr>
+                              ))}
                           </tbody>
                           <tfoot>
                             <tr>
+                              <td><strong>Team Member ID</strong></td>
                               <td><strong>Name</strong></td>
                               <td><strong>Position</strong></td>
-                              <td><strong>Office</strong></td>
+                              <td><strong>Location</strong></td>
                               <td><strong>Age</strong></td>
-                              <td><strong>Start date</strong></td>
-                              <td><strong>Salary</strong></td>
+                              <td><strong>Access Level</strong></td>
                             </tr>
                           </tfoot>
                         </table>
                       </div>
                       <div className="row">
                         <div className="col-md-6 align-self-center">
-                          <p id="dataTable_info" className="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                          <p id="dataTable_info" className="dataTables_info" role="status" aria-live="polite">Showing all of {teamMembers.length} Team Members!</p>
                         </div>
                         <div className="col-md-6">
-                          <nav className="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                          {/* <nav className="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                             <ul className="pagination">
                               <li className="page-item disabled"><a className="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                               <li className="page-item active"><a className="page-link" href="#">1</a></li>
@@ -264,7 +163,7 @@ function TeamManagement() {
                               <li className="page-item"><a className="page-link" href="#">3</a></li>
                               <li className="page-item"><a className="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                             </ul>
-                          </nav>
+                          </nav> */}
                         </div>
                       </div>
                     </div>
