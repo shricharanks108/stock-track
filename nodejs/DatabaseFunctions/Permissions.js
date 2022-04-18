@@ -146,4 +146,4 @@ class Permissions {
 
 }
 
-module.exports = Inventory;
+module.exports = Permissions;

@@ -209,7 +209,7 @@ class User {
         await connection.execute('UPDATE users SET State = ? WHERE Email = ?;', [street, email]);
     }
 
-    static getAccessLevel(connection, email) {
+    static async getAccessLevel(connection, email) {
         if (typeof email !== "string") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [email]);
@@ -220,7 +220,7 @@ class User {
         return null;
     }
 
-    static setAccessLevel(connection, email, accessLevel) {
+    static async setAccessLevel(connection, email, accessLevel) {
         if (typeof email !== "string") return;
 
         await connection.execute('UPDATE users SET AccessLevel = ? WHERE Email = ?;', [accessLevel, email]);

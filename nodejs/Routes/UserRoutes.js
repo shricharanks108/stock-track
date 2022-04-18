@@ -3,7 +3,7 @@ const router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-const User = require('./DatabaseFunctions/User');
+const User = require('../DatabaseFunctions/User');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));

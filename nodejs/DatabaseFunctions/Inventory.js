@@ -1,14 +1,14 @@
 class Inventory {
 
-    static addItem(connection, item, pantryId,) {
+    static async addItem(connection, item, pantryId,) {
 
     }
 
-    static deleteItem(connection, id, pantryId,) {
+    static async deleteItem(connection, id, pantryId,) {
 
     }
 
-    static getFoodPantryInventory(connection, id, pantryId) {
+    static async getFoodPantryInventory(connection, id, pantryId) {
         if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ?;', [pantryId]);
@@ -19,7 +19,7 @@ class Inventory {
         return null;
     }
 
-    static getItemByID(connection, itemID, pantryId) {
+    static async getItemByID(connection, itemID, pantryId) {
         if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND id = ?;', [pantryId, itemID]);
@@ -30,7 +30,7 @@ class Inventory {
         return null;
     }
 
-    static getItemByName(connection, name, pantryId,) {
+    static async getItemByName(connection, name, pantryId,) {
         if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND name = ?;', [pantryId, name]);
@@ -41,23 +41,23 @@ class Inventory {
         return null;
     }
 
-    static getItemsByCategory(connection, category, pantryId,) {
+    static async getItemsByCategory(connection, category, pantryId,) {
 
     }
 
-    static getItemsBySubcategory(connection, category, pantryId,) {
+    static async getItemsBySubcategory(connection, category, pantryId,) {
 
     }
 
-    static getItemName(connection, id, pantryId,) {
+    static async getItemName(connection, id, pantryId,) {
 
     }
 
-    static setItemName(connection, id, pantryId,) {
+    static async setItemName(connection, id, pantryId,) {
 
     }
 
-    static getItemQuantity(connection, item, pantryId,) {
+    static async getItemQuantity(connection, item, pantryId,) {
         if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ?;', [pantryId]);
@@ -68,11 +68,11 @@ class Inventory {
         return null;
     }
 
-    static setItemQuantity(connection, item, pantryId,) {
+    static async setItemQuantity(connection, item, pantryId,) {
 
     }
 
-    static getItemCountByName(connection, name, pantryId,) {
+    static async getItemCountByName(connection, name, pantryId,) {
 
     } 
 }
