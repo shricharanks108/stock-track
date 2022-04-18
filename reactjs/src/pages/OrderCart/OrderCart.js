@@ -2,6 +2,21 @@ import { Button } from 'react-bootstrap';
 import ProductCartCard from '../../components/ProductCartCard/ProductCartCard';
 import './OrderCart.css';
 
+function getEachItemID(cards) {
+  var productIDs = [];
+
+  cards.forEach(card => {
+    var cardID = card.props.productID;
+    productIDs.push(cardID);
+  });
+
+  return productIDs;
+}
+
+function executeOrder(cards){
+  getEachItemID(cards);
+}
+
 function OrderCart(props) {
   var cartItems = props.cartItems;
   var setCartItems = props.setCartItems;
@@ -16,7 +31,7 @@ function OrderCart(props) {
     <div id="orderCartPage">
       {cards}
       <hr></hr>
-      <Button className="cartOrderBtn">Order</Button>
+      <Button className="cartOrderBtn" onClick={() => executeOrder(cards)}>Order</Button>
     </div>
   );
 }
