@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import "./ProductCartCard.css";
 import img from '../../logo.svg';
 import fetchData from "../../fetchData";
@@ -16,13 +16,14 @@ function ProductCartCard(props) {
             </div>
             <div className="productCartQty">
                 <p>Qty: </p>
-                <input type="number" defaultValue={cartItems[productID]} min={0} onChange={(e) => {
+                <input className="item-count-dropdown" type="number" defaultValue={cartItems[productID]} min={0} onChange={(e) => {
                     var newQty = parseInt(e.target.value);
                     var tmpCartItems = {...cartItems};
                     tmpCartItems[productID] = newQty;
                     setCartItems(tmpCartItems);
                 }} />
             </div>
+            <Button variant="outline-danger" className="cart-card-remove-button">Remove from Cart</Button>
         </div>
     );
 }
