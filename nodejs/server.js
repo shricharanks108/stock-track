@@ -19,6 +19,7 @@ var UserRoutes = require('./Routes/UserRoutes');
 var AuthRoutes = require('./Routes/AuthenticationRoutes');
 var InventoryRoutes = require('./Routes/InventoryRoutes');
 var PermissionRoutes = require('./Routes/PermissionRoutes');
+var OrderRoutes = require("./Routes/OrderRoutes");
 
 const { getMaxListeners } = require("process");
 
@@ -55,6 +56,7 @@ app.use("/user", UserRoutes);
 app.use("/auth", AuthRoutes);
 app.use("/inventory", InventoryRoutes);
 app.use("/permissions", PermissionRoutes);
+app.use("/order", OrderRoutes);
 
 app.use((req, res, next) => {
     // console.log(req.session);

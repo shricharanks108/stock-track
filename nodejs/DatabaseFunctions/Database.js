@@ -13,5 +13,6 @@ async function setup() {
     database: process.env.DB_NAME,
     multipleStatements: true
   });
-  module.exports.connection = connection;
 }
+
+module.exports = connection;

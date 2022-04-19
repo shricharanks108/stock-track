@@ -2,19 +2,13 @@ import { Button } from 'react-bootstrap';
 import ProductCartCard from '../../components/ProductCartCard/ProductCartCard';
 import './OrderCart.css';
 
-function getEachItemID(cards) {
-  var productIDs = [];
-
-  cards.forEach(card => {
-    var cardID = card.props.productID;
-    productIDs.push(cardID);
-  });
-
-  return productIDs;
+function getEachItemIDWithQuantity(cards) {
+  if(cards.length > 0) return cards[0].props.cartItems;
 }
 
 function executeOrder(cards){
-  getEachItemID(cards);
+  var cartItems = getEachItemIDWithQuantity(cards);
+  console.log(cartItems);
 }
 
 function OrderCart(props) {

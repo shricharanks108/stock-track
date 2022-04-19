@@ -44,7 +44,16 @@ class Orders {
         return null;
     }
 
-    static async createOrder(connection, staff_nr, user_id) {
+    /**
+     * Function to create an order
+     * 
+     * @param {object} productIDsWithQuantities pass in a dictionary with each product id and it's respective quantities as such {productID: productQty}
+     */
+    static async createOrder(connection, staff_nr, user_id, productIDsWithQuantities) {
+        if(typeof staff_nr !== "number") return;
+        if(typeof user_id !== "number") return;
+        if(typeof productIDsWithQuantities !== "object") return;
+
         var orderStatus = OrderStatus.ORDER_PENDING.value();
 
         // TODO: what do these dates mean and how are they supposed to be handled? Is it all null until otherwise specified?
@@ -63,6 +72,39 @@ class Orders {
             `INSERT INTO orders (staff_nr, user_id, status, processed_by, required_date, shipped_date, created_at) VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [staff_nr, user_id, orderStatus, processedBy, required_date, shipped_date, created_at_date]
         );
+
+        orderID = await this.getOrderID(connection, staff_nr, user_id, processedBy, required_date, shipped_date, created_at_date);
+
+        // Create Order Items for Order
+        for(var key in productIDsWithQuantities){
+            var productID = parseInt(key);
+            var productQuantity = productIDsWithQuantities[productID];
+            await this.createOrderItem(connection, orderID, productID, productQuantity);
+        }
+    }
+
+    static async getOrderID(connection, staff_nr, user_id, processed_by, required_date, shipped_date, created_at){
+        if(typeof staff_nr !== "number") return;
+        if(typeof user_id !== "number") return;
+        if(typeof processed_by !== "object") return;
+        if(typeof required_date !== "object") return;
+        if(typeof shipped_date !== "object") return;
+        if(typeof created_at !== "object") return;
+
+        const [results, fields] = await connection.execute(
+            `SELECT order_id FROM orders WHERE staff_nr = ? AND user_id = ? AND processed_by = ? AND required_date = ? AND shipped_date = ? AND created_at = ?;`,
+            [staff_nr, user_id, processed_by, required_date, shipped_date, created_at]
+        );
+
+        if(results.length > 0) return results[0];
+        return null;
+    }
+
+    static async getUserIDFromOrder(connection, orderID){
+        if(typeof orderID !== "number") return;
+
+        const [results, fields] = await connection.execute(`SELECT user_id FROM orders WHERE order_id = ?`, [orderID]);
+        if(results.length > 0) return results[0];
     }
 
     static async editOrderStatus(connection, order_id, newStatus) {
@@ -75,7 +117,10 @@ class Orders {
     static async deleteOrder(connection, orderID) {
         if (typeof orderID !== "number") return;
 
+        // Delete the order
         await connection.execute(`DELETE FROM orders WHERE order_id = ?;`, [orderID]);
+
+        // Delete the items associated with the order
         await connection.execute(`DELETE FROM order_items WHERE order_id = ?;`, [orderID]);
     }
 
