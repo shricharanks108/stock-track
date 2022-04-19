@@ -1,5 +1,17 @@
 class Permissions {
 
+    static async getUserPermissionLevelDetails(connection, accessLevel) {
+        if (typeof accessLevel !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM user_permissions WHERE AccessLevel = ?;', [accessLevel]);
+
+        if (results.length > 0) {
+            return results[0];
+        }
+        
+        return null; 
+    }
+
     static async getCreateStaffPermission(connection, accessLevel) {
         if (typeof accessLevel !== "number") return;
 

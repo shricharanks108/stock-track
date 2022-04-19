@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 app.post("/login", async (req, res, next) => {
     const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [req.body.email]);
     if (results.length > 0) {
-        if (validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
+        if (Authentication.validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
             req.session.user = results[0];
             res.send(results[0]);
         } else {

@@ -37,9 +37,9 @@ function LoginPage() {
       console.log(res);
       if (res.data !== "Incorrect Password" || res.data !== "User Not Found") {
         localStorage.setItem('loginStatus', true);
-        localStorage.setItem('userEmail', res.data.EmailAddress);
+        localStorage.setItem('userEmail', res.data.Email);
         setLoginStatus(localStorage.getItem('loginStatus'));
-        privileges(res.data.userPermissionLevel);
+        privileges(res.data.UserPermissionLevel);
       }
     });
   };
