@@ -54,26 +54,26 @@ class Orders {
         if(typeof user_id !== "number") return;
         if(typeof productIDsWithQuantities !== "object") return;
 
-        var orderStatus = OrderStatus.ORDER_PENDING.value();
+        var orderStatus = OrderStatus.ORDER_PENDING.value;
 
         // TODO: what do these dates mean and how are they supposed to be handled? Is it all null until otherwise specified?
         var created_at_date = new Date();
 
         var required_date = new Date();
-        required_date.setDate(created_at_date + 7);
+        required_date.setDate(created_at_date.getDate() + 7);
 
         var processedBy = new Date();
-        processedBy.setDate(created_at_date + 2);
+        processedBy.setDate(created_at_date.getDate() + 2);
 
         var shipped_date = new Date();
-        shipped_date.setDate(created_at_date + 4);
+        shipped_date.setDate(created_at_date.getDate() + 4);
         
         await connection.execute(
             `INSERT INTO orders (staff_nr, user_id, status, processed_by, required_date, shipped_date, created_at) VALUES (?, ?, ?, ?, ?, ?, ?);`,
             [staff_nr, user_id, orderStatus, processedBy, required_date, shipped_date, created_at_date]
         );
 
-        orderID = await this.getOrderID(connection, staff_nr, user_id, processedBy, required_date, shipped_date, created_at_date);
+        var orderID = await this.getOrderID(connection, staff_nr, user_id, processedBy, required_date, shipped_date, created_at_date);
 
         // Create Order Items for Order
         for(var key in productIDsWithQuantities){
@@ -125,3 +125,5 @@ class Orders {
     }
 
 }
+
+module.exports = Orders;

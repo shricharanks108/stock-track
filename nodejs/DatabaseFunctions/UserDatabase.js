@@ -1,5 +1,11 @@
 const mysql = require('mysql2');
-const connection = require("./Database").connection;
+const connection = require("./Database");
+
+async function setupConnection(){
+    connection = await connection.setupConnection();
+}
+
+setupConnection();
 
 class UserDatabase{
     id;

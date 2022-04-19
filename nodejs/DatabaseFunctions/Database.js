@@ -13,6 +13,18 @@ async function setup() {
     database: process.env.DB_NAME,
     multipleStatements: true
   });
+  module.exports.connection = connection;
 }
 
-module.exports = connection;
+async function setupConnection(){
+  connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    multipleStatements: true
+  });
+  return connection;
+}
+
+module.exports.setupConnection = setupConnection;

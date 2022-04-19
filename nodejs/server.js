@@ -11,7 +11,6 @@ var session = require('express-session');
 var connection = require("./DatabaseFunctions/Database");
 var Authentication = require("./Authentication");
 
-// let connection = require('./DatabaseFunctions/Database').connection;
 var User = require('./DatabaseFunctions/User');
 var Inventory = require('./DatabaseFunctions/Inventory');
 
@@ -24,8 +23,12 @@ var OrderRoutes = require("./Routes/OrderRoutes");
 const { getMaxListeners } = require("process");
 
 const app = express();
-setTimeout(function () { connection = connection.connection;}, 100);
 
+async function setupConnection(){
+    connection = await connection.setupConnection();
+}
+
+setupConnection();
 app.use(
     cors({
         origin: "http://localhost:3000",

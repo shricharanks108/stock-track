@@ -1,19 +1,12 @@
-// var connection = require("./DatabaseFunctions/Database").connection;
+var connection = require("./DatabaseFunctions/Database");
 const mysql = require('mysql2/promise');
 const crypto = require('crypto');
 
-let connection;
-setup();
-
-async function setup() {
-  connection = await mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    multipleStatements: true
-  });
+async function setupConnection(){
+  connection = await connection.setupConnection();
 }
+
+setupConnection();
 
 async function checkIfUserExists(req, res, next) {
   const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email=? ', [req.body.email]);

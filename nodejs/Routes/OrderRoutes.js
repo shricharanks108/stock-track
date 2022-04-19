@@ -1,8 +1,15 @@
 const express = require('express');
+const Orders = require("../DatabaseFunctions/Orders");
 const router = express.Router();
 var bodyParser = require('body-parser');
-var connection = require("../DatabaseFunctions/Database").connection;
+var connection = require("../DatabaseFunctions/Database");
 var session = require('express-session');
+
+async function setupConnection(){
+    connection = await connection.setupConnection();
+}
+
+setupConnection();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -70,7 +77,7 @@ router.post("/createOrder", async (req, res) => {
     if(!productIDsWithQuantities) return res.status(400); // Bad Request
 
     if(!req.session.user) return res.status(401); // Unauthorized
-    
+
     // TODO: make sure id can be fetched like this
     var userID = req.session.user.id;
     await Orders.createOrder(connection, staff_nr, userID, productIDsWithQuantities);

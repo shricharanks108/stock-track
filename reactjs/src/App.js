@@ -35,7 +35,7 @@ async function getSavedOrder(id){
 }
 
 async function addProductToSavedOrder(orderId, productId, qty){
-  await Axios.post("https://localhost:8000/addCartItem", {
+  await Axios.post("https://localhost:8080/addCartItem", {
     orderId: orderId,
     productId: productId,
     qty: qty
