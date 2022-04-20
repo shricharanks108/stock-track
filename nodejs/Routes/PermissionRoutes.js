@@ -26,13 +26,13 @@ router.use((req, res, next) => {
     next()
 });
 
-router.get('/createNewAccessLevel', async (req, res) => {
-    try {
-        const [results, fields] = await connection.execute("INSERT INTO user_permissions VALUES (?,?,?,?,?,?,?,?,?);", [null,req.body.description,req.body.CreateStaffPermission,req.body.PlaceOrdersPermission,req.body.FulfillOrdersPermission,req.body.AddMerchantsPermission,req.body.ViewAllOrdersPermission,req.body.RestockInventoryPermission,req.body.MakeAnnouncementsPermission]);
-        res.status(200).send({ "created": true });
-    } catch (error) {
-        res.status(500).send({ "created": false });
-        console.log(error);
+router.get('/userPermissionLevelDetails', async (req, res) => {
+    if (req.session.user) {
+        let result = await Permissions.getUserPermissionLevelDetails(connection, req.body.accessLevel);
+        res.send({ "UserPermissions": result });
+    }
+    else {
+        res.status(401).send("Not Logged In!");
     }
 });
 

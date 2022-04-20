@@ -156,12 +156,10 @@ class User {
         await connection.execute('UPDATE users SET UserRole = ? WHERE Email = ?;', [role, email]);
     }
 
-    // add Street, City, State to the database
-
     static async getStreet(connection, email) {
         if (typeof email !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM users WHERE Street = ?;', [email]);
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [email]);
 
         if (results.length > 0) {
             return results[0].Street;
@@ -169,8 +167,8 @@ class User {
         return null;
     }
 
-    static async setStreet(connection, email, status) {
-        if (typeof status !== "string") return;
+    static async setStreet(connection, email, street) {
+        if (typeof street !== "string") return;
 
         await connection.execute('UPDATE users SET Street = ? WHERE Email = ?;', [street, email]);
     }
@@ -178,35 +176,35 @@ class User {
     static async getCity(connection, email) {
         if (typeof email !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM users WHERE City = ?;', [email]);
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [email]);
 
         if (results.length > 0) {
-            return results[0].Street;
+            return results[0].City;
         }
         return null;
     }
 
-    static async setCity(connection, email, status) {
-        if (typeof status !== "string") return;
+    static async setCity(connection, email, city) {
+        if (typeof city !== "string") return;
 
-        await connection.execute('UPDATE users SET City = ? WHERE Email = ?;', [street, email]);
+        await connection.execute('UPDATE users SET City = ? WHERE Email = ?;', [city, email]);
     }
 
     static async getState(connection, email) {
         if (typeof email !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM users WHERE State = ?;', [email]);
+        const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [email]);
 
         if (results.length > 0) {
-            return results[0].Street;
+            return results[0].State;
         }
         return null;
     }
 
-    static async setState(connection, email, status) {
-        if (typeof status !== "string") return;
+    static async setState(connection, email, state) {
+        if (typeof state !== "string") return;
 
-        await connection.execute('UPDATE users SET State = ? WHERE Email = ?;', [street, email]);
+        await connection.execute('UPDATE users SET State = ? WHERE Email = ?;', [state, email]);
     }
 
     static async getAccessLevel(connection, email) {

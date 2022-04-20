@@ -219,7 +219,7 @@ router.get('/userRole', async (req, res) => {
 router.post('/userRole', async (req, res) => {
     if (req.session.user) {
         try {
-            await User.setUserRole(connection, req.body.email, req.body.newAccountStatus);
+            await User.setUserRole(connection, req.body.email, req.body.newUserRole);
             res.sendStatus(200);
         } catch(error){
             res.sendStatus(500);
