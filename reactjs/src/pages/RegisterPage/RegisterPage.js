@@ -36,6 +36,7 @@ function RegisterPage() {
       birthday: birthday,
       phonenumber: phonenumber,
       foodpantryid: foodpantryid,
+      accessLevel: 1
     }).then((res) => {
       navigate("/login");
     });
