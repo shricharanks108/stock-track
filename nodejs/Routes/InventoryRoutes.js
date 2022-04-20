@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var connection = require(".././DatabaseFunctions/Database");
+
+async function setupConnection(){
+    connection = await connection.setupConnection();
+}
+setupConnection();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));

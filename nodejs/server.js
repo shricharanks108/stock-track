@@ -67,65 +67,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/login", async (req, res, next) => {
-    const [results, fields] = await connection.execute('SELECT * FROM users WHERE Email = ?;', [req.body.email]);
-    if (results.length > 0) {
-        if (Authentication.validPassword(req.body.password, results[0].Password, results[0].Salt) === true) {
-            req.session.user = results[0];
-            res.send(results[0]);
-        } else {
-            res.send("Incorrect Password");
-        }
-    } else {
-        res.send("User Not Found");
-    }
-});
-
-app.get('/login', (req, res, next) => {
-    if (req.session.user) {
-        res.send({ loggedIn: true, user: req.session.user });
-    } else {
-        res.send({ loggedIn: false });
-    }
-});
-
-app.post('/register', Authentication.checkIfUserExists, async (req, res, next) => {
-    const saltHash = generateHash(req.body.password);
-    const salt = saltHash.salt;
-    const hash = saltHash.hash;
-    const date_ob = new Date();
-    const date = date_ob.getFullYear() + "-" + ("0" + (date_ob.getMonth() + 1)).slice(-2) + "-" + ("0" + date_ob.getDate()).slice(-2);
-
-    try {
-        const [results, fields] = await connection.execute('INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ', [null, req.body.email, hash, req.body.firstName, req.body.age, date, req.body.birthday, req.body.countrycode, req.body.zipcode, req.body.foodpantryid, req.body.phonenumber, "Active", req.body.role, req.body.lastName, salt]);
-        res.send({ registered: true });
-    } catch (error) {
-        res.send({ registered: false });
-        console.log(error);
-    }
-});
-
 app.post("/cartItmes", (req, res, next) => {
     var id = req.body.id;
     if (!User.doesIdExist(id)) return res.sendStatus(400); // bad request
 
     var user = new User(id);
     res.send({ savedOrder: user.getOrderHistory() });
-});
-app.post('/register', Authentication.checkIfUserExists, async (req, res, next) => {
-    const saltHash = generateHash(req.body.password);
-    const salt = saltHash.salt;
-    const hash = saltHash.hash;
-    const date_ob = new Date();
-    const date = date_ob.getFullYear() + "-" + ("0" + (date_ob.getMonth() + 1)).slice(-2) + "-" + ("0" + date_ob.getDate()).slice(-2);
-
-    try {
-        const [results, fields] = await connection.execute('INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ', [null, req.body.email, hash, req.body.firstName, req.body.age, date, req.body.birthday, req.body.countrycode, req.body.zipcode, req.body.foodpantryid, req.body.phonenumber, "Active", req.body.role, req.body.lastName, salt]);
-        res.send({ registered: true });
-    } catch (error) {
-        res.send({ registered: false });
-        console.log(error);
-    }
 });
 
 app.post("/cartItmes", (req, res, next) => {
@@ -146,77 +93,6 @@ app.post("/addCartItem", (req, res, next) => {
         if (error) res.sendStatus(500);
         else res.send(results);
     });
-});
-
-
-// USER RELATED ENDPOINTS
-
-// app.get('/user/firstName', async (req, res) => {
-//   if (req.session.user) {
-//     let result = await User.getFirstName(connection, req.body.email);
-//     res.send({ "firstName": result });
-//   }
-//   else {
-//     res.send("Not Logged In!");
-//   }
-// });
-
-// app.post('/user/firstName', async (req, res) => {
-//   if (req.session.user) {
-//     try{
-//       await User.setFirstName(connection, req.body.email, req.body.firstName);
-//       res.sendStatus(200);
-//     } catch(error){
-//       res.sendStatus(500);
-//     }
-//   }
-//   else {
-//     res.send("Not Logged In!");
-//   }
-// });
-
-app.get('/user/lastName', async (req, res) => {
-    if (req.session.user) {
-        let result = await User.getLastName(connection, req.body.email);
-        res.send(result);
-    } else {
-        res.send("Not Logged In!");
-    }
-});
-
-app.post('/user/lastName', async (req, res) => {
-    if (req.session.user) {
-        try {
-            await User.setLastName(connection, req.body.email, req.body.lastName);
-            res.sendStatus(200);
-        } catch (error) {
-            res.sendStatus(500);
-        }
-    } else {
-        res.send("Not Logged In!");
-    }
-});
-
-app.get('/user/age', async (req, res) => {
-    if (req.session.user) {
-        let result = await User.getAge(connection, req.body.email);
-        res.send(result);
-    } else {
-        res.send("Not Logged In!");
-    }
-});
-
-app.post('/user/age', async (req, res) => {
-    if (req.session.user) {
-        try {
-            await User.setAge(connection, req.body.email, req.body.age);
-            res.sendStatus(200);
-        } catch (error) {
-            res.sendStatus(500);
-        }
-    } else {
-        res.send("Not Logged In!");
-    }
 });
 
 app.listen(8080, function () {

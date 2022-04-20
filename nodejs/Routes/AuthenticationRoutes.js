@@ -3,21 +3,13 @@ const router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 const mysql = require('mysql2/promise');
-
 var Authentication = require("../Authentication");
+var connection = require(".././DatabaseFunctions/Database");
 
-let connection;
-setup();
-
-async function setup() {
-  connection = await mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    multipleStatements: true
-  });
+async function setupConnection(){
+    connection = await connection.setupConnection();
 }
+setupConnection();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));

@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
+const User = require('.././DatabaseFunctions/User');
+var connection = require(".././DatabaseFunctions/Database");
 
-const User = require('../DatabaseFunctions/User');
+async function setupConnection(){
+    connection = await connection.setupConnection();
+}
+setupConnection();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +23,7 @@ router.use(
       },
     })
   );
+
 router.use((req, res, next) => {
     next()
 });
