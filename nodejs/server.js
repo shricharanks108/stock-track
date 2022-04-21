@@ -19,6 +19,7 @@ var AuthRoutes = require('./Routes/AuthenticationRoutes');
 var InventoryRoutes = require('./Routes/InventoryRoutes');
 var PermissionRoutes = require('./Routes/PermissionRoutes');
 var OrderRoutes = require("./Routes/OrderRoutes");
+var WWEIACategorizationRoutes = require("./Routes/WWEIACategorizationRoutes");
 
 const { getMaxListeners } = require("process");
 
@@ -60,6 +61,7 @@ app.use("/auth", AuthRoutes);
 app.use("/inventory", InventoryRoutes);
 app.use("/permissions", PermissionRoutes);
 app.use("/order", OrderRoutes);
+app.use("/wweia", WWEIACategorizationRoutes);
 
 app.use((req, res, next) => {
     // console.log(req.session);

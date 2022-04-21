@@ -27,54 +27,35 @@ router.use(
 router.use((req, res, next) => {
     next()
 });
-
-router.get('/getNumberFromSubcategory', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getNumberFromSubcategory(connection, req.body.subcategory);
-        res.status(200).send({ "categoryNumber": result });
-    }
-});
   
 router.get('/getFoodSubcategoryFromNumber', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getFoodSubcategoryFromNumber(connection, req.body.categoryNumber);
-        res.status(200).send({ "subcategory": result });
-    }
+    let result = await WWEIAFoodCategories.getFoodSubcategoryFromNumber(connection, req.body.categoryNumber);
+    res.status(200).send({ "subcategory": result });
 });
 
 router.get('/getFoodMajorCategoryFromSubcategory', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getAge(connection, req.body.subcategory);
-        res.status(200).send({ "majorCategory": result });
-    }
+    let result = await WWEIAFoodCategories.getFoodMajorCategoryFromSubcategory(connection, req.body.subcategory);
+    res.status(200).send({ "majorCategory": result });
 });
 
 router.get('/getFoodSubcategoriesFromMajorCategory', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getEmail(connection, req.body.majorCategory);
-        res.status(200).send({ "subcategories": result });
-    }
+    let result = await WWEIAFoodCategories.getFoodSubcategoriesFromMajorCategory(connection, req.body.majorCategory);
+    res.status(200).send({ "subcategories": result });
 });
 
 router.get('/getFoodSubcategoryDescription', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getFoodSubcategoryDescription(connection, req.body.subcategory);
-        res.status(200).send({ "description": result });
-    }
+    let result = await WWEIAFoodCategories.getFoodSubcategoryDescription(connection, req.body.subcategory);
+    res.status(200).send({ "description": result });
 });
 
 router.get('/getFoodCategoryNumbersfromMajorCategory', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getFoodCategoryNumbersfromMajorCategory(connection, req.body.majorCategory);
-        res.status(200).send({ "categoryNumbers": result });
-    }
+    let result = await WWEIAFoodCategories.getFoodCategoryNumbersfromMajorCategory(connection, req.body.majorCategory);
+    res.status(200).send({ "categoryNumbers": result });
 });
 
 router.get('/getMajorCategoryAndSubcategoryFromNumber', async (req, res) => {
-    if (req.session.user) {
-        let result = await WWEIAFoodCategories.getMajorCategoryAndSubcategoryFromNumber(connection, req.body.categoryNumber);
-        res.status(200).send({ "numberDetails": result });
-    }
+    let result = await WWEIAFoodCategories.getMajorCategoryAndSubcategoryFromNumber(connection, req.body.categoryNumber);
+    res.status(200).send({ "numberDetails": result });
 });
 
 module.exports = router;

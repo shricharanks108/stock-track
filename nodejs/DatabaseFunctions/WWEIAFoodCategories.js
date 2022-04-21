@@ -5,21 +5,10 @@ class WWEIAFoodCategories{
     // WWEIA Food Category Number --> Example: 1006
     // WWEIA Food Category Description --> Example: 'Milk, lowfat'
 
-    static async getNumberFromSubcategory(connection, subcategory) {
-        if (typeof subcategory !== "string") return;
-
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories AND `DGAC Subcategory` = ?;', [subcategory]);
-
-        if (results.length > 0) {
-            return results[0]['WWEIA Food Category Number'];
-        }
-        return null;
-    }
-
     static async getFoodSubcategoryFromNumber(connection, categoryNumber) {
         if (typeof categoryNumber !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories AND `WWEIA Food Category Number` = ?;', [categoryNumber]);
+        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `WWEIA Food Category Number` = ?;', [categoryNumber]);
 
         if (results.length > 0) {
             return results[0]['DGAC Subcategory'];
@@ -30,7 +19,7 @@ class WWEIAFoodCategories{
     static async getFoodMajorCategoryFromSubcategory(connection, subcategory) {
         if (typeof subcategory !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories AND `DGAC Subcategory` = ?;', [subcategory]);
+        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `DGAC Subcategory` = ?;', [subcategory]);
 
         if (results.length > 0) {
             return results[0]['DGAC Major Category'];
@@ -41,7 +30,7 @@ class WWEIAFoodCategories{
     static async getFoodSubcategoriesFromMajorCategory(connection, majorCategory) {
         if (typeof majorCategory !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `DGAC Major Category` = "?";', [majorCategory]);
+        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `DGAC Major Category` = ?;', [majorCategory]);
 
         var subcategories = [];
 
@@ -49,7 +38,7 @@ class WWEIAFoodCategories{
             for (const result of results) {
                 subcategories.push(result['DGAC Subcategory']);
             }
-            return subcategories;
+            return Array.from(new Set(subcategories));
         }
         return null;
     }
@@ -57,7 +46,7 @@ class WWEIAFoodCategories{
     static async getFoodSubcategoryDescription(connection, subcategory) {
         if (typeof subcategory !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories AND `DGAC Subcategory` = ?;', [subcategory]);
+        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `DGAC Subcategory` = ?;', [subcategory]);
 
         if (results.length > 0) {
             return results[0]['WWEIA Food Category Description'];
@@ -68,7 +57,7 @@ class WWEIAFoodCategories{
     static async getFoodCategoryNumbersfromMajorCategory(connection, majorCategory) {
         if (typeof majorCategory !== "string") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `DGAC Major Category` = "?";', [majorCategory]);
+        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `DGAC Major Category` = ?;', [majorCategory]);
 
         var numbers = [];
 
@@ -84,7 +73,7 @@ class WWEIAFoodCategories{
     static async getMajorCategoryAndSubcategoryFromNumber(connection, categoryNumber) {
         if (typeof categoryNumber !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `WWEIA Food Category Number` = "?";', [categoryNumber]);
+        const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories WHERE `WWEIA Food Category Number` = ?;', [categoryNumber]);
 
         if (results.length > 0) {
             return {
