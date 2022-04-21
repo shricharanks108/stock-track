@@ -22,7 +22,7 @@ class WWEIAFoodCategories{
         const [results, fields] = await connection.execute('SELECT * FROM wweia_food_categories AND `WWEIA Food Category Number` = ?;', [categoryNumber]);
 
         if (results.length > 0) {
-            return results[0];
+            return results[0]['DGAC Subcategory'];
         }
         return null;
     }
