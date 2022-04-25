@@ -28,14 +28,14 @@ import OrderHistory from './pages/OrderHistory/OrderHistory';
 // import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 async function getSavedOrder(id){
-  var cartItems = await Axios.post("http://localhost:8080/cartItmes", {
+  var cartItems = await Axios.post("https://stocktrack.shricharanks.com/cartItmes", {
     id: id
   });
   return cartItems.data;
 }
 
 async function addProductToSavedOrder(orderId, productId, qty){
-  await Axios.post("https://localhost:8080/addCartItem", {
+  await Axios.post("https://stocktrack.shricharanks.com/addCartItem", {
     orderId: orderId,
     productId: productId,
     qty: qty

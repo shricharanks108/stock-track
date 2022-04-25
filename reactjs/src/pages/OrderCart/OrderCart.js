@@ -12,7 +12,7 @@ async function executeOrder(cards){
   var staffNumber = 3; // TODO: what is staffNumber?
 
   console.log(cartItems);
-  Axios.post("https://localhost:8080/order/createOrder", {
+  Axios.post("https://stocktrack.shricharanks.com/order/createOrder", {
     staffNumber: staffNumber,
     productIDsWithQuantities: cartItems
   });

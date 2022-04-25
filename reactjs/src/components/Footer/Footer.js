@@ -60,10 +60,11 @@ function Footer() {
           </div>
           <div className='footer-link-items'>
             <h2>Social Media</h2>
-            <Link to='//www.instagram.com/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
+            <Link to='//www.instagram.com/govstemscholars/'>Instagram</Link>
+            <Link to='//www.facebook.com/governorsstemscholars/'>Facebook</Link>
+            <Link to='//www.youtube.com/'>Youtube</Link>
+            <Link to='//www.twitter.com/GovSTEMScholars/'>Twitter</Link>
+            <Link to='//www.linkedin.com/company/govstemscholars/'>LinkedIn</Link>
           </div>
         </div>
       </div>
@@ -78,7 +79,7 @@ function Footer() {
           <div className='social-icons'>
             <Link
               className='social-icon-link'
-              to='/'
+              to='//www.facebook.com/governorsstemscholars/'
               target='_blank'
               aria-label='Facebook'
             >
@@ -86,7 +87,7 @@ function Footer() {
             </Link>
             <Link
               className='social-icon-link'
-              to='//www.instagram.com/'
+              to='//www.instagram.com/govstemscholars/'
               target='_blank'
               aria-label='Instagram'
             >
@@ -104,7 +105,7 @@ function Footer() {
             </Link>
             <Link
               className='social-icon-link'
-              to='//www.twitter.com/'
+              to='//www.twitter.com/GovSTEMScholars/'
               target='_blank'
               aria-label='Twitter'
             >
@@ -112,7 +113,7 @@ function Footer() {
             </Link>
             <Link
               className='social-icon-link'
-              to='//www.linkedin.com/'
+              to='//www.linkedin.com/company/govstemscholars/'
               target='_blank'
               aria-label='LinkedIn'
             >

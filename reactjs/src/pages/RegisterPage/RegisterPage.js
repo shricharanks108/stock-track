@@ -25,7 +25,7 @@ function RegisterPage() {
 
   const register = () => {
     console.log('registering');
-    Axios.post('http://localhost:8080/register', {
+    Axios.post('https://stocktrack.shricharanks.com/register', {
       email: email,
       password: password,
       firstName: firstName,
@@ -36,6 +36,7 @@ function RegisterPage() {
       birthday: birthday,
       phonenumber: phonenumber,
       foodpantryid: foodpantryid,
+      accessLevel: 1
     }).then((res) => {
       navigate("/login");
     });
