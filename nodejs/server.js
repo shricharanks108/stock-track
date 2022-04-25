@@ -10,6 +10,7 @@ const cors = require('cors');
 var session = require('express-session');
 var connection = require("./DatabaseFunctions/Database");
 var Authentication = require("./Authentication");
+const path = require("path");
 
 var User = require('./DatabaseFunctions/User');
 var Inventory = require('./DatabaseFunctions/Inventory');
@@ -22,6 +23,7 @@ var OrderRoutes = require("./Routes/OrderRoutes");
 var WWEIACategorizationRoutes = require("./Routes/WWEIACategorizationRoutes");
 
 const { getMaxListeners } = require("process");
+let port = process.env.PORT || 8080;
 
 const app = express();
 
@@ -49,7 +51,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24,
+            expires: 60 * 60 * 1000,
         },
     })
 );
@@ -97,6 +99,6 @@ app.post("/addCartItem", (req, res, next) => {
     });
 });
 
-app.listen(8080, function () {
-    console.log('App listening on port 8080!')
+app.listen(port, function () {
+    console.log(`App listening on port ${port}!`)
 });

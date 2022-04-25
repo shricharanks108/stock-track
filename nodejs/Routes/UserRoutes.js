@@ -14,15 +14,15 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(
     session({
-      key: 'signed_session_key',
-      secret: "secretcode",
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        expires: 60 * 60 * 24,
-      },
+        key: 'signed_session_key',
+        secret: "secretcode",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 60 * 60 * 1000,
+        },
     })
-  );
+);
 
 router.use((req, res, next) => {
     next()
@@ -317,7 +317,7 @@ router.post('/accessLevel', async (req, res) => {
         try {
             await User.setAccessLevel(connection, req.body.email, req.body.newAccessLevel);
             res.sendStatus(200);
-        } catch(error){
+        } catch(error) {
             res.sendStatus(500);
         }
     }
