@@ -1,4 +1,4 @@
-import './AdminDashboard.css';
+import '../BootstrapTemplate.css';
 
 function AdminDashboard() {
   return (

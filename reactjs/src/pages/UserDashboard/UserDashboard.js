@@ -1,4 +1,4 @@
-import './UserDashboard.css';
+import '../BootstrapTemplate.css';
 import { Header } from '../../components/Header/Header';
 
 

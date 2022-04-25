@@ -1,4 +1,4 @@
-import './TeamManagement.css';
+import '../BootstrapTemplate.css';
 import { Button } from 'react-bootstrap';
 
 function TeamManagement() {
