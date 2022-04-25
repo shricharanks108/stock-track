@@ -99,6 +99,12 @@ app.post("/addCartItem", (req, res, next) => {
     });
 });
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 app.listen(port, function () {
     console.log(`App listening on port ${port}!`)
 });
