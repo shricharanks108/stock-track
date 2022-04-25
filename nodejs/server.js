@@ -11,7 +11,6 @@ const cors = require('cors');
 var session = require('express-session');
 var connection = require("./DatabaseFunctions/Database");
 var Authentication = require("./Authentication");
-const path = require("path");
 
 var User = require('./DatabaseFunctions/User');
 var Inventory = require('./DatabaseFunctions/Inventory');
@@ -98,6 +97,12 @@ app.post("/addCartItem", (req, res, next) => {
         if (error) res.sendStatus(500);
         else res.send(results);
     });
+});
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.listen(port, function () {
