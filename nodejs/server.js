@@ -11,7 +11,6 @@ const cors = require('cors');
 var session = require('express-session');
 var connection = require("./DatabaseFunctions/Database");
 var Authentication = require("./Authentication");
-const path = require("path");
 
 var User = require('./DatabaseFunctions/User');
 var Inventory = require('./DatabaseFunctions/Inventory');

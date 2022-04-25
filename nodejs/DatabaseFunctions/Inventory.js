@@ -19,7 +19,7 @@ class Inventory {
         return null;
     }
 
-    static async getItemByID(connection, itemID, pantryId, itemID) {
+    static async getItemByID(connection, pantryId, itemID) {
         if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND id = ?;', [pantryId, itemID]);
@@ -41,7 +41,7 @@ class Inventory {
         return null;
     }
 
-    static async getItemsByCategory(connection, category, pantryId, category) {
+    static async getItemsByCategory(connection, pantryId, category) {
 
     }
 
@@ -49,27 +49,27 @@ class Inventory {
 
     }
 
-    static async getItemName(connection, id, pantryId, itemID) {
+    static async getItemName(connection, pantryId, itemID) {
 
     }
 
-    static async setItemName(connection, id, pantryId, itemID) {
+    static async setItemName(connection, pantryId, itemID) {
 
     }
 
-    static async getItemQuantity(connection, item, pantryId, itemID) {
+    static async getItemQuantity(connection, pantryId, itemID) {
 
     }
 
-    static async setItemQuantity(connection, item, pantryId, itemID) {
+    static async setItemQuantity(connection, pantryId, itemID) {
 
     }
 
-    static async getExpiryDate(connection, item, pantryId, itemID) {
+    static async getExpiryDate(connection, pantryId, itemID) {
 
     }
 
-    static async setExpiryDate(connection, item, pantryId, itemID) {
+    static async setExpiryDate(connection, pantryId, itemID) {
 
     }
 }
