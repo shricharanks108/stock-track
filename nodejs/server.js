@@ -3,6 +3,7 @@ require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const express = require('express');
 const bodyParser = require("body-parser");
+const path = require("path");
 const router = express.Router();
 const mysql = require('mysql2/promise');
 const crypto = require('crypto');
@@ -39,7 +40,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('port', process.env.PORT || 8080);
+let port = process.env.PORT || 8080;
 
 app.use(
     session({
@@ -48,7 +49,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24,
+            expires: 60 * 60 * 1000,
         },
     })
 );
@@ -60,6 +61,8 @@ app.use("/auth", AuthRoutes);
 app.use("/inventory", InventoryRoutes);
 app.use("/permissions", PermissionRoutes);
 app.use("/order", OrderRoutes);
+
+app.use(express.static(path.join(__dirname, "build")));
 
 app.use((req, res, next) => {
     // console.log(req.session);
@@ -95,6 +98,6 @@ app.post("/addCartItem", (req, res, next) => {
     });
 });
 
-app.listen(8080, function () {
-    console.log('App listening on port 8080!')
+app.listen(port, function () {
+    console.log(`App listening on port ${port}!`)
 });
