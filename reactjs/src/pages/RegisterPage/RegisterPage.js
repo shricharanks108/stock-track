@@ -25,7 +25,7 @@ function RegisterPage() {
 
   const register = () => {
     console.log('registering');
-    Axios.post('http://localhost:8080/register', {
+    Axios.post('https://stocktrack.shricharanks.com/register', {
       email: email,
       password: password,
       firstName: firstName,

@@ -7,7 +7,7 @@ import Axios from 'axios';
 function ProductListings(props) {
 
   const filterProducts = () => {
-    // Axios.get('http://localhost:8080/filterProducts', {
+    // Axios.get('https://stocktrack.shricharanks.com/filterProducts', {
     //   email: email,
     //   password: password,
     //   firstName: firstName,
@@ -19,7 +19,7 @@ function ProductListings(props) {
   };
 
   const updateSubcategories = () => {
-    // Axios.get('http://localhost:8080/filterProducts', {
+    // Axios.get('https://stocktrack.shricharanks.com/filterProducts', {
     //   major_subcat: "yeet",
     // }).then((res) => {
     //   console.log(res);

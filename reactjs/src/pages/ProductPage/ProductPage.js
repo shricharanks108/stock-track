@@ -7,7 +7,7 @@ import Axios from 'axios';
 // const register = () => {
 //   console.log('retreiving nutritional data');
 //   // fix backend endpoint name
-//   Axios.get('http://localhost:8080/nutrition/query?', {
+//   Axios.get('https://stocktrack.shricharanks.com/nutrition/query?', {
 //     productName: name, 
 //   }).then((res) => {
 //     console.log(res);

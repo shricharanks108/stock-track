@@ -20,7 +20,7 @@ function LoginPage() {
 
   const register = () => {
     console.log('registering');
-    Axios.post('http://localhost:8080/register', {
+    Axios.post('https://stocktrack.shricharanks.com/auth/register', {
       email: email,
       password: password,
     }).then((res) => {
@@ -30,7 +30,7 @@ function LoginPage() {
 
   // TODO: just doesn't work.
   const login = () => {
-    Axios.post('http://localhost:8080/login', {
+    Axios.post('https://stocktrack.shricharanks.com/auth/login', {
       email: email,
       password: password,
     }).then((res) => {
@@ -46,7 +46,7 @@ function LoginPage() {
 
   const privileges = (userPrivLevel) => {
     localStorage.setItem('loginStatus', true);
-    Axios.post('http://localhost:8080/userPermissionLevelDetails', {
+    Axios.post('https://stocktrack.shricharanks.com/permissions/userPermissionLevelDetails', {
       permissionLevel: userPrivLevel
     }).then((res) => {
       console.log(res);
