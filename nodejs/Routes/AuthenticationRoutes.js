@@ -23,7 +23,8 @@ router.use(
         expires: 60 * 60 * 1000,
       },
     })
-  );
+);
+  
 router.use((req, res, next) => {
     next()
 });

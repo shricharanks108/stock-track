@@ -22,7 +22,7 @@ router.use(
         expires: 60 * 60 * 1000,
       },
     })
-  );
+);
 
 router.use((req, res, next) => {
     next()
@@ -317,7 +317,7 @@ router.post('/accessLevel', async (req, res) => {
         try {
             await User.setAccessLevel(connection, req.body.email, req.body.newAccessLevel);
             res.sendStatus(200);
-        } catch(error){
+        } catch(error) {
             res.sendStatus(500);
         }
     }

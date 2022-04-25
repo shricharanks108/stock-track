@@ -11,6 +11,7 @@ const cors = require('cors');
 var session = require('express-session');
 var connection = require("./DatabaseFunctions/Database");
 var Authentication = require("./Authentication");
+const path = require("path");
 
 var User = require('./DatabaseFunctions/User');
 var Inventory = require('./DatabaseFunctions/Inventory');
@@ -20,9 +21,9 @@ var AuthRoutes = require('./Routes/AuthenticationRoutes');
 var InventoryRoutes = require('./Routes/InventoryRoutes');
 var PermissionRoutes = require('./Routes/PermissionRoutes');
 var OrderRoutes = require("./Routes/OrderRoutes");
+var WWEIACategorizationRoutes = require("./Routes/WWEIACategorizationRoutes");
 
 const { getMaxListeners } = require("process");
-
 const app = express();
 
 async function setupConnection(){
@@ -61,6 +62,7 @@ app.use("/auth", AuthRoutes);
 app.use("/inventory", InventoryRoutes);
 app.use("/permissions", PermissionRoutes);
 app.use("/order", OrderRoutes);
+app.use("/wweia", WWEIACategorizationRoutes);
 
 app.use(express.static(path.join(__dirname, "build")));
 
