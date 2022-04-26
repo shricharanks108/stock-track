@@ -1,15 +1,55 @@
 import '../BootstrapTemplate.css';
 import { Navigate } from 'react-router-dom'
-
+import img from '../../logo.svg';
 
 function UserDashboard() {
+
+  let listOfOrders = [
+    {
+      orderNum: 1,
+      items: [
+        {
+          name:"Milk",
+          quantity: 3
+        }, 
+        {
+          name:"Eggs",
+          quantity: 2
+        }, 
+        {
+          name:"Bread",
+          quantity: 1
+        }
+      ]
+    }, 
+    {
+      orderNum: 2,
+      items: [
+        {
+          name:"Milk",
+          quantity: 1
+        }, 
+        {
+          name:"Eggs",
+          quantity: 2
+        }, 
+        {
+          name:"Bread",
+          quantity: 3
+        }
+      ]
+    }
+  ];
+
+  let shoppingListItems = ["Bread", "Milk", "Eggs"];
+
   if (localStorage.getItem("loginStatus") == 'true') {
     return (
       <div id="wrapper">
           <nav className="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div className="container-fluid d-flex flex-column p-0"><a className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div className="sidebar-brand-icon rotate-n-15"><i className="fas fa-laugh-wink" /></div>
-                <div className="sidebar-brand-text mx-3"><span>Brand</span></div>
+                <div className="sidebar-brand-text mx-3"><span>Stock Track</span></div>
               </a>
               <hr className="sidebar-divider my-0" />
               <ul className="navbar-nav text-light" id="accordionSidebar">
@@ -54,7 +94,7 @@ function UserDashboard() {
                     </li>
                     <div className="d-none d-sm-block topbar-divider" />
                     <li className="nav-item dropdown no-arrow">
-                      <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img className="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg" /></a>
+                      <div className="nav-item dropdown no-arrow"><a className="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span className="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img className="border rounded-circle img-profile" src={img} /></a>
                         <div className="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a className="dropdown-item" href="#"><i className="fas fa-user fa-sm fa-fw me-2 text-gray-400" />&nbsp;Profile</a><a className="dropdown-item" href="#"><i className="fas fa-cogs fa-sm fa-fw me-2 text-gray-400" />&nbsp;Settings</a><a className="dropdown-item" href="#"><i className="fas fa-list fa-sm fa-fw me-2 text-gray-400" />&nbsp;Activity log</a>
                           <div className="dropdown-divider" /><a className="dropdown-item" href="#"><i className="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400" />&nbsp;Logout</a>
                         </div>
@@ -172,26 +212,14 @@ function UserDashboard() {
                         <h6 className="text-primary fw-bold m-0">Pending Orders Status</h6>
                       </div>
                       <div className="card-body">
-                        <h4 className="small fw-bold">Order #<span className="float-end">20%</span></h4>
-                        <div className="progress mb-4">
-                          <div className="progress-bar bg-danger" aria-valuenow={20} aria-valuemin={0} aria-valuemax={100} style={{width: '20%'}}><span className="visually-hidden">20%</span></div>
-                        </div>
-                        <h4 className="small fw-bold">Order #<span className="float-end">40%</span></h4>
-                        <div className="progress mb-4">
-                          <div className="progress-bar bg-warning" aria-valuenow={40} aria-valuemin={0} aria-valuemax={100} style={{width: '40%'}}><span className="visually-hidden">40%</span></div>
-                        </div>
-                        <h4 className="small fw-bold">Order #<span className="float-end">60%</span></h4>
-                        <div className="progress mb-4">
-                          <div className="progress-bar bg-primary" aria-valuenow={60} aria-valuemin={0} aria-valuemax={100} style={{width: '60%'}}><span className="visually-hidden">60%</span></div>
-                        </div>
-                        <h4 className="small fw-bold">Order #<span className="float-end">80%</span></h4>
-                        <div className="progress mb-4">
-                          <div className="progress-bar bg-info" aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} style={{width: '80%'}}><span className="visually-hidden">80%</span></div>
-                        </div>
-                        <h4 className="small fw-bold">Order #<span className="float-end">Complete!</span></h4>
-                        <div className="progress mb-4">
-                          <div className="progress-bar bg-success" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} style={{width: '100%'}}><span className="visually-hidden">100%</span></div>
-                        </div>
+                        {listOfOrders.map(order => (
+                          <div>
+                            <h4 className="small fw-bold">Order #{order.orderNum}<span className="float-end">20%</span></h4>
+                            <div className="progress mb-4">
+                              <div className="progress-bar bg-danger" aria-valuenow={20} aria-valuemin={0} aria-valuemax={100} style={{width: '20%'}}><span className="visually-hidden">20%</span></div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                     <div className="card shadow mb-4">
@@ -199,16 +227,20 @@ function UserDashboard() {
                         <h6 className="text-primary fw-bold m-0">Shopping List</h6>
                       </div>
                       <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                          <div className="row align-items-center no-gutters">
-                            <div className="col me-2">
-                              <h6 className="mb-0"><strong>Bread</strong></h6>
+                        {shoppingListItems.map(item => (
+                          <li className="list-group-item">
+                            <div className="row align-items-center no-gutters">
+                              <div className="col me-2">
+                                <h6 className="mb-0"><strong>{item}</strong></h6>
+                              </div>
+                              <div className="col-auto">
+                                <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-1" /><label className="form-check-label" htmlFor="formCheck-1" /></div>
+                              </div>
                             </div>
-                            <div className="col-auto">
-                              <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-1" /><label className="form-check-label" htmlFor="formCheck-1" /></div>
-                            </div>
-                          </div>
-                        </li>
+                          </li>
+                        ))}
+
+                        
                         <li className="list-group-item">
                           <div className="row align-items-center no-gutters">
                             <div className="col me-2">
@@ -289,7 +321,7 @@ function UserDashboard() {
             </div>
             <footer className="bg-white sticky-footer">
               <div className="container my-auto">
-                <div className="text-center my-auto copyright"><span>Copyright © Brand 2022</span></div>
+                <div className="text-center my-auto copyright"><span>Copyright © Stock Track 2022</span></div>
               </div>
             </footer>
           </div><a className="border rounded d-inline scroll-to-top" href="#page-top"><i className="fas fa-angle-up" /></a>

@@ -4,13 +4,24 @@ import img from '../../logo.svg';
 
 function UserProfile() {
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [street, setStreet] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [phonenumber, setPhonenumber] = useState('');
+  const [foodpantryid, setFoodpantryid] = useState('');
+
   if (localStorage.getItem("loginStatus") == 'true') {
     return (
       <div id="wrapper">
           <nav className="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div className="container-fluid d-flex flex-column p-0"><a className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div className="sidebar-brand-icon rotate-n-15"><i className="fas fa-laugh-wink" /></div>
-                <div className="sidebar-brand-text mx-3"><span>Brand</span></div>
+                <div className="sidebar-brand-text mx-3"><span>Stock Track</span></div>
               </a>
               <hr className="sidebar-divider my-0" />
               <ul className="navbar-nav text-light" id="accordionSidebar">
@@ -196,18 +207,15 @@ function UserProfile() {
                             <form>
                               <div className="row">
                                 <div className="col">
-                                  <div className="mb-3"><label className="form-label" htmlFor="username"><strong>Username</strong></label><input className="form-control" type="text" id="username" placeholder="user.name" name="username" /></div>
-                                </div>
-                                <div className="col">
-                                  <div className="mb-3"><label className="form-label" htmlFor="email"><strong>Email Address</strong></label><input className="form-control" type="email" id="email" placeholder="user@example.com" name="email" /></div>
+                                  <div className="mb-3"><label className="form-label" htmlFor="email"><strong>Email Address</strong></label><input className="form-control" type="email" id="email" placeholder="Email Address" onChange={(e) => setEmail(e.target.value)} /></div>
                                 </div>
                               </div>
                               <div className="row">
                                 <div className="col">
-                                  <div className="mb-3"><label className="form-label" htmlFor="first_name"><strong>First Name</strong></label><input className="form-control" type="text" id="first_name" placeholder="John" name="first_name" /></div>
+                                  <div className="mb-3"><label className="form-label" htmlFor="first_name"><strong>First Name</strong></label><input className="form-control" type="text" id="first_name" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} /></div>
                                 </div>
                                 <div className="col">
-                                  <div className="mb-3"><label className="form-label" htmlFor="last_name"><strong>Last Name</strong></label><input className="form-control" type="text" id="last_name" placeholder="Doe" name="last_name" /></div>
+                                  <div className="mb-3"><label className="form-label" htmlFor="last_name"><strong>Last Name</strong></label><input className="form-control" type="text" id="last_name" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} /></div>
                                 </div>
                               </div>
                               <div className="mb-3"><button className="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
@@ -220,16 +228,19 @@ function UserProfile() {
                           </div>
                           <div className="card-body">
                             <form>
-                              <div className="mb-3"><label className="form-label" htmlFor="address"><strong>Address</strong></label><input className="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address" /></div>
+                              <div className="mb-3"><label className="form-label" htmlFor="address"><strong>Address</strong></label><input className="form-control" type="text" id="address" placeholder="Street" onChange={(e) => setStreet(e.target.value)} /></div>
                               <div className="row">
                                 <div className="col">
-                                  <div className="mb-3"><label className="form-label" htmlFor="city"><strong>City</strong></label><input className="form-control" type="text" id="city" placeholder="Los Angeles" name="city" /></div>
+                                  <div className="mb-3"><label className="form-label" htmlFor="city"><strong>City</strong></label><input className="form-control" type="text" id="city" placeholder="City" onChange={(e) => setCity(e.target.value)} /></div>
                                 </div>
                                 <div className="col">
-                                  <div className="mb-3"><label className="form-label" htmlFor="country"><strong>Country</strong></label><input className="form-control" type="text" id="country" placeholder="USA" name="country" /></div>
+                                  <div className="mb-3"><label className="form-label" htmlFor="state"><strong>State</strong></label><input className="form-control" type="text" id="state" placeholder="State" onChange={(e) => setState(e.target.value)} /></div>
+                                </div>
+                                <div className="col">
+                                  <div className="mb-3"><label className="form-label" htmlFor="country"><strong>Country</strong></label><input className="form-control" type="text" id="country" placeholder="Country" onChange={(e) => setCountry(e.target.value)} /></div>
                                 </div>
                               </div>
-                              <div className="mb-3"><button className="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button></div>
+                              <div className="mb-3"><button className="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
                             </form>
                           </div>
                         </div>
@@ -259,7 +270,7 @@ function UserProfile() {
             </div>
             <footer className="bg-white sticky-footer">
               <div className="container my-auto">
-                <div className="text-center my-auto copyright"><span>Copyright © Brand 2022</span></div>
+                <div className="text-center my-auto copyright"><span>Copyright © Stock Track 2022</span></div>
               </div>
             </footer>
           </div><a className="border rounded d-inline scroll-to-top" href="#page-top"><i className="fas fa-angle-up" /></a>
