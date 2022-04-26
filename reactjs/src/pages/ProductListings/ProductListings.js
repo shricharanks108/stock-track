@@ -6,30 +6,47 @@ import Axios from 'axios';
 
 function ProductListings(props) {
 
-  const filterProducts = () => {
-    // Axios.get('https://stocktrack.shricharanks.com/filterProducts', {
-    //   email: email,
-    //   password: password,
-    //   firstName: firstName,
-    //   lastName: lastName,
-    // }).then((res) => {
-    //   console.log(res);
-    // });
-    console.log('filterProducts');
-  };
+  let majorCat = '';
+  let subCat = '';
 
-  const updateSubcategories = () => {
-    // Axios.get('https://stocktrack.shricharanks.com/filterProducts', {
-    //   major_subcat: "yeet",
-    // }).then((res) => {
-    //   console.log(res);
-    // });
-    
-    console.log('updateSubcategories');
-  };
-
-  const { subcategories } =  {subcategories: ["Test1", "Test2", "Test3"]};
+  const { subcategories } =  {subcategories: ["Select a Subcategory...", "Test1", "Test2", "Test3"]};
   const { products } = data;
+
+  const filterProducts = () => {
+    if (subCat == 'Select a Subcategory...') {
+      Axios.get('https://stocktrack.shricharanks.com/filterProductsByMajorCategory', {
+        majorCategory: majorCat
+      }).then((res) => {
+        console.log(res.products);
+        products = res.products;
+      });
+    } else {
+      Axios.get('https://stocktrack.shricharanks.com/filterProductsBySubcategory', {
+        subcategory: subCat
+      }).then((res) => {
+        console.log(res.products);
+        products = res.products;
+      });
+    }
+  };
+
+  const updateSubcategories = (event) => {
+    if (event.target.id == "major-subcategory") {
+      majorCat = event.target.value;
+
+      Axios.get('https://stocktrack.shricharanks.com/getFoodSubcategoriesFromMajorCategory', {
+      majorCategory: majorCat,
+      }).then((res) => {
+        subcategories = res.subcategories;
+      });
+
+    } else {
+      if (event.target.id == "minor-subcategory") {
+        subCat = event.target.value;
+      }
+    }
+    filterProducts;
+  };
 
   return (
     <div>
@@ -37,10 +54,9 @@ function ProductListings(props) {
       <div className="filter-categories-container">
         <div className="minor-category-filter">
             <Form>
-              {/* <fieldset disabled> */}
                 <Form.Group className="mb-3">
                   <Form.Label>Major Subcategory</Form.Label>
-                  <Form.Select id="major-subcategory" onChange={updateSubcategories()}>
+                  <Form.Select id="major-subcategory" onChange={updateSubcategories}>
                     <option>Dairy</option>
                     <option>Protein Foods</option>
                     <option>Mixed Dishes</option>
@@ -55,26 +71,12 @@ function ProductListings(props) {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Minor Subcategory</Form.Label>
-                  <Form.Select id="minor-subcategory">
+                  <Form.Select id="minor-subcategory" onChange={updateSubcategories}>
                     {subcategories.map((subcat) => ( <option>{subcat}</option> ))}
                   </Form.Select>
                 </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="disabledFieldsetCheck"
-                    label="Show Out of Stock Items"
-                  />
-                </Form.Group>
-                <Button type="submit" onClick={filterProducts()}>Submit</Button>
-              {/* </fieldset> */}
             </Form>
           </div>
-        {/* <DropdownButton className="category-dropdown" id="Minor Category Filter" title="Minor Category: ">
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-        </DropdownButton> */}
       </div>
       <div className="products-row">
         {products.map((product) => (

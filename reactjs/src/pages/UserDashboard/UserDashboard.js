@@ -3,7 +3,6 @@ import { Navigate } from 'react-router-dom'
 
 
 function UserDashboard() {
-
   if (localStorage.getItem("loginStatus") == 'true') {
     return (
       <div id="wrapper">
@@ -297,10 +296,8 @@ function UserDashboard() {
         </div>
     );
   } else {
-    <Navigate replace to='/login' />
+    return <Navigate replace to='/login' />;
   }
-  
 }
-
 
 export default UserDashboard;

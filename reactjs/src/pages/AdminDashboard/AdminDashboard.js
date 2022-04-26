@@ -2,7 +2,7 @@ import '../BootstrapTemplate.css';
 import { Navigate } from 'react-router-dom'
 
 function AdminDashboard() {
-  if (localStorage.getItem("loginStatus") == 'true') {
+  if ((localStorage.getItem("loginStatus") == 'true') && (localStorage.getItem("ViewAdminDashboardPermission") == 1)) {
     return (
       <div id="wrapper">
           <nav className="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
@@ -169,7 +169,7 @@ function AdminDashboard() {
                   <div className="col-lg-6 mb-4">
                     <div className="card shadow mb-4">
                       <div className="card-header py-3">
-                        <h6 className="text-primary fw-bold m-0">Projects</h6>
+                        <h6 className="text-primary fw-bold m-0">Pending Orders</h6>
                       </div>
                       <div className="card-body">
                         <h4 className="small fw-bold">Server migration<span className="float-end">20%</span></h4>
@@ -296,7 +296,7 @@ function AdminDashboard() {
         </div>
     );
   } else {
-    <Navigate replace to='/login' />
+    return <Navigate replace to='/login' />;
   }
 }
 
