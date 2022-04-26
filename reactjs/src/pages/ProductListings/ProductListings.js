@@ -45,7 +45,7 @@ function ProductListings(props) {
         subCat = event.target.value;
       }
     }
-    filterProducts;
+    filterProducts();
   };
 
   return (
