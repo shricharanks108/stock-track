@@ -72,7 +72,7 @@ function App() {
         <Route path='/dashboard' element={ <UserDashboard/> } />
         <Route path='/admin-dashboard' element={ <AdminDashboard/> } />
         <Route path='/user-profile' element={ <UserProfile/> } />
-        {/* <Route path='/product/:id' element={ <ProductPage/> } /> */}
+        <Route path='/product/:id' element={ <ProductPage/> } />
         <Route path='/product-listings' element={ <ProductListings cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-page' element={ <ProductPage cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />
         <Route path='/product-search' element={ <SearchPage/> } />

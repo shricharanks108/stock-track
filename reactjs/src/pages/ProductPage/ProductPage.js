@@ -3,6 +3,7 @@ import { NutritionLabel } from 'react-fda-nutrition-facts';
 import { Breadcrumb, Button } from 'react-bootstrap';
 import AddToOrderButton from '../../components/AddToOrderButton/AddToOrderButton';
 import Axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 // const register = () => {
 //   console.log('retreiving nutritional data');
@@ -15,45 +16,40 @@ import Axios from 'axios';
 //   });
 // };
 
-let props = {
-  "breadcrumbs": ["DAIRY", "LOWFAT MILK/YOGURT", "Milk, lowfat"],
-  "productName": "1% Milk",
-  "nutritionalInfo": {
-    "calories": "0",
-    "totalFat": "0",
-    "saturatedFat": "0",
-    "transFat": "0",
-    "cholesterol": "0",
-    "sodium": "0",
-    "totalCarbs": "0",
-    "dietaryFiber": "0",
-    "sugars": "0",
-    "protein": "0",
-    "vitaminA": "0",
-    "vitaminC": "0",
-    "calcium": "0",
-    "iron": "0"
-  },
-};
-
 function ProductPage(props) {
+
+  let product = {
+    name: "Milk",
+    calories: 345,
+    majorCategory: "Dairy",
+    subcategory: "Lowfat, Milk"
+  }
+
+  const { id } = useParams();
+
+  // Axios.get('https://stocktrack.shricharanks.com/getProduct', {
+  //   productID: id,
+  // }).then((res) => {
+  //   product = res.subcategories;
+  // });
+
   return (
     <div className='background'>
       <Breadcrumb>
-        <Breadcrumb.Item href="#">{props.breadcrumbs[0]}</Breadcrumb.Item>
+        <Breadcrumb.Item href="#">{product.majorCategory}</Breadcrumb.Item>
         <Breadcrumb.Item href="#results-by-category ">
-          {props.breadcrumbs[1]}
+          {product.subcategory}
         </Breadcrumb.Item> 
-        <Breadcrumb.Item active>{props.breadcrumbs[2]}</Breadcrumb.Item>
-        <Breadcrumb.Item active>{props.productName}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{props.name}</Breadcrumb.Item>
       </Breadcrumb>
       <AddToOrderButton cartItems={props.cartItems} setCartItems={props.setCartItems} productID={props.productID}/>
+      <h1>Product ID: {id}</h1>
       <h1>Nutritional Information</h1>
       <div className='nutritional-facts'>
           <NutritionLabel
             servingSize={'1 cup (228g)'}
             servingsPerContainer={2}
-            calories={260}
+            calories={product.calories}
             totalFat={13}
             saturatedFat={5}
             transFat={2}
