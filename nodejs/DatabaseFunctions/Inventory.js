@@ -1,10 +1,10 @@
 class Inventory {
 
-    static async addItem(connection, item, pantryId, itemID) {
+    static async addProduct(connection, product, pantryId, productID) {
 
     }
 
-    static async deleteItem(connection, id, pantryId, itemID) {
+    static async deleteProduct(connection, id, pantryId, productID) {
 
     }
 
@@ -19,10 +19,18 @@ class Inventory {
         return null;
     }
 
-    static async getItemByID(connection, pantryId, itemID) {
+    static async getProductsByMajorCategory(connection, pantryId, category) {
+
+    }
+
+    static async getProductsBySubcategory(connection, pantryId, subcategory) {
+
+    }
+
+    static async getProductByID(connection, pantryId, productID) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND id = ?;', [pantryId, itemID]);
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND id = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
             return results[0];
@@ -30,7 +38,7 @@ class Inventory {
         return null;
     }
 
-    static async getItemIDByName(connection, name, pantryId, itemName) {
+    static async getProductIDByName(connection, name, pantryId, productName) {
         if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND name = ?;', [pantryId, name]);
@@ -41,37 +49,6 @@ class Inventory {
         return null;
     }
 
-    static async getItemsByCategory(connection, pantryId, category) {
-
-    }
-
-    static async getItemsBySubcategory(connection, category, pantryId, subcategory) {
-
-    }
-
-    static async getItemName(connection, pantryId, itemID) {
-
-    }
-
-    static async setItemName(connection, pantryId, itemID) {
-
-    }
-
-    static async getItemQuantity(connection, pantryId, itemID) {
-
-    }
-
-    static async setItemQuantity(connection, pantryId, itemID) {
-
-    }
-
-    static async getExpiryDate(connection, pantryId, itemID) {
-
-    }
-
-    static async setExpiryDate(connection, pantryId, itemID) {
-
-    }
 }
 
 module.exports = Inventory;
