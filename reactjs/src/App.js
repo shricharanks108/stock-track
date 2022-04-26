@@ -25,8 +25,6 @@ import LogoutPage from './pages/LogoutPage/LogoutPage';
 import OrderFulfillment from './pages/OrderFulfillment/OrderFulfillment';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 
-// import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-
 async function getSavedOrder(id){
   var cartItems = await Axios.post("https://stocktrack.shricharanks.com/cartItmes", {
     id: id
