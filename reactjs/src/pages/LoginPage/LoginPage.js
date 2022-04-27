@@ -8,6 +8,7 @@ import './LoginPage.css';
 import Axios from 'axios';
 import { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
 
@@ -17,6 +18,7 @@ function LoginPage() {
   const [loginStatus, setLoginStatus] = useState('');
 
   Axios.defaults.withCredentials = true;
+  const navigate = useNavigate();
 
   const register = () => {
     console.log('registering');
@@ -40,6 +42,7 @@ function LoginPage() {
         localStorage.setItem('userEmail', res.data.Email);
         setLoginStatus(localStorage.getItem('loginStatus'));
         privileges(res.data.UserPermissionLevel);
+        navigate("/dashboard");
       }
     });
   };
