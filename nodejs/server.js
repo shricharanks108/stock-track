@@ -13,13 +13,15 @@ var connection = require("./DatabaseFunctions/Database");
 var Authentication = require("./Authentication");
 
 var User = require('./DatabaseFunctions/User');
-var Inventory = require('./DatabaseFunctions/Inventory');
+// var Inventory = require('./DatabaseFunctions/Inventory');
 
 var UserRoutes = require('./Routes/UserRoutes');
 var AuthRoutes = require('./Routes/AuthenticationRoutes');
 var InventoryRoutes = require('./Routes/InventoryRoutes');
 var PermissionRoutes = require('./Routes/PermissionRoutes');
 var OrderRoutes = require("./Routes/OrderRoutes");
+var ProductRoutes = require("./Routes/ProductRoutes");
+var ProductStatusRoutes = require("./Routes/ProductStatusRoutes");
 var WWEIACategorizationRoutes = require("./Routes/WWEIACategorizationRoutes");
 
 const { getMaxListeners } = require("process");
@@ -62,6 +64,8 @@ app.use("/inventory", InventoryRoutes);
 app.use("/permissions", PermissionRoutes);
 app.use("/order", OrderRoutes);
 app.use("/wweia", WWEIACategorizationRoutes);
+app.use("/product", ProductRoutes);
+app.use("/product-status", ProductStatusRoutes);
 
 app.use(express.static(path.join(__dirname, "build")));
 
