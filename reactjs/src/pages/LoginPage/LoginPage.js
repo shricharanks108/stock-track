@@ -30,7 +30,6 @@ function LoginPage() {
     });
   };
 
-  // TODO: just doesn't work.
   const login = () => {
     Axios.post('https://stocktrack.shricharanks.com/auth/login', {
       email: email,
@@ -50,8 +49,9 @@ function LoginPage() {
   const privileges = (userPrivLevel) => {
     localStorage.setItem('loginStatus', true);
     Axios.post('https://stocktrack.shricharanks.com/permissions/userPermissionLevelDetails', {
-      permissionLevel: userPrivLevel
-    }).then((res) => {
+      headers: {
+        permissionLevel: userPrivLevel
+      }}).then((res) => {
       console.log(res);
       if (res.data !== "Incorrect Password" || res.data !== "User Not Found") {
         localStorage.setItem('CreateStaffPermission', res.data.CreateStaffPermission);
