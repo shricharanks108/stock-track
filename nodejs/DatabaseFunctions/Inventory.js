@@ -1,9 +1,9 @@
 class Inventory {
 
-    static async getFoodPantryInventory(connection, id, pantryId) {
+    static async getFoodPantryInventory(connection, pantryId) {
         if (typeof pantryId !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ?;', [pantryId]);
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ?;', [pantryId]);
 
         if (results.length > 0) {
             return results;
@@ -11,11 +11,11 @@ class Inventory {
         return null;
     }
     
-    static async addProduct(connection, product, pantryId, productID) {
+    static async addProduct(connection, pantryId, productID) {
 
     }
 
-    static async deleteProduct(connection, id, pantryId, productID) {
+    static async deleteProduct(connection, pantryId, productID) {
 
     }
 
@@ -73,7 +73,7 @@ class Inventory {
         return null;
     }
 
-    static async getPantryIDsFromProductID(connection, productID, majorCategory) {
+    static async getPantryIDsFromProductID(connection, productID) {
         if (typeof majorCategory !== "string" || typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE ProductID = ? AND MajorCategory = ?;', [productID, majorCategory]);
