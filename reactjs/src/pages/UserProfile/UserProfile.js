@@ -1,6 +1,7 @@
 import '../BootstrapTemplate.css';
 import { Navigate } from 'react-router-dom'
 import img from '../../logo.svg';
+import { useState } from 'react';
 
 function UserProfile() {
 
@@ -11,6 +12,7 @@ function UserProfile() {
   const [street, setStreet] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
   const [birthday, setBirthday] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [foodpantryid, setFoodpantryid] = useState('');

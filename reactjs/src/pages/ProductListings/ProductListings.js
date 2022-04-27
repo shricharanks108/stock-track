@@ -9,19 +9,19 @@ function ProductListings(props) {
   let majorCat = '';
   let subCat = '';
 
-  const { subcategories } =  {subcategories: ["Select a Subcategory...", "Test1", "Test2", "Test3"]};
+  const { subcategories } = { subcategories: ["Select a Subcategory...", "Test1", "Test2", "Test3"] };
   const { products } = data;
 
   const filterProducts = () => {
     if (subCat == 'Select a Subcategory...') {
-      Axios.get('https://stocktrack.shricharanks.com/filterProductsByMajorCategory', {
+      Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
         majorCategory: majorCat
       }).then((res) => {
         console.log(res.products);
         products = res.products;
       });
     } else {
-      Axios.get('https://stocktrack.shricharanks.com/filterProductsBySubcategory', {
+      Axios.get('https://stocktrack.shricharanks.com/inventory/productsBySubcategory', {
         subcategory: subCat
       }).then((res) => {
         console.log(res.products);
@@ -30,22 +30,24 @@ function ProductListings(props) {
     }
   };
 
-  const updateSubcategories = (event) => {
+  const updateSubcategories = async (event) => {
     if (event.target.id == "major-subcategory") {
       majorCat = event.target.value;
+      console.log(majorCat);
 
-      Axios.get('https://stocktrack.shricharanks.com/getFoodSubcategoriesFromMajorCategory', {
-      majorCategory: majorCat,
+      Axios.get('https://stocktrack.shricharanks.com/wweia/getFoodSubcategoriesFromMajorCategory', {
+        headers: {
+          majorCategory: majorCat
+        }
       }).then((res) => {
-        subcategories = res.subcategories;
+        console.log(res.data);
       });
-
     } else {
       if (event.target.id == "minor-subcategory") {
         subCat = event.target.value;
       }
     }
-    filterProducts();
+    // filterProducts();
   };
 
   return (
@@ -53,30 +55,30 @@ function ProductListings(props) {
       <h1 className='product-listings-title'>Products</h1>
       <div className="filter-categories-container">
         <div className="minor-category-filter">
-            <Form>
-                <Form.Group className="mb-3">
-                  <Form.Label>Major Subcategory</Form.Label>
-                  <Form.Select id="major-subcategory" onChange={updateSubcategories}>
-                    <option>Dairy</option>
-                    <option>Protein Foods</option>
-                    <option>Mixed Dishes</option>
-                    <option>Grains</option>
-                    <option>Snacks And Sweets</option>
-                    <option>Fruits And 100% Fruit Juice</option>
-                    <option>Vegetables</option>
-                    <option>Condiments, Gravies, Spreads, Salad Dressings</option>
-                    <option>All Beverages</option>
-                    <option>Other Beverages</option>
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Minor Subcategory</Form.Label>
-                  <Form.Select id="minor-subcategory" onChange={updateSubcategories}>
-                    {subcategories.map((subcat) => ( <option>{subcat}</option> ))}
-                  </Form.Select>
-                </Form.Group>
-            </Form>
-          </div>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Major Subcategory</Form.Label>
+              <Form.Select id="major-subcategory" onChange={updateSubcategories}>
+                <option>Dairy</option>
+                <option>Protein Foods</option>
+                <option>Mixed Dishes</option>
+                <option>Grains</option>
+                <option>Snacks And Sweets</option>
+                <option>Fruits And 100% Fruit Juice</option>
+                <option>Vegetables</option>
+                <option>Condiments, Gravies, Spreads, Salad Dressings</option>
+                <option>All Beverages</option>
+                <option>Other Beverages</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Minor Subcategory</Form.Label>
+              <Form.Select id="minor-subcategory" onChange={updateSubcategories}>
+                {subcategories.map((subcat) => (<option>{subcat}</option>))}
+              </Form.Select>
+            </Form.Group>
+          </Form>
+        </div>
       </div>
       <div className="products-row">
         {products.map((product) => (
