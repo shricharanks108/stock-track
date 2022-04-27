@@ -28,27 +28,27 @@ router.use((req, res, next) => {
 });
 
 router.get('/productIDsBySubcategory', async (req, res) => {
-  let result = await Inventory.getProductIDsBySubcategory(connection, req.body.pantryID, req.body.subcategory);
+  let result = await Inventory.getProductIDsBySubcategory(connection, req.headers.pantryid, req.headers.subcategory);
   res.status(200).send({ "productIDs": result });
 });
   
 router.get('/productIDsByMajorCategory', async (req, res) => {
-  let result = await Inventory.getProductIDsByMajorCategory(connection, req.body.pantryID, req.body.majorCategory);
+  let result = await Inventory.getProductIDsByMajorCategory(connection, req.headers.pantryid, req.headers.majorcategory);
   res.status(200).send({ "productIDs": result });
 });
 
 router.get('/productsBySubcategory', async (req, res) => {
-  let result = await Inventory.getProductsBySubcategory(connection, req.body.pantryID, req.body.subcategory);
+  let result = await Inventory.getProductsBySubcategory(connection, req.headers.pantryid, req.headers.subcategory);
   res.status(200).send({ "products": result });
 });
 
 router.get('/productsByMajorCategory', async (req, res) => {
-  let result = await Inventory.getProductsByMajorCategory(connection, req.body.pantryID, req.body.majorCategory);
+  let result = await Inventory.getProductsByMajorCategory(connection, req.headers.pantryid, req.headers.majorcategory);
   res.status(200).send({ "products": result });
 });
 
 router.get('/pantryIDsFromProductID', async (req, res) => {
-  let result = await Inventory.getPantryIDsFromProductID(connection, req.body.productID);
+  let result = await Inventory.getPantryIDsFromProductID(connection, req.headers.productid);
   res.status(200).send({ "pantryIDs": result });
 });
 

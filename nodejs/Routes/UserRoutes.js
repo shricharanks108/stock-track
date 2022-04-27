@@ -30,7 +30,7 @@ router.use((req, res, next) => {
 
 router.get('/firstName', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getFirstName(connection, req.body.email);
+        let result = await User.getFirstName(connection, req.headers.email);
         res.status(200).send({ "firstName": result });
     }
     else {
@@ -54,7 +54,7 @@ router.post('/firstName', async (req, res) => {
 
 router.get('/lastName', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getLastName(connection, req.body.email);
+        let result = await User.getLastName(connection, req.headers.email);
         res.status(200).send({ "lastName": result });
     }
     else {
@@ -78,7 +78,7 @@ router.post('/lastName', async (req, res) => {
 
 router.get('/age', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getAge(connection, req.body.email);
+        let result = await User.getAge(connection, req.headers.email);
         res.status(200).send({ "Age": result });
     }
     else {
@@ -102,7 +102,7 @@ router.post('/age', async (req, res) => {
   
 router.get('/email', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getEmail(connection, req.body.email);
+        let result = await User.getEmail(connection, req.headers.email);
         res.status(200).send({ "Email": result });
     }
     else {
@@ -126,7 +126,7 @@ router.post('/email', async (req, res) => {
 
 router.get('/creationDate', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getCreationDate(connection, req.body.email);
+        let result = await User.getCreationDate(connection, req.headers.email);
         res.status(200).send({ "CreationDate": result });
     }
     else {
@@ -136,7 +136,7 @@ router.get('/creationDate', async (req, res) => {
 
 router.get('/countryCode', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getCountryCode(connection, req.body.email);
+        let result = await User.getCountryCode(connection, req.headers.email);
         res.status(200).send({ "CountryCode": result });
     }
     else {
@@ -160,7 +160,7 @@ router.post('/countryCode', async (req, res) => {
 
 router.get('/phoneNumber', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getPhoneNumber(connection, req.body.email);
+        let result = await User.getPhoneNumber(connection, req.headers.email);
         res.status(200).send({ "PhoneNumber": result });
     }
     else {
@@ -184,7 +184,7 @@ router.post('/phoneNumber', async (req, res) => {
 
 router.get('/accountStatus', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getAccountStatus(connection, req.body.email);
+        let result = await User.getAccountStatus(connection, req.headers.email);
         res.status(200).send({ "AccountStatus": result });
     }
     else {
@@ -208,7 +208,7 @@ router.post('/accountStatus', async (req, res) => {
 
 router.get('/userRole', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getUserRole(connection, req.body.email);
+        let result = await User.getUserRole(connection, req.headers.email);
         res.status(200).send({ "UserRole": result });
     }
     else {
@@ -232,7 +232,7 @@ router.post('/userRole', async (req, res) => {
 
 router.get('/street', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getStreet(connection, req.body.email);
+        let result = await User.getStreet(connection, req.headers.email);
         res.status(200).send({ "Street": result });
     }
     else {
@@ -256,7 +256,7 @@ router.post('/street', async (req, res) => {
 
 router.get('/city', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getCity(connection, req.body.email);
+        let result = await User.getCity(connection, req.headers.email);
         res.status(200).send({ "City": result });
     }
     else {
@@ -280,7 +280,7 @@ router.post('/city', async (req, res) => {
 
 router.get('/state', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getState(connection, req.body.email);
+        let result = await User.getState(connection, req.headers.email);
         res.status(200).send({ "State": result });
     }
     else {
@@ -304,7 +304,7 @@ router.post('/state', async (req, res) => {
 
 router.get('/accessLevel', async (req, res) => {
     if (req.session.user) {
-        let result = await User.getAccessLevel(connection, req.body.email);
+        let result = await User.getAccessLevel(connection, req.headers.email);
         res.status(200).send({ "AccessLevel": result });
     }
     else {

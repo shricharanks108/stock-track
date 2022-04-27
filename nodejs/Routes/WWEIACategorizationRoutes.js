@@ -29,32 +29,32 @@ router.use((req, res, next) => {
 });
   
 router.get('/getFoodSubcategoryFromNumber', async (req, res) => {
-    let result = await WWEIAFoodCategories.getFoodSubcategoryFromNumber(connection, req.body.categoryNumber);
+    let result = await WWEIAFoodCategories.getFoodSubcategoryFromNumber(connection, req.headers.categorynumber);
     res.status(200).send({ "subcategory": result });
 });
 
 router.get('/getFoodMajorCategoryFromSubcategory', async (req, res) => {
-    let result = await WWEIAFoodCategories.getFoodMajorCategoryFromSubcategory(connection, req.body.subcategory);
+    let result = await WWEIAFoodCategories.getFoodMajorCategoryFromSubcategory(connection, req.headers.subcategory);
     res.status(200).send({ "majorCategory": result });
 });
 
 router.get('/getFoodSubcategoriesFromMajorCategory', async (req, res) => {
-    let result = await WWEIAFoodCategories.getFoodSubcategoriesFromMajorCategory(connection, req.body.majorCategory);
+    let result = await WWEIAFoodCategories.getFoodSubcategoriesFromMajorCategory(connection, req.headers.majorcategory);
     res.status(200).send({ "subcategories": result });
 });
 
 router.get('/getFoodSubcategoryDescription', async (req, res) => {
-    let result = await WWEIAFoodCategories.getFoodSubcategoryDescription(connection, req.body.subcategory);
+    let result = await WWEIAFoodCategories.getFoodSubcategoryDescription(connection, req.headers.subcategory);
     res.status(200).send({ "description": result });
 });
 
 router.get('/getFoodCategoryNumbersfromMajorCategory', async (req, res) => {
-    let result = await WWEIAFoodCategories.getFoodCategoryNumbersfromMajorCategory(connection, req.body.majorCategory);
+    let result = await WWEIAFoodCategories.getFoodCategoryNumbersfromMajorCategory(connection, req.headers.majorcategory);
     res.status(200).send({ "categoryNumbers": result });
 });
 
 router.get('/getMajorCategoryAndSubcategoryFromNumber', async (req, res) => {
-    let result = await WWEIAFoodCategories.getMajorCategoryAndSubcategoryFromNumber(connection, req.body.categoryNumber);
+    let result = await WWEIAFoodCategories.getMajorCategoryAndSubcategoryFromNumber(connection, req.headers.categorynumber);
     res.status(200).send({ "numberDetails": result });
 });
 

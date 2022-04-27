@@ -28,7 +28,7 @@ router.use((req, res, next) => {
 
 router.get('/userPermissionLevelDetails', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getUserPermissionLevelDetails(connection, req.body.accessLevel);
+        let result = await Permissions.getUserPermissionLevelDetails(connection, req.headers.accessLevel);
         res.send({ "UserPermissions": result });
     }
     else {
@@ -48,7 +48,7 @@ router.post('/createNewAccessLevel', async (req, res) => {
 
 router.get('/createStaffPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getCreateStaffPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getCreateStaffPermission(connection, req.headers.accessLevel);
         res.send({ "CreateStaffPermission": result });
     }
     else {
@@ -72,7 +72,7 @@ router.post('/createStaffPermission', async (req, res) => {
 
 router.get('/placeOrdersPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getPlaceOrdersPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getPlaceOrdersPermission(connection, req.headers.accessLevel);
         res.send({ "PlaceOrdersPermission": result });
     }
     else {
@@ -96,7 +96,7 @@ router.post('/placeOrdersPermission', async (req, res) => {
 
 router.get('/fulfillOrdersPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getFulfillOrdersPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getFulfillOrdersPermission(connection, req.headers.accessLevel);
         res.send({ "FulfillOrdersPermission": result });
     }
     else {
@@ -120,7 +120,7 @@ router.post('/fulfillOrdersPermission', async (req, res) => {
 
 router.get('/addMerchantsPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getAddMerchantsPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getAddMerchantsPermission(connection, req.headers.accessLevel);
         res.send({ "AddMerchantsPermission": result });
     }
     else {
@@ -144,7 +144,7 @@ router.post('/addMerchantsPermission', async (req, res) => {
 
 router.get('/viewAllOrdersPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getViewAllOrdersPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getViewAllOrdersPermission(connection, req.headers.accessLevel);
         res.send({ "ViewAllOrdersPermission": result });
     }
     else {
@@ -168,7 +168,7 @@ router.post('/viewAllOrdersPermission', async (req, res) => {
 
 router.get('/restockInventoryPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getRestockInventoryPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getRestockInventoryPermission(connection, req.headers.accessLevel);
         res.send({ "RestockInventoryPermission": result });
     }
     else {
@@ -192,7 +192,7 @@ router.post('/viewAllOrdrestockInventoryPermissionersPermission', async (req, re
 
 router.get('/makeAnnouncementsPermission', async (req, res) => {
     if (req.session.user) {
-        let result = await Permissions.getMakeAnnouncementsPermission(connection, req.body.accessLevel);
+        let result = await Permissions.getMakeAnnouncementsPermission(connection, req.headers.accessLevel);
         res.send({ "MakeAnnouncementsPermission": result });
     }
     else {

@@ -13,16 +13,17 @@ setupConnection();
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(
-    session({
-      key: 'signed_session_key',
-      secret: "secretcode",
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        expires: 60 * 60 * 1000,
-      },
-    })
-  );
+  session({
+    key: 'signed_session_key',
+    secret: "secretcode",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 60 * 60 * 1000,
+    },
+  })
+);
+
 router.use((req, res, next) => {
     next()
 });
@@ -42,7 +43,7 @@ router.post('/productQuantity', async (req, res) => {
 });
 
 router.get('/nextShipment', async (req, res) => {
-  let result = await ProductStatus.getNextShipment(connection, req.body.pantryID, req.body.subcategory);
+  let result = await ProductStatus.getNextShipment(connection, req.headers.pantryid, req.headers.subcategory);
   res.status(200).send({ "productIDs": result });
 });
 
@@ -56,7 +57,7 @@ router.post('/nextShipment', async (req, res) => {
 });
 
 router.get('/outOfStock', async (req, res) => {
-  let result = await ProductStatus.getOutOfStock(connection, req.body.pantryID, req.body.subcategory);
+  let result = await ProductStatus.getOutOfStock(connection, req.headers.pantryid, req.headers.subcategory);
   res.status(200).send({ "productIDs": result });
 });
 
@@ -68,7 +69,5 @@ router.post('/outOfStock', async (req, res) => {
     res.sendStatus(500);
   }
 });
-
-
 
 module.exports = router;
