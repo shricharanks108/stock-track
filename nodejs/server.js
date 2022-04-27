@@ -83,7 +83,7 @@ app.post("/cartItmes", (req, res, next) => {
     res.send({ savedOrder: user.getOrderHistory() });
 });
 
-app.post("/cartItmes", (req, res, next) => {
+app.post("/cartItems", (req, res, next) => {
     var id = req.body.id;
     if (!User.doesIdExist(id)) return res.sendStatus(400); // bad request
 
