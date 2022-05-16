@@ -71,11 +71,12 @@ function ProductListings(props) {
           majorcategory: majorCategory
         }
       }).then((res) => {
-        console.log(res.data);
+        console.log(res.data.subcategories);
       });
+      subcategories = subcategories.data.subcategories;
       console.log(subcategories);
-      if (subcategories.data.length > 0) {
-        setAvailableSubcategories(subcategories.data.map(subcat => (subcat)));
+      if (subcategories.length > 0) {
+        setAvailableSubcategories(subcategories.map(subcat => (subcat)));
         setLoadingSubcategories(false);
       }
     };
