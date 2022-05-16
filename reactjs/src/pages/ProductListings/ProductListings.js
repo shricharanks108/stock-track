@@ -72,13 +72,12 @@ function ProductListings(props) {
         }
       }).then((res) => {
         console.log(res.data.subcategories);
+        if (res.data.subcategories.length > 0) {
+          setAvailableSubcategories(res.data.subcategories.map(subcat => (subcat)));
+          setLoadingSubcategories(false);
+        }
       });
-      subcategories = subcategories.data.subcategories;
-      console.log(subcategories);
-      if (subcategories.length > 0) {
-        setAvailableSubcategories(subcategories.map(subcat => (subcat)));
-        setLoadingSubcategories(false);
-      }
+      
     };
     availableOptions();
   }, [majorCategory]);
