@@ -7,7 +7,6 @@ import AddToOrderButton from '../AddToOrderButton/AddToOrderButton';
 
 function ProductCard(props) {
     const { product, id, cartItems, setCartItems } = props;
-    console.log(id);
     return (
         <Card className="card-style">
             <Card.Link>

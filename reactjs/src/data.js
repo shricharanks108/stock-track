@@ -37,7 +37,7 @@ const data = {
         category_3: 'Beans, peas, legumes',
       },
       {
-        id: '1',
+        id: '5',
         name: 'Milk, lowfat',
         description: 'this is milk. its not that deep chief',
         WWEIA_category_number: 1006,
@@ -46,7 +46,7 @@ const data = {
         category_3: 'Milk, lowfat',
       },
       {
-        id: '2',
+        id: '6',
         name: 'Bread, white',
         description: 'lets get this bread',
         WWEIA_category_number: 1006,
@@ -55,7 +55,7 @@ const data = {
         category_3: 'Yeast breads',
       },
       {
-        id: '3',
+        id: '7',
         name: 'Pasta, spaghetti',
         description: 'mamma mia, this is spaghetti',
         WWEIA_category_number: 1006,
@@ -64,7 +64,7 @@ const data = {
         category_3: 'Pasta, noodles, cooked grains',
       },
       {
-        id: '4',
+        id: '8',
         name: 'Beans',
         description: 'me and the bois at 3 AM looking for BEANS',
         WWEIA_category_number: 1006,
