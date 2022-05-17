@@ -7,6 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 25px;
+    justify-content: center;
 }
 
 .product-listings-title {

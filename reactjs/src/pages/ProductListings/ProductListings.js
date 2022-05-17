@@ -43,7 +43,6 @@ function ProductListings(props) {
         }
       }).then((res) => {
         console.log(res.data.subcategories);
-        res.data.subcategories.insert(0, 'All');
         if (res.data.subcategories.length > 0) {
           setAvailableSubcategories(res.data.subcategories.map(subcat => (subcat)));
           setLoadingSubcategories(false);
