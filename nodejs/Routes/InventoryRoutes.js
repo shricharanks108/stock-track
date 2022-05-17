@@ -28,7 +28,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/productsFromPantryID', async (req, res) => {
-  let result = await Inventory.getFoodPantryInventory(connection, req.headers.pantryid);
+  let result = await Inventory.getFoodPantryInventory(connection, Number(req.headers.pantryid));
   res.status(200).send({ "products": result });
 });
 

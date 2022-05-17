@@ -1,12 +1,12 @@
 class Inventory {
 
     static async getFoodPantryInventory(connection, pantryId) {
-        if (typeof pantryId !== "number") return;
+	if (typeof pantryId !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ?;', [pantryId]);
-
         if (results.length > 0) {
-            return results;
+		console.log(results);
+		return results;
         }
         return null;
     }
