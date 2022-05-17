@@ -17,7 +17,6 @@ const fetchData = {
         var product = fetchData.getProductByID(id);
         return (product) ? product.description : null;
     }
-
 }
 
 export default fetchData;

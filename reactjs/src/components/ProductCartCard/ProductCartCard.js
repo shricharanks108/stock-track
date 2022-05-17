@@ -8,6 +8,12 @@ function ProductCartCard(props) {
     const cartItems = props.cartItems;
     const setCartItems = props.setCartItems;
 
+    const removeFromCart = () => { 
+        delete cartItems[productID];
+        setCartItems(cartItems);
+        console.log(cartItems);
+    };
+
     return (
         <div className="productCartCard">
             <div className="productCartDescription">
@@ -23,7 +29,7 @@ function ProductCartCard(props) {
                     setCartItems(tmpCartItems);
                 }} />
             </div>
-            <Button variant="outline-danger" className="cart-card-remove-button">Remove from Cart</Button>
+            <Button variant="outline-danger" className="cart-card-remove-button" onClick={removeFromCart}>Remove from Cart</Button>
         </div>
     );
 }

@@ -26,7 +26,7 @@ import OrderFulfillment from './pages/OrderFulfillment/OrderFulfillment';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 
 async function getSavedOrder(id){
-  var cartItems = await Axios.post("https://stocktrack.shricharanks.com/cartItmes", {
+  var cartItems = await Axios.post("https://stocktrack.shricharanks.com/cartItems", {
     id: id
   });
   return cartItems.data;
