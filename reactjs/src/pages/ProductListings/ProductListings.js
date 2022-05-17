@@ -2,66 +2,37 @@ import './ProductListings.css';
 import { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import data from '../../data.js';
-import { DropdownButton, Dropdown, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import Axios from 'axios';
 
 function ProductListings(props) {
 
-  // const [majorCat, setmajorCat] = useState('');
-  // let subcats = null;
+  Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
+    headers: {
+      pantryid: 1
+    }
+  }).then((res) => {
+    console.log(res.data.productIDs);
+    products = res.products;
+  });
 
-  // const subcategories = ["Select a Subcategory...", "Test1", "Test2", "Test3"];
   const { products } = data;
-  // // subcats = subcategories.map((subcat) => (<option>{subcat}</option>));
-
-  // // const filterProducts = () => {
-  // //   if (subCat == 'Select a Subcategory...') {
-  // //     Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
-  // //       majorCategory: majorCat
-  // //     }).then((res) => {
-  // //       console.log(res.products);
-  // //       products = res.products;
-  // //     });
-  // //   } else {
-  // //     Axios.get('https://stocktrack.shricharanks.com/inventory/productsBySubcategory', {
-  // //       subcategory: subCat
-  // //     }).then((res) => {
-  // //       console.log(res.products);
-  // //       products = res.products;
-  // //     });
-  // //   }
-  // // };
-
-  // const updateSubcategories = async (event) => {
-  //   if (event.target.id == "major-subcategory") {
-  //     setmajorCat(event.target.value);
-  //     console.log(majorCat);
-      
-  //     subcats = subcategories.map((subcat) => (<option>{subcat}</option>))
-  //     console.log(subcats);
-
-  //     // Axios.get('https://stocktrack.shricharanks.com/wweia/getFoodSubcategoriesFromMajorCategory', {
-  //     //   headers: {
-  //     //     majorCategory: majorCat
-  //     //   }
-  //     // }).then((res) => {
-  //     //   console.log(res.data);
-  //     // });
-  //   } else {
-  //     if (event.target.id == "minor-subcategory") {
-  //       console.log(event.target.value);
-  //     }
-  //   }
-  //   // filterProducts();
-  // };
 
   const [majorCategory, setMajorCategory] = useState('Dairy');
   const [subcategory, setSubcategory] = useState();
-
-  const [isLoadingMajorCategories, setLoadingMajorCategories] = useState(true);
   const [isLoadingSubcategories, setLoadingSubcategories] = useState(true);
-  const [availableMajorCategories, setAvailableMajorCategories] = useState();
   const [availableSubcategories, setAvailableSubcategories] = useState();
+
+  const filterProducts = () => {
+    Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
+      headers: {
+        majorCategory: majorCategory
+      }
+    }).then((res) => {
+      console.log(res.products);
+      products = res.products;
+    });
+  };
 
   useEffect(() => {
     setLoadingSubcategories(true);
@@ -72,12 +43,12 @@ function ProductListings(props) {
         }
       }).then((res) => {
         console.log(res.data.subcategories);
+        res.data.subcategories.insert(0, 'All');
         if (res.data.subcategories.length > 0) {
           setAvailableSubcategories(res.data.subcategories.map(subcat => (subcat)));
           setLoadingSubcategories(false);
         }
       });
-      
     };
     availableOptions();
   }, [majorCategory]);
@@ -110,10 +81,8 @@ function ProductListings(props) {
                   <option value={option}>{option}</option>
                 ))}
               </Form.Select>
-              {/* <select onChange={updateSubcategories}>
-                {subcats}
-              </select> */}
             </Form.Group>
+            <Button className='filter-button'>Filter</Button>
           </Form>
         </div>
       </div>
