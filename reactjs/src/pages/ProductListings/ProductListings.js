@@ -7,16 +7,9 @@ import Axios from 'axios';
 
 function ProductListings(props) {
 
-  Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
-    headers: {
-      pantryid: 1
-    }
-  }).then((res) => {
-    console.log(res.data.productIDs);
-    products = res.products;
-  });
-
-  const { products } = data;
+  // var { products } = data;
+  const [products, setProducts] = useState([]);
+  const [isLoadingProducts, setLoadingProducts] = useState(true);
 
   const [majorCategory, setMajorCategory] = useState('Dairy');
   const [subcategory, setSubcategory] = useState();
@@ -26,11 +19,12 @@ function ProductListings(props) {
   const filterProducts = () => {
     Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
       headers: {
-        majorCategory: majorCategory
+        majorcategory: majorCategory,
+        subcategory: subcategory
       }
     }).then((res) => {
-      console.log(res.products);
-      products = res.products;
+      console.log(res.data.products);
+      products = res.data.products;
     });
   };
 
@@ -42,7 +36,6 @@ function ProductListings(props) {
           majorcategory: majorCategory
         }
       }).then((res) => {
-        console.log(res.data.subcategories);
         if (res.data.subcategories.length > 0) {
           setAvailableSubcategories(res.data.subcategories.map(subcat => (subcat)));
           setLoadingSubcategories(false);
@@ -51,6 +44,24 @@ function ProductListings(props) {
     };
     availableOptions();
   }, [majorCategory]);
+
+  useEffect(() => {
+    setLoadingProducts(true);
+    const availableProducts = async () => {
+      await Axios.get('https://stocktrack.shricharanks.com/inventory/productsFromPantryID', {
+        headers: {
+          pantryid: 1
+        }
+      }).then((res) => {
+        if (res.data.subcategories.length > 0) {
+          console.log(res.data.products);
+          setProducts(res.data.products);
+          setLoadingProducts(false);
+        }
+      });
+    };
+    availableProducts();
+  }, [products]);
 
   return (
     <div>
@@ -81,16 +92,19 @@ function ProductListings(props) {
                 ))}
               </Form.Select>
             </Form.Group>
-            <Button className='filter-button'>Filter</Button>
+            <Button className='filter-button' onClick={filterProducts}>Filter</Button>
           </Form>
         </div>
       </div>
       <div className="products-row">
-        {products.map((product) => (
+        {isLoadingProducts? <ProductCard className="" key={1} id={1} product={{id:1, name:"Loading", description:"Loading", category_1: "Loading", category_2: "Loading"}} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard> :  products.map((product) => (
           <ProductCard className="" key={product.id} id={product.id} product={product} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard>
         ))}
+        {/* {products.map((product) => (
+          <ProductCard className="" key={product.id} id={product.id} product={product} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard>
+        ))} */}
       </div>
-      <small>Showing all of {products.length} Product Results!</small>
+      {/* <small>Showing all of {products.length} Product Results!</small> */}
     </div>
   );
 }
