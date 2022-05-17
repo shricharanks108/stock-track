@@ -7,9 +7,10 @@ import Axios from 'axios';
 
 function ProductListings(props) {
 
-  // var { products } = data;
-  const [products, setProducts] = useState([]);
-  const [isLoadingProducts, setLoadingProducts] = useState(true);
+  var {products} = data;
+
+  // const [products, setProducts] = useState([]);
+  // const [isLoadingProducts, setLoadingProducts] = useState(true);
 
   const [majorCategory, setMajorCategory] = useState('Dairy');
   const [subcategory, setSubcategory] = useState();
@@ -28,10 +29,22 @@ function ProductListings(props) {
     });
   };
 
+  const getProducts = () => {
+    Axios.get('https://stocktrack.shricharanks.com/inventory/productsFromPantryID', {
+      headers: {
+        pantryid: 1
+      }
+    }).then((res) => {
+      if (res.data.subcategories.length > 0) {
+        products = res.data.products;
+      }
+    });
+  };
+
   useEffect(() => {
     setLoadingSubcategories(true);
     const availableOptions = async () => {
-      let subcategories = await Axios.get('https://stocktrack.shricharanks.com/wweia/getFoodSubcategoriesFromMajorCategory', {
+      Axios.get('https://stocktrack.shricharanks.com/wweia/getFoodSubcategoriesFromMajorCategory', {
         headers: {
           majorcategory: majorCategory
         }
@@ -45,23 +58,23 @@ function ProductListings(props) {
     availableOptions();
   }, [majorCategory]);
 
-  useEffect(() => {
-    setLoadingProducts(true);
-    const availableProducts = async () => {
-      await Axios.get('https://stocktrack.shricharanks.com/inventory/productsFromPantryID', {
-        headers: {
-          pantryid: 1
-        }
-      }).then((res) => {
-        if (res.data.subcategories.length > 0) {
-          console.log(res.data.products);
-          setProducts(res.data.products);
-          setLoadingProducts(false);
-        }
-      });
-    };
-    availableProducts();
-  }, [products]);
+  // useEffect(() => {
+  //   setLoadingProducts(true);
+  //   const availableProducts = async () => {
+  //     await Axios.get('https://stocktrack.shricharanks.com/inventory/productsFromPantryID', {
+  //       headers: {
+  //         pantryid: 1
+  //       }
+  //     }).then((res) => {
+  //       if (res.data.subcategories.length > 0) {
+  //         console.log(res.data.products);
+  //         setProducts(res.data.products);
+  //         setLoadingProducts(false);
+  //       }
+  //     });
+  //   };
+  //   availableProducts();
+  // }, [products]);
 
   return (
     <div>
@@ -97,16 +110,17 @@ function ProductListings(props) {
         </div>
       </div>
       <div className="products-row">
-        {isLoadingProducts? <ProductCard className="" key={1} id={1} product={{id:1, name:"Loading", description:"Loading", category_1: "Loading", category_2: "Loading"}} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard> :  products.map((product) => (
-          <ProductCard className="" key={product.id} id={product.id} product={product} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard>
-        ))}
-        {/* {products.map((product) => (
+        {/* {isLoadingProducts? <ProductCard className="" key={1} id={1} product={{id:1, name:"Loading", description:"Loading", category_1: "Loading", category_2: "Loading"}} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard> :  products.map((product) => (
           <ProductCard className="" key={product.id} id={product.id} product={product} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard>
         ))} */}
+        {console.log(products)}
+        {products.map((product) => (
+          <ProductCard className="" key={product.id} id={product.id} product={product} cartItems={props.cartItems} setCartItems={props.setCartItems} ></ProductCard>
+        ))}
       </div>
       {/* <small>Showing all of {products.length} Product Results!</small> */}
     </div>
   );
 }
 
-export default ProductListings;
+export default ProductListings; 
