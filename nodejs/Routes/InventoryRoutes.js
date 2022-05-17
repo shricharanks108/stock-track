@@ -27,6 +27,11 @@ router.use((req, res, next) => {
     next()
 });
 
+router.get('/productsFromPantryID', async (req, res) => {
+  let result = await Inventory.getFoodPantryInventory(connection, req.headers.pantryid);
+  res.status(200).send({ "products": result });
+});
+
 router.get('/productIDsBySubcategory', async (req, res) => {
   let result = await Inventory.getProductIDsBySubcategory(connection, req.headers.pantryid, req.headers.subcategory);
   res.status(200).send({ "productIDs": result });
