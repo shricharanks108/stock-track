@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 function ProductListings(props) {
 
-  var {products} = data;
+  var { products } = data;
 
   // const [products, setProducts] = useState([]);
   // const [isLoadingProducts, setLoadingProducts] = useState(true);
