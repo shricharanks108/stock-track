@@ -5,18 +5,21 @@ class Inventory {
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ?;', [pantryId]);
         if (results.length > 0) {
-		console.log(results);
 		return results;
         }
         return null;
     }
     
-    static async addProduct(connection, pantryId, productID) {
+    static async addNewProduct(connection, pantryId, productID, name, description, majorCategory, subcategory, merchantID, price, UPC, expirationDate) {
+        if (typeof pantryId !== "number" || typeof productID !== "number") return;
 
+        await connection.execute('INSERT INTO products VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', [productID, pantryId, name, description, _____, majorCategory, subcategory, merchantID, price, UPC, null, null, expirationDate, null]);
     }
 
-    static async deleteProduct(connection, pantryId, productID) {
+    static async deleteProduct(connection, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
+        await connection.execute('DELETE FROM products WHERE ProductUID = ?;', [productUID]);
     }
 
     static async getProductIDsBySubcategory(connection, pantryId, subcategory) {
