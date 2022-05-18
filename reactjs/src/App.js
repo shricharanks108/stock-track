@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { Axios } from 'axios';
+import Axios from 'axios';
 
 import { Header } from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -24,16 +24,17 @@ import TeamManagement from './pages/TeamManagement/TeamManagement';
 import LogoutPage from './pages/LogoutPage/LogoutPage';
 import OrderFulfillment from './pages/OrderFulfillment/OrderFulfillment';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
+import InventoryManagement from './pages/InventoryManagement/InventoryManagement';
 
 async function getSavedOrder(id){
-  var cartItems = await Axios.post("https://stocktrack.shricharanks.com/cartItems", {
+  var cartItems = await Axios.post("https://stocktrack.shricharanks.com/order/cartItems", {
     id: id
   });
   return cartItems.data;
 }
 
 async function addProductToSavedOrder(orderId, productId, qty){
-  await Axios.post("https://stocktrack.shricharanks.com/addCartItem", {
+  await Axios.post("https://stocktrack.shricharanks.com/order/addCartItem", {
     orderId: orderId,
     productId: productId,
     qty: qty
@@ -71,6 +72,7 @@ function App() {
         <Route path='/register' element={ <RegisterPage/> } />
         <Route path='/dashboard' element={ <UserDashboard/> } />
         <Route path='/admin-dashboard' element={ <AdminDashboard/> } />
+        <Route path='/inventory-management' element={ <InventoryManagement/> } />
         <Route path='/user-profile' element={ <UserProfile/> } />
         <Route path='/product/:id' element={ <ProductPage/> } />
         <Route path='/product-listings' element={ <ProductListings cartItems={cartItems} setCartItems={setCartItems} productID={2}/> } />

@@ -31,7 +31,6 @@ function OrderCart(props) {
     });
   }
 
-
   for (var productID in cartItems) {
     var amount = cartItems[productID];
     cards.push(<ProductCartCard productID={productID} cartItems={cartItems} setCartItems={setCartItems} />);
