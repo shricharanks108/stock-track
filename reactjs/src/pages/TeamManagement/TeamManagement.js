@@ -173,7 +173,7 @@ function TeamManagement() {
                 </div>
                 <footer className="bg-white sticky-footer">
                   <div className="container my-auto">
-                    <div className="text-center my-auto copyright"><span>Copyright © Brand 2022</span></div>
+                    <div className="text-center my-auto copyright"><span>Copyright © Stock Track 2022</span></div>
                   </div>
                 </footer>
               </div><a className="border rounded d-inline scroll-to-top" href="#page-top"><i className="fas fa-angle-up" /></a>

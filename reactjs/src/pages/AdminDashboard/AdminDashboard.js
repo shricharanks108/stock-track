@@ -73,7 +73,7 @@ function AdminDashboard() {
                       <div className="card-body">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <div className="text-uppercase text-primary fw-bold text-xs mb-1"><span>Earnings (monthly)</span></div>
+                            <div className="text-uppercase text-primary fw-bold text-xs mb-1"><span>Current Spending</span></div>
                             <div className="text-dark fw-bold h5 mb-0"><span>$40,000</span></div>
                           </div>
                           <div className="col-auto"><i className="fas fa-calendar fa-2x text-gray-300" /></div>
@@ -86,8 +86,8 @@ function AdminDashboard() {
                       <div className="card-body">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <div className="text-uppercase text-success fw-bold text-xs mb-1"><span>Earnings (annual)</span></div>
-                            <div className="text-dark fw-bold h5 mb-0"><span>$215,000</span></div>
+                            <div className="text-uppercase text-success fw-bold text-xs mb-1"><span>Donations Recieved</span></div>
+                            <div className="text-dark fw-bold h5 mb-0"><span>$45,000</span></div>
                           </div>
                           <div className="col-auto"><i className="fas fa-dollar-sign fa-2x text-gray-300" /></div>
                         </div>
@@ -99,14 +99,14 @@ function AdminDashboard() {
                       <div className="card-body">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <div className="text-uppercase text-info fw-bold text-xs mb-1"><span>Tasks</span></div>
+                            <div className="text-uppercase text-info fw-bold text-xs mb-1"><span>Pending Orders Progress</span></div>
                             <div className="row g-0 align-items-center">
                               <div className="col-auto">
-                                <div className="text-dark fw-bold h5 mb-0 me-3"><span>50%</span></div>
+                                <div className="text-dark fw-bold h5 mb-0 me-3"><span>70%</span></div>
                               </div>
                               <div className="col">
                                 <div className="progress progress-sm">
-                                  <div className="progress-bar bg-info" aria-valuenow={50} aria-valuemin={0} aria-valuemax={100} style={{width: '50%'}}><span className="visually-hidden">50%</span></div>
+                                  <div className="progress-bar bg-info" aria-valuenow={70} aria-valuemin={0} aria-valuemax={100} style={{width: '70%'}}><span className="visually-hidden">70%</span></div>
                                 </div>
                               </div>
                             </div>
@@ -121,7 +121,7 @@ function AdminDashboard() {
                       <div className="card-body">
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
-                            <div className="text-uppercase text-warning fw-bold text-xs mb-1"><span>Pending Requests</span></div>
+                            <div className="text-uppercase text-warning fw-bold text-xs mb-1"><span>Pending Orders</span></div>
                             <div className="text-dark fw-bold h5 mb-0"><span>18</span></div>
                           </div>
                           <div className="col-auto"><i className="fas fa-comments fa-2x text-gray-300" /></div>
@@ -134,7 +134,7 @@ function AdminDashboard() {
                   <div className="col-lg-7 col-xl-8">
                     <div className="card shadow mb-4">
                       <div className="card-header d-flex justify-content-between align-items-center">
-                        <h6 className="text-primary fw-bold m-0">Earnings Overview</h6>
+                        <h6 className="text-primary fw-bold m-0">Donations Trend</h6>
                         <div className="dropdown no-arrow"><button className="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i className="fas fa-ellipsis-v text-gray-400" /></button>
                           <div className="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                             <p className="text-center dropdown-header">dropdown header:</p><a className="dropdown-item" href="#">&nbsp;Action</a><a className="dropdown-item" href="#">&nbsp;Another action</a>
@@ -150,7 +150,7 @@ function AdminDashboard() {
                   <div className="col-lg-5 col-xl-4">
                     <div className="card shadow mb-4">
                       <div className="card-header d-flex justify-content-between align-items-center">
-                        <h6 className="text-primary fw-bold m-0">Revenue Sources</h6>
+                        <h6 className="text-primary fw-bold m-0">Donations Sources</h6>
                         <div className="dropdown no-arrow"><button className="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i className="fas fa-ellipsis-v text-gray-400" /></button>
                           <div className="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                             <p className="text-center dropdown-header">dropdown header:</p><a className="dropdown-item" href="#">&nbsp;Action</a><a className="dropdown-item" href="#">&nbsp;Another action</a>
@@ -172,23 +172,23 @@ function AdminDashboard() {
                         <h6 className="text-primary fw-bold m-0">Pending Orders</h6>
                       </div>
                       <div className="card-body">
-                        <h4 className="small fw-bold">Server migration<span className="float-end">20%</span></h4>
+                        <h4 className="small fw-bold">Order #0824903543<span className="float-end">20%</span></h4>
                         <div className="progress mb-4">
                           <div className="progress-bar bg-danger" aria-valuenow={20} aria-valuemin={0} aria-valuemax={100} style={{width: '20%'}}><span className="visually-hidden">20%</span></div>
                         </div>
-                        <h4 className="small fw-bold">Sales tracking<span className="float-end">40%</span></h4>
+                        <h4 className="small fw-bold">Order #0824903549<span className="float-end">40%</span></h4>
                         <div className="progress mb-4">
                           <div className="progress-bar bg-warning" aria-valuenow={40} aria-valuemin={0} aria-valuemax={100} style={{width: '40%'}}><span className="visually-hidden">40%</span></div>
                         </div>
-                        <h4 className="small fw-bold">Customer Database<span className="float-end">60%</span></h4>
+                        <h4 className="small fw-bold">Order #8945894563<span className="float-end">60%</span></h4>
                         <div className="progress mb-4">
                           <div className="progress-bar bg-primary" aria-valuenow={60} aria-valuemin={0} aria-valuemax={100} style={{width: '60%'}}><span className="visually-hidden">60%</span></div>
                         </div>
-                        <h4 className="small fw-bold">Payout Details<span className="float-end">80%</span></h4>
+                        <h4 className="small fw-bold">Order #2349855355<span className="float-end">80%</span></h4>
                         <div className="progress mb-4">
                           <div className="progress-bar bg-info" aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} style={{width: '80%'}}><span className="visually-hidden">80%</span></div>
                         </div>
-                        <h4 className="small fw-bold">Account setup<span className="float-end">Complete!</span></h4>
+                        <h4 className="small fw-bold">Order #7236582394<span className="float-end">Complete!</span></h4>
                         <div className="progress mb-4">
                           <div className="progress-bar bg-success" aria-valuenow={100} aria-valuemin={0} aria-valuemax={100} style={{width: '100%'}}><span className="visually-hidden">100%</span></div>
                         </div>
@@ -202,7 +202,7 @@ function AdminDashboard() {
                         <li className="list-group-item">
                           <div className="row align-items-center no-gutters">
                             <div className="col me-2">
-                              <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">10:30 AM</span>
+                              <h6 className="mb-0"><strong>Meeting with Shoprite</strong></h6><span className="text-xs">10:30 AM</span>
                             </div>
                             <div className="col-auto">
                               <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-1" /><label className="form-check-label" htmlFor="formCheck-1" /></div>
@@ -212,7 +212,7 @@ function AdminDashboard() {
                         <li className="list-group-item">
                           <div className="row align-items-center no-gutters">
                             <div className="col me-2">
-                              <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">11:30 AM</span>
+                              <h6 className="mb-0"><strong>Meeting with Volunteers</strong></h6><span className="text-xs">11:30 AM</span>
                             </div>
                             <div className="col-auto">
                               <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-2" /><label className="form-check-label" htmlFor="formCheck-2" /></div>
@@ -222,7 +222,7 @@ function AdminDashboard() {
                         <li className="list-group-item">
                           <div className="row align-items-center no-gutters">
                             <div className="col me-2">
-                              <h6 className="mb-0"><strong>Lunch meeting</strong></h6><span className="text-xs">12:30 AM</span>
+                              <h6 className="mb-0"><strong>Meeting with Team</strong></h6><span className="text-xs">3:30 PM</span>
                             </div>
                             <div className="col-auto">
                               <div className="form-check"><input className="form-check-input" type="checkbox" id="formCheck-3" /><label className="form-check-label" htmlFor="formCheck-3" /></div>
@@ -232,7 +232,7 @@ function AdminDashboard() {
                       </ul>
                     </div>
                   </div>
-                  <div className="col">
+                  {/* <div className="col">
                     <div className="row">
                       <div className="col-lg-6 mb-4">
                         <div className="card textwhite bg-primary text-white shadow">
@@ -283,7 +283,7 @@ function AdminDashboard() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
