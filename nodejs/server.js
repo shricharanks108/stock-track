@@ -75,14 +75,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/cartItmes", (req, res, next) => {
-    var id = req.body.id;
-    if (!User.doesIdExist(id)) return res.sendStatus(400); // bad request
-
-    var user = new User(id);
-    res.send({ savedOrder: user.getOrderHistory() });
-});
-
 app.post("/cartItems", (req, res, next) => {
     var id = req.body.id;
     if (!User.doesIdExist(id)) return res.sendStatus(400); // bad request
@@ -97,10 +89,11 @@ app.post("/addCartItem", (req, res, next) => {
     var qty = req.body.qty;
 
     // TODO: null is because I don't understand the right fields
-    connection.query("INSERT INTO order_items VALUES (?,?,?,?,?,?,?)", [orderId, productId, null, null, qty, null, null], (error, results, fields) => {
-        if (error) res.sendStatus(500);
-        else res.send(results);
-    });
+    
+    // connection.query("INSERT INTO order_items VALUES (?,?,?,?,?,?,?)", [orderId, productId, null, null, qty, null, null], (error, results, fields) => {
+    //     if (error) res.sendStatus(500);
+    //     else res.send(results);
+    // });
 });
 
 app.set("views", path.join(__dirname, "views"));
