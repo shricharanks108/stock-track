@@ -29,7 +29,7 @@ router.use((req, res, next) => {
 });
 
 router.get("/getOrderItems", async (req, res) => {
-    var orderID = req.body.orderID;
+    var orderID = req.headers.orderID;
     if(!orderID) return res.status(400); // Bad Request
 
     var orderItems = await Orders.getOrderItems(connection, orderID);
@@ -37,7 +37,7 @@ router.get("/getOrderItems", async (req, res) => {
 });
 
 router.get("/getOrder", async (req, res) => {
-    var orderID = req.body.orderID;
+    var orderID = req.headers.orderID;
     if(!orderID) return res.status(400); // Bad Request
 
     var order = await Orders.getOrder(connection, orderID);
@@ -45,7 +45,7 @@ router.get("/getOrder", async (req, res) => {
 });
 
 router.delete("/deleteOrder", async (req, res) => {
-    var orderID = req.body.orderID;
+    var orderID = req.headers.orderID;
     if(!orderID) return res.status(400); // Bad Request
 
     var userID = await Orders.getUserIDFromOrder(connection, orderID);
@@ -60,8 +60,8 @@ router.delete("/deleteOrder", async (req, res) => {
 });
 
 router.put("/editOrderStatus", async (req, res) => {
-    var orderID = req.body.orderID;
-    var newStatus = req.body.newStatus;
+    var orderID = req.headers.orderID;
+    var newStatus = req.headers.newStatus;
     if(!orderID) return res.status(400); // Bad Request
     if(!newStatus) return res.status(400); // Bad Request
 
@@ -71,8 +71,8 @@ router.put("/editOrderStatus", async (req, res) => {
 });
 
 router.post("/createOrder", async (req, res) => {
-    var staff_nr = req.body.staffNumber;
-    var productIDsWithQuantities = req.body.productIDsWithQuantities;
+    var staff_nr = req.headers.staffNumber;
+    var productIDsWithQuantities = req.headers.productIDsWithQuantities;
     if(!staff_nr) return res.status(400); // Bad Request
     if(!productIDsWithQuantities) return res.status(400); // Bad Request
 
