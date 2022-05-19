@@ -27,6 +27,16 @@ router.use((req, res, next) => {
     next()
 });
 
+router.post('/addProduct', async (req, res) => {
+  let result = await Inventory.addNewProduct(connection, req.headers.pantryId, req.headers.productID, req.headers.name, req.headers.description, req.headers.majorCategory, req.headers.subcategory, req.headers.merchantID, req.headers.price, req.headers.UPC, req.headers.expirationDate);
+  res.status(200).send({ "products": result });
+});
+
+router.post('/removeProduct', async (req, res) => {
+  let result = await Inventory.deleteProduct(connection, req.headers.productUID)
+  res.status(200).send({ "products": result });
+});
+
 router.get('/productsFromPantryID', async (req, res) => {
   let result = await Inventory.getFoodPantryInventory(connection, Number(req.headers.pantryid));
   res.status(200).send({ "products": result });
