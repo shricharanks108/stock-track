@@ -84,4 +84,31 @@ router.post("/createOrder", async (req, res) => {
     return res.status(200); // OK
 });
 
+router.get("/getPendingOrders", async (req, res) => {
+    var order = await Orders.getPendingOrders(connection);
+    return res.send(200).send({"Orders": order});
+});
+
+router.get("/getFulfilledOrders", async (req, res) => {
+    var order = await Orders.getFulfilledOrders(connection);
+    return res.send(200).send({"Orders": order});
+});
+
+router.get("/getPendingOrderItems", async (req, res) => {
+    var orderID = req.headers.orderID;
+    if(!orderID) return res.status(400); // Bad Request
+
+    var order = await Orders.getPendingOrderItems(connection, orderID);
+    return res.send(200).send({"OrderItems": order});
+});
+
+router.get("/getFulfilledOrderItems", async (req, res) => {
+    var orderID = req.headers.orderID;
+    if(!orderID) return res.status(400); // Bad Request
+
+    var order = await Orders.getFulfilledOrderItems(connection, orderID);
+    return res.send(200).send({"OrderItems": order});
+});
+
+
 module.exports = router;
