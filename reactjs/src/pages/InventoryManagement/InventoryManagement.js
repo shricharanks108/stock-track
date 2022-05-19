@@ -33,6 +33,11 @@ function InventoryManagement() {
     });
   }
 
+  const deleteProduct = () => {
+    console.log("delete product woooo");
+    
+  }
+
   const [isLoadingSubcategories, setLoadingSubcategories] = useState(true);
   const [availableSubcategories, setAvailableSubcategories] = useState();
 
@@ -54,14 +59,12 @@ function InventoryManagement() {
   }, [MajorCategory]);
 
   return (
-    <div>
-      <div className="add-products-section">
+    <div className='inv-mgmt-row'>
+      <div className="sub-main inv-mgmt-col add-products-section">
         <h1>Add Product</h1>
-        <h2>Product Details</h2>
-          <input type="text" className="register-form-control" placeholder="Product Name" onChange={(e) => setProductName(e.target.value)}/>
-          <input type="text" className="register-form-control" placeholder="Product Description" onChange={(e) => setProductDescription(e.target.value)}/>
-
-          <Form.Select id="major-subcategory" onChange={(e) => setMajorCategory(e.target.value)}>
+          <input type="text" className="inv-register-form-control" placeholder="Product Name" onChange={(e) => setProductName(e.target.value)}/>
+          <input type="text" className="inv-register-form-control" placeholder="Product Description" onChange={(e) => setProductDescription(e.target.value)}/>
+          <Form.Select id="prod-major-category" onChange={(e) => setMajorCategory(e.target.value)}>
             <option>Dairy</option>
             <option>Protein Foods</option>
             <option>Mixed Dishes</option>
@@ -73,25 +76,24 @@ function InventoryManagement() {
             <option>All Beverages</option>
             <option>Other Beverages</option>
           </Form.Select>
-          <Form.Select id="minor-subcategory" onChange={(e) => setSubcategory(e.target.value)}>
+          <Form.Select id="prod-subcategory" onChange={(e) => setSubcategory(e.target.value)}>
             {isLoadingSubcategories? <option value="Loading" disabled>Loading.....</option> :  availableSubcategories.map((option) => (
               <option value={option}>{option}</option>
             ))}
           </Form.Select>
-
-          <input type="text" className="register-form-control" placeholder="Merchant ID" onChange={(e) => setMerchantID(e.target.value)} />
-          <input type="text" className="register-form-control" placeholder="Product Price" onChange={(e) => setPrice(e.target.value)} />
-          <input type="text" className="register-form-control" placeholder="UPC" onChange={(e) => setUPC(e.target.value)}/>
-          <input type="text" className="register-form-control" placeholder="Expiration Date" onChange={(e) => setExpirationDate(e.target.value)}/>
-        <Button type="submit" className="register-button" onClick={addProduct()}>Add Product</Button>
+          <input type="text" className="inv-register-form-control" placeholder="Merchant ID" onChange={(e) => setMerchantID(e.target.value)} />
+          <input type="text" className="inv-register-form-control" placeholder="Product Price" onChange={(e) => setPrice(e.target.value)} />
+          <input type="text" className="inv-register-form-control" placeholder="UPC" onChange={(e) => setUPC(e.target.value)}/>
+          <input type="text" className="inv-register-form-control" placeholder="Expiration Date" onChange={(e) => setExpirationDate(e.target.value)}/>
+          <Button type="submit" className="submit-button" onClick={addProduct()}>Add Product</Button>
       </div>
-      <div>
+      <div className='sub-main inv-mgmt-col delete-products-section'>
         <h1>Delete Product</h1>
-        <input type="text" className="register-form-control" placeholder="First Name" onChange={(e) => setProductUID(e.target.value)}/>
+        <input type="text" className="inv-register-form-control" placeholder="Product UID" onChange={(e) => setProductUID(e.target.value)}/>
+        <Button type="submit" className="submit-button" onClick={deleteProduct()}>Delete Product</Button>
       </div>
     </div>
   );
 }
-
 
 export default InventoryManagement;

@@ -2,3 +2,66 @@
     background-color: #a4c9ff;
     min-height: fit-content;
 }
+
+.inv-mgmt-row {
+    display: flex;
+    background-color: #e1e3eb;
+}
+  
+.inv-mgmt-col {
+    flex: 50%;
+    justify-items: center; 
+    flex-direction: column;
+    margin: 20px;
+}
+
+#prod-major-category {
+    max-width: 75% !important;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: block;
+    padding: 20px;
+    margin: 10px;
+    border-color: black;
+    border-radius: 60px;
+    border-width: 2px;
+}
+
+#prod-subcategory {
+    max-width: 75% !important;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: block;
+    padding: 20px;
+    margin: 10px;
+    border-color: black;
+    border-radius: 60px;
+    border-width: 2px;
+}
+
+.inv-register-form-control {
+    box-shadow: none;
+    box-sizing: border-box;
+    display: block;
+    padding: 20px;
+    margin: 10px;
+    border-color: black;
+    border-radius: 60px;
+    border-width: 2px;
+    width: 75%;
+}
+
+.add-products-section {
+    margin: 20px;
+}
+
+.submit-button {
+    margin: 20px;
+    border-radius: 60px !important;
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    width: 40%;
+    height: 60px;
+    align-items: center;
+}
