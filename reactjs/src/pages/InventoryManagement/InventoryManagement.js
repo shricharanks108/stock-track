@@ -2,18 +2,20 @@ import './InventoryManagement.css';
 import Axios from 'axios';
 import { useEffect, useState } from "react";
 import { Button, Form } from 'react-bootstrap';
+import DatePicker from 'react-date-picker';
 
 function InventoryManagement() {
   const [ProductUID, setProductUID] = useState('');
   const [ProductID, setProductID] = useState('');
   const [ProductName, setProductName] = useState('');
   const [ProductDescription, setProductDescription] = useState('');
-  const [MajorCategory, setMajorCategory] = useState('');
+  const [MajorCategory, setMajorCategory] = useState('Dairy');
   const [Subcategory, setSubcategory] = useState('');
   const [MerchantID, setMerchantID] = useState('');
   const [Price, setPrice] = useState('');
   const [UPC, setUPC] = useState('');
-  const [ExpirationDate, setExpirationDate] = useState('');
+  const [ExpirationDate, setExpirationDate] = useState(new Date());
+  const [FDCID, setFDCID] = useState('');
 
   const addProduct = () => {
     console.log("add product woooo");
@@ -28,6 +30,7 @@ function InventoryManagement() {
       price: Price,
       UPC: UPC,
       expirationDate: ExpirationDate,
+      FDCID: FDCID
     }).then((res) => {
       alert("Product Succesfully Added!")
     });
@@ -84,13 +87,14 @@ function InventoryManagement() {
           <input type="text" className="inv-register-form-control" placeholder="Merchant ID" onChange={(e) => setMerchantID(e.target.value)} />
           <input type="text" className="inv-register-form-control" placeholder="Product Price" onChange={(e) => setPrice(e.target.value)} />
           <input type="text" className="inv-register-form-control" placeholder="UPC" onChange={(e) => setUPC(e.target.value)}/>
-          <input type="text" className="inv-register-form-control" placeholder="Expiration Date" onChange={(e) => setExpirationDate(e.target.value)}/>
-          <Button type="submit" className="submit-button" onClick={addProduct()}>Add Product</Button>
+          <DatePicker className="inv-register-form-control" onChange={setExpirationDate} value={ExpirationDate} />
+          <input type="text" className="inv-register-form-control" placeholder="FDC ID" onChange={(e) => setFDCID(e.target.value)}/>
+          <Button type="submit" className="submit-button" onClick={addProduct}>Add Product</Button>
       </div>
       <div className='sub-main inv-mgmt-col delete-products-section'>
         <h1>Delete Product</h1>
         <input type="text" className="inv-register-form-control" placeholder="Product UID" onChange={(e) => setProductUID(e.target.value)}/>
-        <Button type="submit" className="submit-button" onClick={deleteProduct()}>Delete Product</Button>
+        <Button type="submit" className="submit-button" onClick={deleteProduct}>Delete Product</Button>
       </div>
     </div>
   );
