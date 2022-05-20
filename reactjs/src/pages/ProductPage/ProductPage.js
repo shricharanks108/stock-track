@@ -1,4 +1,5 @@
 import './ProductPage.css';
+import React, {useState} from 'react';
 import { NutritionLabel } from 'react-fda-nutrition-facts';
 import { Breadcrumb, Button } from 'react-bootstrap';
 import AddToOrderButton from '../../components/AddToOrderButton/AddToOrderButton';
@@ -17,52 +18,58 @@ import { useParams } from 'react-router-dom';
 // };
 
 function ProductPage(props) {
-
-  let product = {
-    name: "Milk",
-    calories: 345,
-    majorCategory: "Dairy",
-    subcategory: "Lowfat, Milk"
-  }
-
+  
   const { id } = useParams();
 
-  // Axios.get('https://stocktrack.shricharanks.com/getProduct', {
-  //   productID: id,
-  // }).then((res) => {
-  //   product = res.subcategories;
-  // });
+  const [nutritionInfo, setNutritionInfo] = useState({});
+  const [product, setProduct] = useState();
+
+  let productReturn = Axios.get('https://stocktrack.shricharanks.com/productByID', {
+    headers: {
+      pantryid: 1,
+      productid: id
+    }
+  }).then((res) => {
+    setProduct(res.data.product);
+  });
+
+  let nutrition = Axios.get('https://stocktrack.shricharanks.com/productNutritionInfo', {
+    headers: {
+      pantryid: 1,
+      productid: id
+    }
+  }).then((res) => {
+    setNutritionInfo(res.data.NutritionInfo);
+  });
 
   return (
     <div className='background'>
       <Breadcrumb>
-        <Breadcrumb.Item href="#">{product.majorCategory}</Breadcrumb.Item>
+        <Breadcrumb.Item href="#">{product.MajorCategory}</Breadcrumb.Item>
         <Breadcrumb.Item href="#results-by-category ">
           {product.subcategory}
         </Breadcrumb.Item> 
-        <Breadcrumb.Item active>{props.name}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{product.ProductName}</Breadcrumb.Item>
       </Breadcrumb>
       <AddToOrderButton cartItems={props.cartItems} setCartItems={props.setCartItems} productID={props.productID}/>
       <h1>Product ID: {id}</h1>
       <h1>Nutritional Information</h1>
       <div className='nutritional-facts'>
-          <NutritionLabel
-            servingSize={'1 cup (228g)'}
-            servingsPerContainer={2}
-            calories={product.calories}
-            totalFat={13}
-            saturatedFat={5}
-            transFat={2}
-            cholesterol={30}
-            sodium={660}
-            totalCarbs={31}
-            dietaryFiber={0}
-            sugars={5}
-            protein={5}
-            vitaminA={4}
-            vitaminC={2}
-            calcium={15}
-            iron={4}
+        <NutritionLabel
+          servingSize={'1 cup (228g)'}
+          servingsPerContainer={2}
+          calories={nutritionInfo.calories}
+          totalFat={nutritionInfo.totalfat}
+          saturatedFat={nutritionInfo.saturatedfat}
+          transFat={nutritionInfo.transfat}
+          cholesterol={nutritionInfo.cholesterol}
+          sodium={nutritionInfo.sodium}
+          totalCarbs={nutritionInfo.carbohydrates}
+          dietaryFiber={nutritionInfo.fiber}
+          sugars={nutritionInfo.sugar}
+          protein={nutritionInfo.protein}
+          calcium={nutritionInfo.calcium}
+          iron={nutritionInfo.iron}
         />
       </div>
     </div>
