@@ -20,7 +20,7 @@ class ProductStatus {
     static async getNextShipment(connection, pantryId, productID) {
         if (typeof pantryId !== "number" || productID == "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products_status WHERE pantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        const [results , fields] = await connection.execute('SELECT * FROM products_status WHERE pantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
             return results[0].NextShipment;

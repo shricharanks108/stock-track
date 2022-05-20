@@ -14,7 +14,7 @@ class Product {
     }
 
     static async getProductIDByName(connection, name, pantryId, productName) {
-        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+        if (typeof pantryId !== "number" || typeof productName !== "string") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductName = ?;', [pantryId, name]);
 
@@ -24,10 +24,10 @@ class Product {
         return null;
     }
 
-    static async getProductName(connection, pantryId, productID) {
+    static async getProductName(connection, pantryId, productUID) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].ProductName;
@@ -35,16 +35,16 @@ class Product {
         return null;
     }
 
-    static async setProductName(connection, pantryId, productID, productName) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET ProductName = ? WHERE PantryID = ? AND ProductID = ?;', [productName, pantryId, productID]);
-    }
-
-    static async getProductDescription(connection, pantryId, productID) {
+    static async setProductName(connection, pantryId, productUID, productName) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET ProductName = ? WHERE PantryID = ? AND ProductID = ?;', [productName, pantryId, productUID]);
+    }
+
+    static async getProductDescription(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].ProductDescription;
@@ -52,16 +52,16 @@ class Product {
         return null;
     }
 
-    static async setProductDescription(connection, pantryId, productID, description) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET ProductDescription = ? WHERE PantryID = ? AND ProductID = ?;', [description, pantryId, productID]);
-    }
-
-    static async getProductExpiryDate(connection, pantryId, productID) {
+    static async setProductDescription(connection, pantryId, productUID, description) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET ProductDescription = ? WHERE PantryID = ? AND ProductID = ?;', [description, pantryId, productUID]);
+    }
+
+    static async getProductExpiryDate(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].ExpiryDate;
@@ -69,16 +69,16 @@ class Product {
         return null;
     }
 
-    static async setProductExpiryDate(connection, pantryId, productID, productExpiry) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET ExpiryDate = ? WHERE PantryID = ? AND ProductID = ?;', [productExpiry, pantryId, productID]);
-    }
-
-    static async getProductMajorCategory(connection, pantryId, productID) {
+    static async setProductExpiryDate(connection, pantryId, productUID, productExpiry) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET ExpiryDate = ? WHERE PantryID = ? AND ProductID = ?;', [productExpiry, pantryId, productUID]);
+    }
+
+    static async getProductMajorCategory(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].MajorCategory;
@@ -86,16 +86,16 @@ class Product {
         return null;
     }
 
-    static async setProductMajorCategory(connection, pantryId, productID, productMajorCategory) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET MajorCategory = ? WHERE PantryID = ? AND ProductID = ?;', [productMajorCategory, pantryId, productID]);
-    }
-
-    static async getProductSubcategory(connection, pantryId, productID) {
+    static async setProductMajorCategory(connection, pantryId, productUID, productMajorCategory) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET MajorCategory = ? WHERE PantryID = ? AND ProductID = ?;', [productMajorCategory, pantryId, productUID]);
+    }
+
+    static async getProductSubcategory(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].Subcategory;
@@ -103,16 +103,16 @@ class Product {
         return null;
     }
 
-    static async setProductSubcategory(connection, pantryId, productID, productSubcategory) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET Subcategory = ? WHERE PantryID = ? AND ProductID = ?;', [productSubcategory, pantryId, productID]);
-    }
-
-    static async getProductMerchantID(connection, pantryId, productID) {
+    static async setProductSubcategory(connection, pantryId, productUID, productSubcategory) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET Subcategory = ? WHERE PantryID = ? AND ProductID = ?;', [productSubcategory, pantryId, productUID]);
+    }
+
+    static async getProductMerchantID(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].MerchantID;
@@ -120,16 +120,16 @@ class Product {
         return null;
     }
 
-    static async setProductMerchantID(connection, pantryId, productID, merchantID) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET MerchantID = ? WHERE PantryID = ? AND ProductID = ?;', [merchantID, pantryId, productID]);
-    }
-
-    static async getProductPrice(connection, pantryId, productID) {
+    static async setProductMerchantID(connection, pantryId, productUID, merchantID) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET MerchantID = ? WHERE PantryID = ? AND ProductID = ?;', [merchantID, pantryId, productUID]);
+    }
+
+    static async getProductPrice(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0].Price;
@@ -137,16 +137,16 @@ class Product {
         return null;
     }
 
-    static async setProductPrice(connection, pantryId, productID, price) {
-        if (typeof pantryId !== "number" || typeof productID !== "number") return;
-
-        await connection.execute('UPDATE products SET Price = ? WHERE PantryID = ? AND ProductID = ?;', [price, pantryId, productID]);
-    }
-
-    static async getProductNutrition(connection, pantryId, productID) {
+    static async setProductPrice(connection, pantryId, productUID, price) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+        await connection.execute('UPDATE products SET Price = ? WHERE PantryID = ? AND ProductID = ?;', [price, pantryId, productUID]);
+    }
+
+    static async getProductNutrition(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
              var fdc_id =  results[0].FDCID;
