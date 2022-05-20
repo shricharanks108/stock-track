@@ -79,9 +79,10 @@ router.post("/createOrder", async (req, res) => {
     if(!req.session.user) return res.status(401); // Unauthorized
 
     // TODO: make sure id can be fetched like this
-    var userID = req.session.user.id;
+    // var userID = req.session.user.id;
+    var userID = 1;
     await Orders.createOrder(connection, staff_nr, userID, productIDsWithQuantities);
-    return res.status(200); // OK
+    return res.status(200); // OK 
 });
 
 router.get("/getPendingOrders", async (req, res) => {

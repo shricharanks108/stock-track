@@ -14,15 +14,12 @@ class OrderStatus {
 }
 
 class Orders {
-    
-    // write all function bodies below
 
-    static async createOrderItem(connection, orderID, productUID, quantity){
+    static async createOrderItem(connection, orderID, productUID){
         if(typeof Number(orderID) !== "number") return;
         if(typeof Number(productUID) !== "number") return;
-        if(typeof Number(quantity) !== "number") return;
 
-        await connection.execute(`INSERT INTO order_items (order_id, product_id, quantity) VALUES (?, ?, ?, ?);`, [Number(orderID), Number(productUID), 1, false]);
+        await connection.execute(`INSERT INTO order_items (OrderID, ProductID, FulfilledByStaffID, Fulfilled) VALUES (?, ?, ?, ?);`, [Number(orderID), Number(productUID), 1, false]);
     }
 
     /**
@@ -109,12 +106,10 @@ class Orders {
 
         // Delete the order
         await connection.execute(`DELETE FROM orders WHERE order_id = ?;`, [orderID]);
-
+ 
         // Delete the items associated with the order
         await connection.execute(`DELETE FROM order_items WHERE OrderID = ?;`, [orderID]);
     }
-
-    // working on the following
 
     static async getPendingOrders(connection) {
         const [results, fields] = await connection.execute(`SELECT * FROM orders WHERE status = ?;`, [OrderStatus.ORDER_PENDING.value]);
