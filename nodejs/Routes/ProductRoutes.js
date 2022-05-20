@@ -28,17 +28,17 @@ router.use((req, res, next) => {
 });
 
 router.get('/productByID', async (req, res) => {
-  let result = await Product.getProductByID(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductByID(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "product": result });
 });
 
 router.get('/productIDByName', async (req, res) => {
-  let result = await Product.getProductIDByName(connection, req.headers.pantryid, req.headers.productname);
+  let result = await Product.getProductIDByName(connection, Number(req.headers.pantryid), req.headers.productname);
   res.status(200).send({ "productID": result });
 });
 
 router.get('/productName', async (req, res) => {
-  let result = await Product.getProductIDByName(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductIDByName(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "productName": result });
 });
 
@@ -52,7 +52,7 @@ router.post('/productName', async (req, res) => {
 });
 
 router.get('/productDescription', async (req, res) => {
-  let result = await Product.getProductIDByName(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductIDByName(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "productName": result });
 });
 
@@ -66,7 +66,7 @@ router.post('/productDescription', async (req, res) => {
 });
 
 router.get('/productExpiryDate', async (req, res) => {
-  let result = await Product.getProductExpiryDate(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductExpiryDate(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "productExpiryDate": result });
 });
 
@@ -80,7 +80,7 @@ router.post('/productExpiryDate', async (req, res) => {
 });
 
 router.get('/productMajorCategory', async (req, res) => {
-  let result = await Product.getProductMajorCategory(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductMajorCategory(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "productMajorCategory": result });
 });
 
@@ -94,7 +94,7 @@ router.post('/productMajorCategory', async (req, res) => {
 });
 
 router.get('/productSubcategory', async (req, res) => {
-  let result = await Product.getProductSubcategory(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductSubcategory(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "productSubcategory": result });
 });
 
@@ -108,7 +108,7 @@ router.post('/productSubcategory', async (req, res) => {
 });
 
 router.get('/productMerchantID', async (req, res) => {
-  let result = await Product.getProductMerchantID(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductMerchantID(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "merchantID": result });
 });
 
@@ -122,7 +122,7 @@ router.post('/productMerchantID', async (req, res) => {
 });
 
 router.get('/productNutritionInfo', async (req, res) => {
-  let result = await Product.getProductNutrition(connection, req.headers.pantryid, req.headers.productid);
+  let result = await Product.getProductNutrition(connection, Number(req.headers.pantryid), Number(req.headers.productid));
   res.status(200).send({ "NutritionInfo": result });
 });
 
