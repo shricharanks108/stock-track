@@ -2,10 +2,10 @@ import NutritionAPI from "../NutritionAPI";
 
 class Product {
 
-    static async getProductByID(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+    static async getProductByID(connection, pantryId, productUID) {
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE food_pantry_ID = ? AND id = ?;', [pantryId, productID]);
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductUID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
             return results[0];
@@ -14,7 +14,7 @@ class Product {
     }
 
     static async getProductIDByName(connection, name, pantryId, productName) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductName = ?;', [pantryId, name]);
 
@@ -25,7 +25,7 @@ class Product {
     }
 
     static async getProductName(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -42,7 +42,7 @@ class Product {
     }
 
     static async getProductDescription(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -59,7 +59,7 @@ class Product {
     }
 
     static async getProductExpiryDate(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -76,7 +76,7 @@ class Product {
     }
 
     static async getProductMajorCategory(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -93,7 +93,7 @@ class Product {
     }
 
     static async getProductSubcategory(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -110,7 +110,7 @@ class Product {
     }
 
     static async getProductMerchantID(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -127,7 +127,7 @@ class Product {
     }
 
     static async getProductPrice(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
@@ -144,7 +144,7 @@ class Product {
     }
 
     static async getProductNutrition(connection, pantryId, productID) {
-        if (typeof pantryId !== "number" || productID == "number") return;
+        if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
