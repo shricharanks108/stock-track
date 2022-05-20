@@ -45,8 +45,8 @@
     display: block;
     padding: 20px;
     margin: 10px;
-    border-color: black;
-    border-radius: 60px;
+    border-color: black !important;
+    border-radius: 60px !important;
     border-width: 2px;
     width: 75%;
 }
