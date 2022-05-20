@@ -6,6 +6,7 @@ import Axios from 'axios';
 
 function ProductListings(props) {
 
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
   const [majorCategory, setMajorCategory] = useState('Dairy');
@@ -20,22 +21,24 @@ function ProductListings(props) {
         }
       }).then((res) => {
         setProducts(res.data.products);
-        console.log(products);
+        setAllProducts(res.data.products);
+        console.log(allProducts);
     }, () => {
       console.log("error");
     });
   }, []);
 
   const filterProducts = () => {
-    // Axios.get('https://stocktrack.shricharanks.com/inventory/productsByMajorCategory', {
-    //   headers: {
-    //     majorcategory: majorCategory,
-    //     subcategory: subcategory
-    //   }
-    // }).then((res) => {
-    //   console.log(res.data);
-    //   products = res.data.products;
-    // });
+    var temp_products = [];    
+    for (let i = 0; i < allProducts.length; i++) {
+      console.log(allProducts[i].majorCategory);
+      console.log(allProducts[i].Subcategory);
+      if (allProducts[i].MajorCategory == majorCategory && allProducts[i].Subcategory == subcategory) {
+        temp_products.push(allProducts[i]);
+      }
+    }
+    console.log(temp_products);
+    setProducts(temp_products);
   };
 
   useEffect(() => {
