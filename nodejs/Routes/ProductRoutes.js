@@ -121,4 +121,9 @@ router.post('/productMerchantID', async (req, res) => {
   }
 });
 
+router.get('/productNutritionInfo', async (req, res) => {
+  let result = await Product.getProductNutrition(connection, req.headers.pantryid, req.headers.productid);
+  res.status(200).send({ "NutritionInfo": result });
+});
+
 module.exports = router;

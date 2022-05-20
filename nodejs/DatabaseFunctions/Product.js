@@ -1,3 +1,5 @@
+import NutritionAPI from "../NutritionAPI";
+
 class Product {
 
     static async getProductByID(connection, pantryId, productID) {
@@ -62,7 +64,7 @@ class Product {
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
-            return results[0].ProductExpiryDate;
+            return results[0].ExpiryDate;
         }
         return null;
     }
@@ -70,7 +72,7 @@ class Product {
     static async setProductExpiryDate(connection, pantryId, productID, productExpiry) {
         if (typeof pantryId !== "number" || typeof productID !== "number") return;
 
-        await connection.execute('UPDATE products SET ProductExpiryDate = ? WHERE PantryID = ? AND ProductID = ?;', [productExpiry, pantryId, productID]);
+        await connection.execute('UPDATE products SET ExpiryDate = ? WHERE PantryID = ? AND ProductID = ?;', [productExpiry, pantryId, productID]);
     }
 
     static async getProductMajorCategory(connection, pantryId, productID) {
@@ -79,7 +81,7 @@ class Product {
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
-            return results[0].ProductMajorCategory;
+            return results[0].MajorCategory;
         }
         return null;
     }
@@ -87,7 +89,7 @@ class Product {
     static async setProductMajorCategory(connection, pantryId, productID, productMajorCategory) {
         if (typeof pantryId !== "number" || typeof productID !== "number") return;
 
-        await connection.execute('UPDATE products SET ProductMajorCategory = ? WHERE PantryID = ? AND ProductID = ?;', [productMajorCategory, pantryId, productID]);
+        await connection.execute('UPDATE products SET MajorCategory = ? WHERE PantryID = ? AND ProductID = ?;', [productMajorCategory, pantryId, productID]);
     }
 
     static async getProductSubcategory(connection, pantryId, productID) {
@@ -96,7 +98,7 @@ class Product {
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
-            return results[0].ProductSubcategory;
+            return results[0].Subcategory;
         }
         return null;
     }
@@ -104,7 +106,7 @@ class Product {
     static async setProductSubcategory(connection, pantryId, productID, productSubcategory) {
         if (typeof pantryId !== "number" || typeof productID !== "number") return;
 
-        await connection.execute('UPDATE products SET ProductSubcategory = ? WHERE PantryID = ? AND ProductID = ?;', [productSubcategory, pantryId, productID]);
+        await connection.execute('UPDATE products SET Subcategory = ? WHERE PantryID = ? AND ProductID = ?;', [productSubcategory, pantryId, productID]);
     }
 
     static async getProductMerchantID(connection, pantryId, productID) {
@@ -113,16 +115,67 @@ class Product {
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
-            return results[0].ProductMerchantID;
+            return results[0].MerchantID;
         }
         return null;
     }
 
-    static async setProductMerchantID(connection, pantryId, productID, ProductMerchantID) {
+    static async setProductMerchantID(connection, pantryId, productID, merchantID) {
         if (typeof pantryId !== "number" || typeof productID !== "number") return;
 
-        await connection.execute('UPDATE products SET MerchantID = ? WHERE PantryID = ? AND ProductID = ?;', [productSubcategory, pantryId, productID]);
+        await connection.execute('UPDATE products SET MerchantID = ? WHERE PantryID = ? AND ProductID = ?;', [merchantID, pantryId, productID]);
     }
+
+    static async getProductPrice(connection, pantryId, productID) {
+        if (typeof pantryId !== "number" || productID == "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+
+        if (results.length > 0) {
+            return results[0].Price;
+        }
+        return null;
+    }
+
+    static async setProductPrice(connection, pantryId, productID, price) {
+        if (typeof pantryId !== "number" || typeof productID !== "number") return;
+
+        await connection.execute('UPDATE products SET Price = ? WHERE PantryID = ? AND ProductID = ?;', [price, pantryId, productID]);
+    }
+
+    static async getProductNutrition(connection, pantryId, productID) {
+        if (typeof pantryId !== "number" || productID == "number") return;
+
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
+
+        if (results.length > 0) {
+             var fdc_id =  results[0].FDCID;
+        }
+
+        return {
+            calcium: await NutritionAPI.getCalcium(fdc_id),
+            calories: await NutritionAPI.getCalories(fdc_id),
+            carbohydrates: await NutritionAPI.getCarbohydrates(fdc_id),
+            cholesterol: await NutritionAPI.getCholesterol(fdc_id),
+            fat: await NutritionAPI.getTotalFat(fdc_id),
+            fiber: await NutritionAPI.getFiber(fdc_id),
+            iron: await NutritionAPI.getIron(fdc_id),
+            potassium: await NutritionAPI.getPotassium(fdc_id),
+            protein: await NutritionAPI.getProtein(fdc_id),
+            saturatedfat: await NutritionAPI.getSaturatedFat(fdc_id),
+            transfat: await NutritionAPI.getTransFat(fdc_id),
+            sodium: await NutritionAPI.getSodium(fdc_id),
+            sugar: await NutritionAPI.getSugars(fdc_id)
+        };
+
+        
+        
+
+    }
+    
+
+
+
 
 }
 
