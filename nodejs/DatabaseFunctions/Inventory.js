@@ -19,7 +19,7 @@ class Inventory {
     static async deleteProduct(connection, productUID) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        await connection.execute('DELETE FROM products WHERE ProductUID = ?;', [productUID]);
+        await connection.execute('DELETE FROM products WHERE ProductUID = ?;', [productUID]); 
     }
 
     static async getProductIDsBySubcategory(connection, pantryId, subcategory) {
