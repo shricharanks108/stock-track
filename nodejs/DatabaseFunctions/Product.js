@@ -1,4 +1,4 @@
-import NutritionAPI from "../NutritionAPI";
+var NutritionAPI = require('../NutritionAPI');
 
 class Product {
 
