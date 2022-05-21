@@ -149,7 +149,8 @@ class Product {
         const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productUID]);
 
         if (results.length > 0) {
-             var fdc_id =  results[0].FDCID;
+            var fdc_id = Number(results[0].FDCID);
+            console.log(fdc_id);
         }
 
         return {
@@ -166,16 +167,7 @@ class Product {
             sodium: await NutritionAPI.getSodium(fdc_id),
             sugar: await NutritionAPI.getSugars(fdc_id)
         };
-
-        
-        
-
     }
-    
-
-
-
-
 }
 
 module.exports = Product;

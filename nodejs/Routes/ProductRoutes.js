@@ -123,6 +123,7 @@ router.post('/productMerchantID', async (req, res) => {
 
 router.get('/productNutritionInfo', async (req, res) => {
   let result = await Product.getProductNutrition(connection, Number(req.headers.pantryid), Number(req.headers.productid));
+  console.log(result);
   res.status(200).send({ "NutritionInfo": result });
 });
 
