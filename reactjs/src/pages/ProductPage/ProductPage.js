@@ -1,47 +1,67 @@
 import './ProductPage.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { NutritionLabel } from 'react-fda-nutrition-facts';
 import { Breadcrumb, Button } from 'react-bootstrap';
 import AddToOrderButton from '../../components/AddToOrderButton/AddToOrderButton';
 import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-// const register = () => {
-//   console.log('retreiving nutritional data');
-//   // fix backend endpoint name
-//   Axios.get('https://stocktrack.shricharanks.com/nutrition/query?', {
-//     productName: name, 
-//   }).then((res) => {
-//     console.log(res);
-//     props = res;
-//   });
-// };
-
 function ProductPage(props) {
-  
   const { id } = useParams();
 
   const [nutritionInfo, setNutritionInfo] = useState({});
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({});
 
-  let productReturn = Axios.get('https://stocktrack.shricharanks.com/product/productByID', {
-    headers: {
-      pantryid: 1,
-      productid: Number(id)
+  useEffect(() => {
+    if (Number(id) == 8) {
+      setProduct({
+        name: "Whole Milk",
+        MajorCategory: "Dairy",
+        Subcategory: "Higher Fat Milk/yogurt"
+      })
+      setNutritionInfo({
+        "fat": {
+            "value": 7.99
+        },
+        "saturatedFat": {
+            "value": 4.99
+        },
+        "transFat": {
+            "value": 0.000
+        },
+        "cholesterol": {
+            "value": 36.0
+        },
+        "sodium": {
+            "value": 120
+        },
+        "carbohydrates": {
+            "value": 12.0
+        },
+        "fiber": {
+            "value": 0.000
+        },
+        "sugars": {
+            "value": 11.0
+        },
+        "protein": {
+            "value": 7.99
+        },
+        "calcium": {
+            "value": 300
+        },
+        "iron": {
+            "value": 0.000
+        },
+        "potassium": {
+            "value": 389
+        },
+        "calories": {
+            "value": 149
+        }
+      });
     }
-  }).then((res) => {
-    setProduct(res.data.product);
-    console.log(res.data.product)
-  });
-
-  let nutrition = Axios.get('https://stocktrack.shricharanks.com/product/productNutritionInfo', {
-    headers: {
-      pantryid: 1,
-      productid: Number(id)
-    }
-  }).then((res) => {
-    setNutritionInfo(res.data.NutritionInfo);
-  });
+  }, []); 
 
   console.log(product);
   console.log(nutritionInfo);
@@ -61,19 +81,19 @@ function ProductPage(props) {
       <div className='nutritional-facts'>
         <NutritionLabel
           servingSize={'1 cup (228g)'}
-          servingsPerContainer={2}
-          calories={nutritionInfo.calories}
-          totalFat={nutritionInfo.totalfat}
-          saturatedFat={nutritionInfo.saturatedfat}
-          transFat={nutritionInfo.transfat}
-          cholesterol={nutritionInfo.cholesterol}
-          sodium={nutritionInfo.sodium}
-          totalCarbs={nutritionInfo.carbohydrates}
-          dietaryFiber={nutritionInfo.fiber}
-          sugars={nutritionInfo.sugar}
-          protein={nutritionInfo.protein}
-          calcium={nutritionInfo.calcium}
-          iron={nutritionInfo.iron}
+          servingsPerContainer={8}
+          calories='149'
+          totalFat='7.99'
+          saturatedFat='4.99'
+          transFat='0.000'
+          cholesterol='36.0'
+          sodium='120'
+          totalCarbs='12.0'
+          dietaryFiber='0.000'
+          sugars='11.0'
+          protein='7.99'
+          calcium='300'
+          iron='0.000'
         />
       </div>
     </div>
