@@ -10,7 +10,7 @@ function ProductListings(props) {
   const [products, setProducts] = useState([]);
 
   const [majorCategory, setMajorCategory] = useState('Dairy');
-  const [subcategory, setSubcategory] = useState();
+  const [subcategory, setSubcategory] = useState('Lowfat Milk/yogurt');
   const [isLoadingSubcategories, setLoadingSubcategories] = useState(true);
   const [availableSubcategories, setAvailableSubcategories] = useState();
 
@@ -51,6 +51,7 @@ function ProductListings(props) {
       }).then((res) => {
         if (res.data.subcategories.length > 0) {
           setAvailableSubcategories(res.data.subcategories.map(subcat => (subcat)));
+          setSubcategory(res.data.subcategories[0]);
           setLoadingSubcategories(false);
         }
       });
