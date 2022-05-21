@@ -72,6 +72,7 @@ router.put("/editOrderStatus", async (req, res) => {
 
 router.post("/createOrder", async (req, res) => {
     var staff_nr = req.headers.staffNumber;
+    var pantryID = req.headers.pantryid;
     var productIDsWithQuantities = req.headers.productIDsWithQuantities;
     if(!staff_nr) return res.status(400); // Bad Request
     if(!productIDsWithQuantities) return res.status(400); // Bad Request
@@ -81,7 +82,7 @@ router.post("/createOrder", async (req, res) => {
     // TODO: make sure id can be fetched like this
     // var userID = req.session.user.id;
     var userID = 1;
-    await Orders.createOrder(connection, staff_nr, userID, productIDsWithQuantities);
+    await Orders.createOrder(connection, pantryID, staff_nr, userID, productIDsWithQuantities);
     return res.status(200); // OK 
 });
 

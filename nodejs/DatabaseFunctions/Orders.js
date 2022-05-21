@@ -47,8 +47,8 @@ class Orders {
         shipped_date.setDate(created_at_date.getDate() + 4);
         
         await connection.execute(
-            `INSERT INTO orders (staff_nr, user_id, status, processed_by, required_date, shipped_date, created_at) VALUES (?, ?, ?, ?, ?, ?, ?);`,
-            [staff_nr, user_id, orderStatus, processedBy, required_date, shipped_date, created_at_date]
+            `INSERT INTO orders (order_id, staff_nr, user_id, status, processed_by, required_date, shipped_date, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+            [null, staff_nr, user_id, orderStatus, processedBy, required_date, shipped_date, created_at_date]
         );
 
         var orderID = await this.getOrderID(connection, staff_nr, user_id, processedBy, required_date, shipped_date, created_at_date);

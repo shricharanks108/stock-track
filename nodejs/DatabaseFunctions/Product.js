@@ -2,10 +2,10 @@ var NutritionAPI = require('../NutritionAPI');
 
 class Product {
 
-    static async getProductByID(connection, pantryId, productUID) {
+    static async getProductByID(connection, pantryId, productID) {
         if (typeof pantryId !== "number" || typeof productUID !== "number") return;
 
-        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductUID = ?;', [pantryId, productUID]);
+        const [results, fields] = await connection.execute('SELECT * FROM products WHERE PantryID = ? AND ProductID = ?;', [pantryId, productID]);
 
         if (results.length > 0) {
             return results[0];
