@@ -160,7 +160,6 @@ class Product {
             fat: await NutritionAPI.getTotalFat(fdc_id),
             fiber: await NutritionAPI.getFiber(fdc_id),
             iron: await NutritionAPI.getIron(fdc_id),
-            potassium: await NutritionAPI.getPotassium(fdc_id),
             protein: await NutritionAPI.getProtein(fdc_id),
             saturatedfat: await NutritionAPI.getSaturatedFat(fdc_id),
             transfat: await NutritionAPI.getTransFat(fdc_id),
