@@ -1,10 +1,10 @@
 import { Button } from 'react-bootstrap';
 import React, {useState} from 'react';
 import ProductCartCard from '../../components/ProductCartCard/ProductCartCard';
-import {Axios} from 'axios';
 import './OrderCart.css';
 import {Modal} from 'react-bootstrap';
 import Navigate from 'react';
+import axios from 'axios';
 
 function getEachItemIDWithQuantity(cards) {
   if(cards.length > 0) return cards[0].props.cartItems;
@@ -28,7 +28,7 @@ function OrderCart(props) {
     var staffNumber = 3; // TODO: what is staffNumber?
   
     console.log(cartItems);
-    Axios.post("https://stocktrack.shricharanks.com/order/createOrder", { 
+    axios.post("https://stocktrack.shricharanks.com/order/createOrder", { 
       staffNumber: 1,
       productIDsWithQuantities: cartItems
     });
@@ -47,7 +47,7 @@ function OrderCart(props) {
     <div id="orderCartPage">
       {cards}
       <hr></hr>
-      {isLoggedIn == true
+      {isLoggedIn === "true"
         ? <Button className="cartOrderBtn" onClick={async () => await executeOrder(cards)}>Place Order</Button>
         : <Button className="cartOrderBtn" href='/login'>Login to Place Order</Button>
       }
