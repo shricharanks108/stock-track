@@ -24,23 +24,27 @@ function ProductPage(props) {
   const [nutritionInfo, setNutritionInfo] = useState({});
   const [product, setProduct] = useState();
 
-  let productReturn = Axios.get('https://stocktrack.shricharanks.com/productByID', {
+  let productReturn = Axios.get('https://stocktrack.shricharanks.com/product/productByID', {
     headers: {
       pantryid: 1,
-      productid: id
+      productid: Number(id)
     }
   }).then((res) => {
     setProduct(res.data.product);
+    console.log(res.data.product)
   });
 
-  let nutrition = Axios.get('https://stocktrack.shricharanks.com/productNutritionInfo', {
+  let nutrition = Axios.get('https://stocktrack.shricharanks.com/product/productNutritionInfo', {
     headers: {
       pantryid: 1,
-      productid: id
+      productid: Number(id)
     }
   }).then((res) => {
     setNutritionInfo(res.data.NutritionInfo);
   });
+
+  console.log(product);
+  console.log(nutritionInfo);
 
   return (
     <div className='background'>
