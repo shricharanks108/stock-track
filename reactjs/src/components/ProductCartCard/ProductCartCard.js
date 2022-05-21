@@ -8,10 +8,10 @@ function ProductCartCard(props) {
     const cartItems = props.cartItems;
     const setCartItems = props.setCartItems;
 
-    const removeFromCart = () => { 
-        delete cartItems[productID];
-        setCartItems(cartItems);
-        console.log(cartItems);
+    function removeFromCart() { 
+        var tmpCartItems = {...cartItems};
+        delete tmpCartItems[productID];
+        props.setCartItems(tmpCartItems);
     };
 
     return (
