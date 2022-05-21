@@ -1,0 +1,20 @@
+#fulfillmentStaticDiv{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#fulfillmentTable{
+    margin: auto;
+}
+
+#fulfillmentTable th, td{
+    width: fit-content;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+#fulfillmentStaticDiv div{
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
